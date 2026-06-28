@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Dark mode variables (Default) */
+  --bg-color: #0c0a09; /* Deep warm charcoal/stone-950 */
+  --text-color: #fafaf9; /* Stone-50 */
+  --text-muted: #a8a29e; /* Stone-400 */
+  --card-bg: #1c1917; /* Stone-900 */
+  --card-border: #2e2a24; /* Stone-800 */
+  --card-border-hover: #44403c; /* Stone-700 */
+  --input-bg: #0c0a09;
+  --input-border: #2e2a24;
+  --accent-color: #10b981; /* Premium Cedar Emerald Green representing the Lebanese flag and elite nature */
+  --accent-hover: #059669;
+  --accent-bg-glow: rgba(16, 185, 129, 0.15);
+  --header-bg: rgba(12, 10, 9, 0.85);
+  --footer-bg: #0c0a09;
+  --footer-border: #1c1917;
+}
+
+:root.light {
+  /* Light mode variables */
+  --bg-color: #fcfcfb; /* Soft ivory/stone white */
+  --text-color: #1c1917; /* Deep stone-900 */
+  --text-muted: #57534e; /* Stone-600 */
+  --card-bg: #ffffff;
+  --card-border: #e7e5e4; /* Stone-200 */
+  --card-border-hover: #d6d3d1; /* Stone-300 */
+  --input-bg: #f5f5f4; /* Stone-100 */
+  --input-border: #e7e5e4;
+  --accent-color: #059669; /* Emerald Cedar Green */
+  --accent-hover: #047857;
+  --accent-bg-glow: rgba(5, 150, 105, 0.1);
+  --header-bg: rgba(252, 252, 251, 0.85);
+  --footer-bg: #f5f5f4; /* Stone-100 */
+  --footer-border: #e7e5e4;
+}
+
+@theme {
+  --font-sans: "Inter", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-bg: var(--bg-color);
+  --color-brand-text: var(--text-color);
+  --color-brand-muted: var(--text-muted);
+  --color-brand-card: var(--card-bg);
+  --color-brand-border: var(--card-border);
+  --color-brand-border-hover: var(--card-border-hover);
+  --color-brand-input: var(--input-bg);
+  --color-brand-accent: var(--accent-color);
+  --color-brand-accent-hover: var(--accent-hover);
+  --color-brand-accent-glow: var(--accent-bg-glow);
+  --color-brand-header: var(--header-bg);
+  --color-brand-footer: var(--footer-bg);
+  --color-brand-footer-border: var(--footer-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Elegant fade in transitions for layout changes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Glowing text gradients for the brand */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Bento card specific styles that adapt beautifully */
+.bento-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 32px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+  border-color: var(--card-border-hover);
+  transform: translateY(-2px);
+}
+
+.bento-card-highlight {
+  background-color: var(--accent-color);
+  color: #000000;
+  border-radius: 32px;
+  box-shadow: 0 10px 30px -10px var(--accent-bg-glow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card-highlight:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+}
