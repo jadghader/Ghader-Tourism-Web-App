@@ -2,7 +2,6 @@ import React from "react";
 import { Globe, Menu, X, Sun, Moon } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
-import GhaderLogo from "./GhaderLogo";
 
 interface HeaderProps {
   currentLang: Language;
@@ -54,7 +53,6 @@ export default function Header({
             onClick={() => handleNavClick("home")}
             id="brand-logo"
           >
-            <GhaderLogo className="w-9 h-9" />
             <div className={`flex flex-col ${isRtl ? "text-right" : "text-left"}`}>
               <span className="font-extrabold text-base leading-none tracking-tight font-sans text-brand-text">
                 {t.brandName}

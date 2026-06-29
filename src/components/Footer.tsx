@@ -2,7 +2,6 @@ import React from "react";
 import { Phone, Mail, MapPin, Award, Shield, Heart } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
-import GhaderLogo from "./GhaderLogo";
 
 interface FooterProps {
   currentLang: Language;
@@ -25,7 +24,6 @@ export default function Footer({ currentLang, setActiveView }: FooterProps) {
           {/* Column 1: Brand details */}
           <div className="space-y-3">
             <div className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}>
-              <GhaderLogo className="w-8 h-8" />
               <span className="text-brand-text font-extrabold text-base font-sans tracking-tight">
                 {t.brandName}
               </span>
@@ -49,20 +47,26 @@ export default function Footer({ currentLang, setActiveView }: FooterProps) {
               {currentLang === "ar" ? "روابط سريعة" : currentLang === "fr" ? "Navigation" : "Quick Navigation"}
             </h3>
             <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[11px] font-semibold">
-              <button onClick={() => handleLinkClick("home")} className="hover:text-brand-accent transition-all text-left block w-full" style={{ textAlign: isRtl ? "right" : "left" }}>
+              <button onClick={() => handleLinkClick("home")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
                 • {t.navHome}
               </button>
-              <button onClick={() => handleLinkClick("transfers")} className="hover:text-brand-accent transition-all text-left block w-full" style={{ textAlign: isRtl ? "right" : "left" }}>
-                • {currentLang === "ar" ? "توصيلات VIP وسائق خاص" : currentLang === "fr" ? "VIP & Chauffeur" : "Transfers & Chauffeur"}
+              <button onClick={() => handleLinkClick("transfers")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
+                • {currentLang === "ar" ? "تاكسي وسائقون" : currentLang === "fr" ? "Taxi & Chauffeurs" : "Taxi & Drivers"}
               </button>
-              <button onClick={() => handleLinkClick("tours")} className="hover:text-brand-accent transition-all text-left block w-full" style={{ textAlign: isRtl ? "right" : "left" }}>
+              <button onClick={() => handleLinkClick("tours")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
                 • {t.navTours}
               </button>
-              <button onClick={() => handleLinkClick("fleet")} className="hover:text-brand-accent transition-all text-left block w-full" style={{ textAlign: isRtl ? "right" : "left" }}>
+              <button onClick={() => handleLinkClick("fleet")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
                 • {t.navFleet}
               </button>
-              <button onClick={() => handleLinkClick("reviews")} className="hover:text-brand-accent transition-all text-left block w-full" style={{ textAlign: isRtl ? "right" : "left" }}>
-                • {t.navReviews}
+              <button onClick={() => handleLinkClick("booking")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
+                • {t.bookNow}
+              </button>
+              <button onClick={() => handleLinkClick("about")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
+                • {t.navAbout}
+              </button>
+              <button onClick={() => handleLinkClick("contact")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
+                • {t.navContact}
               </button>
             </div>
           </div>
@@ -89,19 +93,12 @@ export default function Footer({ currentLang, setActiveView }: FooterProps) {
         <div className="border-t border-brand-footer-border pt-4 mt-4 flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] text-brand-muted">
           <p>© {new Date().getFullYear()} {t.brandName} Lebanon. 25+ years of premium chauffeur services.</p>
           <div className="flex gap-3">
-            <button onClick={() => handleLinkClick("about")} className="hover:text-brand-text transition-colors">
+            <button onClick={() => handleLinkClick("about")} className="hover:text-brand-text transition-colors cursor-pointer">
               {t.navAbout}
             </button>
             <span className="opacity-20">|</span>
-            <button onClick={() => handleLinkClick("contact")} className="hover:text-brand-text transition-colors">
+            <button onClick={() => handleLinkClick("contact")} className="hover:text-brand-text transition-colors cursor-pointer">
               {t.navContact}
-            </button>
-            <span className="opacity-20">|</span>
-            <button 
-              onClick={() => handleLinkClick("admin")} 
-              className="hover:text-brand-text transition-colors font-bold text-brand-text bg-brand-card border border-brand-border px-1.5 py-0.5 rounded"
-            >
-              {t.navAdmin}
             </button>
           </div>
         </div>

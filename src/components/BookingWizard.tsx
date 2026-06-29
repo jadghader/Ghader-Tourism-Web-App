@@ -2,6 +2,8 @@ import React from "react";
 import { Check, ArrowRight, ArrowLeft, Send, CheckCircle2, Calendar, MapPin, User, Car } from "lucide-react";
 import { Language, ServiceType, Booking, Vehicle } from "../types";
 import { translations } from "../translations";
+import CalendarDatePicker from "./CalendarDatePicker";
+import TransferMap from "./TransferMap";
 
 interface BookingWizardProps {
   currentLang: Language;
@@ -261,49 +263,46 @@ export default function BookingWizard({ currentLang, onBookingCompleted, selecte
 
             {/* Airport Transfer Specific */}
             {serviceType === "airport_transfer" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-brand-muted block">{t.pickupLocation} *</label>
-                  <input
-                    type="text"
-                    required
-                    value={pickup}
-                    onChange={(e) => setPickup(e.target.value)}
-                    placeholder={t.pickupPlaceholder}
-                    className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-brand-muted block">{t.destination} *</label>
-                  <input
-                    type="text"
-                    required
-                    value={destination}
-                    onChange={(e) => setDestination(e.target.value)}
-                    placeholder={t.destinationPlaceholder}
-                    className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-brand-muted block">{t.flightNumber}</label>
-                  <input
-                    type="text"
-                    value={flightNo}
-                    onChange={(e) => setFlightNo(e.target.value)}
-                    placeholder={t.flightPlaceholder}
-                    className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-brand-muted block">{t.date} *</label>
+                    <label className="text-xs font-semibold text-brand-muted block">{t.pickupLocation} *</label>
                     <input
-                      type="date"
+                      type="text"
                       required
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent transition-all duration-200"
+                      value={pickup}
+                      onChange={(e) => setPickup(e.target.value)}
+                      placeholder={t.pickupPlaceholder}
+                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
                     />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-brand-muted block">{t.destination} *</label>
+                    <input
+                      type="text"
+                      required
+                      value={destination}
+                      onChange={(e) => setDestination(e.target.value)}
+                      placeholder={t.destinationPlaceholder}
+                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
+                    />
+                  </div>
+                  <div className="space-y-1.5 md:col-span-2">
+                    <label className="text-xs font-semibold text-brand-muted block">{t.flightNumber}</label>
+                    <input
+                      type="text"
+                      value={flightNo}
+                      onChange={(e) => setFlightNo(e.target.value)}
+                      placeholder={t.flightPlaceholder}
+                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  <div className="space-y-1.5 md:col-span-2">
+                    <label className="text-xs font-semibold text-brand-muted block">{t.date} *</label>
+                    <CalendarDatePicker selectedDate={date} onChange={setDate} currentLang={currentLang} />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-semibold text-brand-muted block">{t.time} *</label>
@@ -321,44 +320,41 @@ export default function BookingWizard({ currentLang, onBookingCompleted, selecte
 
             {/* Day Tour Specific */}
             {serviceType === "tour" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-brand-muted block">
-                    {currentLang === "ar" ? "منطقة الجولة السياحية" : currentLang === "fr" ? "Sélectionnez le circuit" : "Select Featured Tour"}
-                  </label>
-                  <select
-                    value={selectedTour}
-                    onChange={(e) => setSelectedTour(e.target.value)}
-                    className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent transition-all duration-200"
-                  >
-                    {TOURS.map(tour => (
-                      <option key={tour.id} value={tour.id} className="bg-brand-card text-brand-text">
-                        {tour.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-brand-muted block">{t.pickupLocation} *</label>
-                  <input
-                    type="text"
-                    required
-                    value={pickup}
-                    onChange={(e) => setPickup(e.target.value)}
-                    placeholder="e.g., Hotel Name in Beirut"
-                    className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-3 md:col-span-2">
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-brand-muted block">{t.date} *</label>
+                    <label className="text-xs font-semibold text-brand-muted block">
+                      {currentLang === "ar" ? "منطقة الجولة السياحية" : currentLang === "fr" ? "Sélectionnez le circuit" : "Select Featured Tour"}
+                    </label>
+                    <select
+                      value={selectedTour}
+                      onChange={(e) => setSelectedTour(e.target.value)}
+                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent transition-all duration-200"
+                    >
+                      {TOURS.map(tour => (
+                        <option key={tour.id} value={tour.id} className="bg-brand-card text-brand-text">
+                          {tour.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-brand-muted block">{t.pickupLocation} *</label>
                     <input
-                      type="date"
+                      type="text"
                       required
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent transition-all duration-200"
+                      value={pickup}
+                      onChange={(e) => setPickup(e.target.value)}
+                      placeholder="e.g., Hotel Name in Beirut"
+                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
                     />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  <div className="space-y-1.5 md:col-span-2">
+                    <label className="text-xs font-semibold text-brand-muted block">{t.date} *</label>
+                    <CalendarDatePicker selectedDate={date} onChange={setDate} currentLang={currentLang} />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-semibold text-brand-muted block">{t.time} *</label>
@@ -376,40 +372,37 @@ export default function BookingWizard({ currentLang, onBookingCompleted, selecte
 
             {/* Chauffeur Specific */}
             {serviceType === "chauffeur" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-brand-muted block">{t.pickupLocation} *</label>
-                  <input
-                    type="text"
-                    required
-                    value={pickup}
-                    onChange={(e) => setPickup(e.target.value)}
-                    placeholder="e.g., Beirut International Airport, Hotel"
-                    className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-brand-muted block">
-                    {currentLang === "ar" ? "منطقة الخدمة المطلوبة" : "Intended Destinations / Service Area"}
-                  </label>
-                  <input
-                    type="text"
-                    value={destination}
-                    onChange={(e) => setDestination(e.target.value)}
-                    placeholder="e.g., Mount Lebanon & South, or Beirut area"
-                    className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-3 md:col-span-2">
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-brand-muted block">{t.date} *</label>
+                    <label className="text-xs font-semibold text-brand-muted block">{t.pickupLocation} *</label>
                     <input
-                      type="date"
+                      type="text"
                       required
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent transition-all duration-200"
+                      value={pickup}
+                      onChange={(e) => setPickup(e.target.value)}
+                      placeholder="e.g., Beirut International Airport, Hotel"
+                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
                     />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-brand-muted block">
+                      {currentLang === "ar" ? "منطقة الخدمة المطلوبة" : "Intended Destinations / Service Area"}
+                    </label>
+                    <input
+                      type="text"
+                      value={destination}
+                      onChange={(e) => setDestination(e.target.value)}
+                      placeholder="e.g., Mount Lebanon & South, or Beirut area"
+                      className="w-full bg-brand-input border border-brand-border rounded-xl px-4 py-3.5 text-base md:text-sm h-12 md:h-11 text-brand-text focus:outline-none focus:border-brand-accent placeholder-brand-muted/40 transition-all duration-200"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  <div className="space-y-1.5 md:col-span-2">
+                    <label className="text-xs font-semibold text-brand-muted block">{t.date} *</label>
+                    <CalendarDatePicker selectedDate={date} onChange={setDate} currentLang={currentLang} />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-semibold text-brand-muted block">{t.time} *</label>
@@ -424,6 +417,20 @@ export default function BookingWizard({ currentLang, onBookingCompleted, selecte
                 </div>
               </div>
             )}
+
+            {/* INTERACTIVE ROUTE MAP */}
+            <div className="pt-2">
+              <TransferMap
+                currentLang={currentLang}
+                currentDestinationText={destination}
+                onSelectDestination={(destName) => {
+                  setDestination(destName);
+                  if (!pickup) {
+                    setPickup(currentLang === "ar" ? "مطار بيروت رفيق الحريري الدولي (BEY)" : currentLang === "fr" ? "Aéroport International de Beyrouth (BEY)" : "Beirut Rafic Hariri Airport (BEY)");
+                  }
+                }}
+              />
+            </div>
 
             <div className={`flex gap-3 pt-4 ${isRtl ? "flex-row-reverse" : "flex-row"}`}>
               <button

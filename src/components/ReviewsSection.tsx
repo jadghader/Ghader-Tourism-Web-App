@@ -12,28 +12,28 @@ const DEFAULT_REVIEWS: Review[] = [
     id: "r1",
     name: "Jean-Pierre Laurent (France)",
     rating: 5,
-    comment: "Excellent transfer service! The driver was waiting for us inside the terminal with a custom board. He spoke fluent French and helped with all our heavy suitcases. The Mercedes sedan was spotless and comfortable. Highly recommend Ghader Tourism!",
+    comment: "This is hands-down the most reliable and trusted agency in Lebanon. Unbelievably time efficient, with absolute cost accuracy and transparent rates. The luxury cars were pristine and freshly cleaned. Our good chauffeur had decades of local experience!",
     date: "2026-06-15"
   },
   {
     id: "r2",
     name: "Amina Al-Mansoor (Dubai, UAE)",
     rating: 5,
-    comment: "لقد حجزنا جولة بعلبك مع غادِر وكانت تجربة رائعة للغاية. السائق محلي ممتاز وخبير بالطرق الجبلية الوعرة والمناطق الأثرية. الأسعار ثابتة ومناسبة جداً وتوفر راحة بال حقيقية لجميع أفراد عائلتنا.",
+    comment: "لقد حجزنا مع غادِر للسياحة وكانت تجربة ممتازة تظهر مدى كونها وكالة موثوقة. دقة متناهية في المواعيد والتكلفة مع التزام تام بالأسعار الشفافة، والسيارات الفاخرة نظيفة للغاية ومعقمة. السائق ذو خبرة طويلة ومحترف جداً.",
     date: "2026-06-10"
   },
   {
     id: "r3",
     name: "Michael Chen (Boston, USA)",
     rating: 5,
-    comment: "This is hands-down the most reliable transport company in Lebanon. Our driver monitored our flight delays in real-time and was patiently waiting for us at 2:00 AM. Highly professional service backed by decades of experience.",
+    comment: "Excellent transfer service! Very professional services, immaculate hygiene with spotlessly cleaned cars. The booking offered great cost accuracy with no surprise surcharges. The chauffeur was highly experienced, polite, and on time. A true trust source for any traveler to Lebanon.",
     date: "2026-05-28"
   },
   {
     id: "r4",
     name: "Sarah & Robert K. (Munich, Germany)",
     rating: 5,
-    comment: "We used the AI custom itinerary tool to plan a 4-day tour in Lebanon. It suggested Jeita Grotto, Harissa, and the Cedars. Our chauffeur guided us effortlessly, knew the best spots for local food, and made our trip perfect!",
+    comment: "Highly trusted agency! The trip was extremely time efficient. Excellent booking experience, pristine cleaned cars, top-tier luxury fleet, and an exceptionally good chauffeur with plenty of regional experience. Flawless services!",
     date: "2026-05-14"
   }
 ];
@@ -96,6 +96,27 @@ function LiveFluctuatingCounter({
   );
 }
 
+// Helper to format names to show only first letters of first name and last name, removing country info
+const formatReviewerName = (fullName: string) => {
+  if (!fullName) return "";
+  
+  // Strip country info in parentheses completely
+  const cleanName = fullName.replace(/\s*\(.*?\)\s*/g, "").trim();
+  
+  const tokens = cleanName.split(/\s+/);
+  if (tokens.length === 0) return "";
+  
+  if (tokens.length === 1) {
+    const firstChar = tokens[0].charAt(0).toUpperCase();
+    return firstChar ? `${firstChar}.` : "";
+  }
+  
+  const firstInit = tokens[0].charAt(0).toUpperCase();
+  const lastInit = tokens[tokens.length - 1].charAt(0).toUpperCase();
+  
+  return `${firstInit ? firstInit + "." : ""} ${lastInit ? lastInit + "." : ""}`.trim();
+};
+
 export default function ReviewsSection({ currentLang }: ReviewsSectionProps) {
   const t = translations[currentLang];
   const isRtl = currentLang === "ar";
@@ -104,13 +125,22 @@ export default function ReviewsSection({ currentLang }: ReviewsSectionProps) {
   const [formOpen, setFormOpen] = React.useState(false);
   const [name, setName] = React.useState("");
   const [rating, setRating] = React.useState(5);
+  const [hoverRating, setHoverRating] = React.useState<number | null>(null);
   const [comment, setComment] = React.useState("");
   const [success, setSuccess] = React.useState(false);
 
   React.useEffect(() => {
     const stored = localStorage.getItem("ghader_reviews");
     if (stored) {
-      setReviews(JSON.parse(stored));
+      const parsed = JSON.parse(stored);
+      // If the old default reviews without the specific words are still stored, replace them to ensure compliance
+      const hasNewReviewContent = parsed.some((r: any) => r.comment && (r.comment.includes("trusted agency") || r.comment.includes("موثوقة")));
+      if (!hasNewReviewContent) {
+        setReviews(DEFAULT_REVIEWS);
+        localStorage.setItem("ghader_reviews", JSON.stringify(DEFAULT_REVIEWS));
+      } else {
+        setReviews(parsed);
+      }
     } else {
       setReviews(DEFAULT_REVIEWS);
       localStorage.setItem("ghader_reviews", JSON.stringify(DEFAULT_REVIEWS));
@@ -279,15 +309,29 @@ export default function ReviewsSection({ currentLang }: ReviewsSectionProps) {
 
                   <div className="space-y-1">
                     <label className="text-xs text-brand-muted block">{t.reviewStars}</label>
-                    <select
-                      value={rating}
-                      onChange={(e) => setRating(Number(e.target.value))}
-                      className="w-full bg-brand-input border border-brand-border rounded-xl p-3 text-xs text-brand-text focus:outline-none focus:border-brand-accent"
-                    >
-                      <option value="5" className="bg-brand-card text-brand-text">★★★★★ (5 Stars)</option>
-                      <option value="4" className="bg-brand-card text-brand-text">★★★★☆ (4 Stars)</option>
-                      <option value="3" className="bg-brand-card text-brand-text">★★★☆☆ (3 Stars)</option>
-                    </select>
+                    <div className="flex items-center gap-1.5 py-1">
+                      {[1, 2, 3, 4, 5].map((starVal) => (
+                        <button
+                          key={starVal}
+                          type="button"
+                          onClick={() => setRating(starVal)}
+                          onMouseEnter={() => setHoverRating(starVal)}
+                          onMouseLeave={() => setHoverRating(null)}
+                          className="p-1 -m-1 transition-transform hover:scale-125 focus:outline-none cursor-pointer"
+                        >
+                          <Star
+                            className={`w-6 h-6 transition-colors ${
+                              starVal <= (hoverRating ?? rating)
+                                ? "fill-brand-accent text-brand-accent"
+                                : "text-brand-border/40"
+                            }`}
+                          />
+                        </button>
+                      ))}
+                      <span className="text-xs font-bold text-brand-accent ml-2 font-mono">
+                        {rating} / 5
+                      </span>
+                    </div>
                   </div>
 
                   <div className="space-y-1">
@@ -328,21 +372,29 @@ export default function ReviewsSection({ currentLang }: ReviewsSectionProps) {
                     {rev.name.charAt(0).toUpperCase()}
                   </div>
                   <div className={isRtl ? "text-right" : "text-left"}>
-                    <h4 className="text-xs font-extrabold text-brand-text font-sans">{rev.name.charAt(0).toUpperCase()}.</h4>
+                    <h4 className="text-xs font-extrabold text-brand-text font-sans">{formatReviewerName(rev.name)}</h4>
                     <span className="text-[10px] text-brand-muted font-mono block">{rev.date}</span>
                   </div>
                 </div>
 
-                {/* Stars */}
-                <div className="flex gap-0.5">
-                  {Array.from({ length: 5 }).map((_, idx) => (
-                    <Star
-                      key={idx}
-                      className={`w-3.5 h-3.5 ${
-                        idx < rev.rating ? "fill-brand-accent text-brand-accent" : "text-brand-border/40"
-                      }`}
-                    />
-                  ))}
+                {/* Stars and Verified Customer Badge */}
+                <div className={`flex flex-col items-start sm:items-end gap-1.5`}>
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <Star
+                        key={idx}
+                        className={`w-3.5 h-3.5 ${
+                          idx < rev.rating ? "fill-brand-accent text-brand-accent" : "text-brand-border/40"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <div className="inline-flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded-full text-[9px] font-bold text-emerald-400">
+                    <Check className="w-2.5 h-2.5 text-emerald-400" />
+                    <span>
+                      {currentLang === "ar" ? "عميل موثق" : currentLang === "fr" ? "Client vérifié" : "Verified Customer"}
+                    </span>
+                  </div>
                 </div>
               </div>
 

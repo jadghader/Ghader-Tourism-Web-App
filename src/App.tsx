@@ -32,12 +32,37 @@ import TransfersSection from "./components/TransfersSection";
 import SocialSection from "./components/SocialSection";
 import SEO from "./components/SEO";
 import WhatsAppFAB from "./components/WhatsAppFAB";
+import UseCasesSection from "./components/UseCasesSection";
 
 import { Language, Booking } from "./types";
 import { translations } from "./translations";
 
 export default function App() {
-  const [currentLang, setLang] = React.useState<Language>("en");
+  const [currentLang, setLang] = React.useState<Language>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("ghader-lang");
+      if (saved === "en" || saved === "ar" || saved === "fr") {
+        return saved as Language;
+      }
+      // Detect browser language
+      const languages = navigator.languages || [navigator.language];
+      for (const lang of languages) {
+        if (lang) {
+          const lower = lang.toLowerCase();
+          if (lower.startsWith("ar")) return "ar";
+          if (lower.startsWith("fr")) return "fr";
+          if (lower.startsWith("en")) return "en";
+        }
+      }
+    }
+    return "en";
+  });
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("ghader-lang", currentLang);
+    }
+  }, [currentLang]);
   const [activeView, setActiveView] = React.useState<string>("home");
   const [selectedVehicleId, setSelectedVehicleId] = React.useState<string | undefined>(undefined);
   const [lastBooking, setLastBooking] = React.useState<Booking | null>(null);
@@ -178,6 +203,12 @@ export default function App() {
                 <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-emerald-500/5 rounded-full blur-[80px]"></div>
               </div>
             </section>
+
+            {/* USE CASES SECTION */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6">
+              <UseCasesSection currentLang={currentLang} onNavigate={setActiveView} />
+            </section>
+
             {/* BLOG CAROUSEL SIGHTSEEING GALLERY */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6">
               <BlogCarousel currentLang={currentLang} onNavigate={setActiveView} />

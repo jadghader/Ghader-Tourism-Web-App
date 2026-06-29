@@ -1,5 +1,6 @@
 import React from "react";
 import { Phone, Calendar, Compass, ShieldCheck } from "lucide-react";
+import { motion } from "motion/react";
 import { Language } from "../types";
 import { translations } from "../translations";
 
@@ -53,31 +54,51 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
             
             <div className="lg:col-span-8 space-y-6">
               {/* Beirut Local Time & Status */}
-              <div className={`inline-flex items-center gap-2.5 bg-[#141414]/90 backdrop-blur-md px-4 py-2 rounded-full border border-neutral-800 text-xs font-semibold text-white shadow-lg ${isRtl ? "flex-row-reverse" : ""}`}>
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className={`inline-flex items-center gap-2.5 bg-[#141414]/90 backdrop-blur-md px-4 py-2 rounded-full border border-neutral-800 text-xs font-semibold text-white shadow-lg ${isRtl ? "flex-row-reverse" : ""}`}
+              >
                 <span className="flex h-2 w-2 relative">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
                 <span className="font-semibold text-brand-accent">{currentLang === "ar" ? "توقيت بيروت المباشر:" : currentLang === "fr" ? "Heure de Beyrouth :" : "Beirut Local Time:"}</span>
                 <span className="font-mono text-gray-200 font-bold" dir="ltr">{localTime || "00:00:00 PM"}</span>
-              </div>
+              </motion.div>
 
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-sans tracking-tight text-white leading-tight">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-3xl sm:text-4xl md:text-5xl font-black font-sans tracking-tight text-white leading-tight"
+              >
                 {t.heroTitle.split("&").map((part, i) => (
                   <span key={i} className="block">
                     {i === 1 ? <span className="text-gradient bg-gradient-to-r from-brand-accent to-emerald-400 bg-clip-text text-transparent">& {part}</span> : part}
                   </span>
                 ))}
-              </h1>
+              </motion.h1>
 
               {/* Subhead */}
-              <p className="text-neutral-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-neutral-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed"
+              >
                 {t.heroSubhead}
-              </p>
+              </motion.p>
 
               {/* Features list */}
-              <div className={`flex flex-wrap gap-3 pt-2 text-xs text-neutral-300 ${isRtl ? "justify-start flex-row-reverse" : ""}`}>
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className={`flex flex-wrap gap-3 pt-2 text-xs text-neutral-300 ${isRtl ? "justify-start flex-row-reverse" : ""}`}
+              >
                 <div className="flex items-center gap-2 bg-neutral-900/80 px-3.5 py-2 rounded-xl border border-neutral-800">
                   <ShieldCheck className="w-4 h-4 text-brand-accent" />
                   <span>{t.expTitle}</span>
@@ -86,10 +107,15 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
                   <ShieldCheck className="w-4 h-4 text-brand-accent" />
                   <span>{t.airportAuthorized}</span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Call to Actions */}
-              <div className={`flex flex-col sm:flex-row gap-3 pt-4 ${isRtl ? "sm:flex-row-reverse justify-start" : ""}`}>
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className={`flex flex-col sm:flex-row gap-3 pt-4 ${isRtl ? "sm:flex-row-reverse justify-start" : ""}`}
+              >
                 <button
                   onClick={() => onNavigate("booking")}
                   className="bg-brand-accent hover:bg-brand-accent-hover text-black font-bold text-sm px-6 py-4 rounded-2xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2 cursor-pointer"
@@ -109,7 +135,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
                   <Phone className="w-4 h-4" />
                   {t.contactWhatsAppBtn}
                 </a>
-              </div>
+              </motion.div>
             </div>
 
           </div>
