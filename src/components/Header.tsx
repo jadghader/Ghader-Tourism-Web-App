@@ -28,7 +28,7 @@ export default function Header({
     { id: "home", label: t.navHome },
     { 
       id: "transfers", 
-      label: currentLang === "ar" ? "توصيلات VIP وسائق خاص" : currentLang === "fr" ? "VIP & Chauffeur" : "Transfers & Chauffeur" 
+      label: currentLang === "ar" ? "تاكسي وسائقون" : currentLang === "fr" ? "Taxi & Chauffeurs" : "Taxi & Drivers" 
     },
     { id: "tours", label: t.navTours },
     { id: "fleet", label: t.navFleet },
@@ -60,7 +60,7 @@ export default function Header({
                 {t.brandName}
               </span>
               <span className="text-[9px] text-brand-muted font-mono tracking-wider mt-0.5">
-                {currentLang === "ar" ? "نقل سياحي فاخر" : currentLang === "fr" ? "Transport de Prestige" : "Premium Lebanon Chauffeur"}
+                {currentLang === "ar" ? "نقل سياحي فاخر" : currentLang === "fr" ? "Transport de Prestige" : "Premium Lebanon Taxi & Drivers"}
               </span>
             </div>
           </div>

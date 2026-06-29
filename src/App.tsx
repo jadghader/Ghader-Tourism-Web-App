@@ -39,7 +39,6 @@ import { translations } from "./translations";
 export default function App() {
   const [currentLang, setLang] = React.useState<Language>("en");
   const [activeView, setActiveView] = React.useState<string>("home");
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [selectedVehicleId, setSelectedVehicleId] = React.useState<string | undefined>(undefined);
   const [lastBooking, setLastBooking] = React.useState<Booking | null>(null);
   const [theme, setTheme] = React.useState<"light" | "dark" | any>(() => {
@@ -50,15 +49,6 @@ export default function App() {
     return "dark";
   });
   const [showScrollTop, setShowScrollTop] = React.useState(false);
-
-  // Trigger skeleton loader on view transitions to simulate real data loading
-  React.useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 750);
-    return () => clearTimeout(timer);
-  }, [activeView]);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -195,17 +185,17 @@ export default function App() {
 
             {/* FLEET GRID */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6">
-              <FleetGrid currentLang={currentLang} onSelectVehicle={handleSelectVehicle} isLoading={isLoading} />
+              <FleetGrid currentLang={currentLang} onSelectVehicle={handleSelectVehicle} />
             </section>
 
             {/* FEATURED TOURS */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6">
-              <TourCard currentLang={currentLang} onBookTour={handleBookTour} isLoading={isLoading} />
+              <TourCard currentLang={currentLang} onBookTour={handleBookTour} />
             </section>
 
             {/* REVIEWS */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6">
-              <ReviewsSection currentLang={currentLang} isLoading={isLoading} />
+              <ReviewsSection currentLang={currentLang} />
             </section>
 
             {/* SOCIAL MEDIA */}
@@ -218,7 +208,7 @@ export default function App() {
         {/* VIEW 2: FLEET */}
         {activeView === "fleet" && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 animate-fade-in" id="fleet-view">
-            <FleetGrid currentLang={currentLang} onSelectVehicle={handleSelectVehicle} isLoading={isLoading} />
+            <FleetGrid currentLang={currentLang} onSelectVehicle={handleSelectVehicle} />
           </div>
         )}
 
@@ -233,7 +223,7 @@ export default function App() {
         {activeView === "tours" && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 animate-fade-in space-y-16" id="tours-view">
             {/* Standard Tours Grid */}
-            <TourCard currentLang={currentLang} onBookTour={handleBookTour} isLoading={isLoading} />
+            <TourCard currentLang={currentLang} onBookTour={handleBookTour} />
           </div>
         )}
 

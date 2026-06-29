@@ -5,7 +5,6 @@ import { translations } from "../translations";
 interface ToursListProps {
   currentLang: Language;
   onBookTour: (tourId: string) => void;
-  isLoading?: boolean;
 }
 
 export const FEATURED_TOURS: Tour[] = [
@@ -47,42 +46,9 @@ export const FEATURED_TOURS: Tour[] = [
   }
 ];
 
-export default function TourCard({ currentLang, onBookTour, isLoading = false }: ToursListProps) {
+export default function TourCard({ currentLang, onBookTour }: ToursListProps) {
   const t = translations[currentLang];
   const isRtl = currentLang === "ar";
-
-  if (isLoading) {
-    return (
-      <div className="space-y-8" id="tours-list-skeleton">
-        <div className={`max-w-2xl mx-auto space-y-3 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
-          <div className="h-8 bg-neutral-800/80 rounded-xl w-3/4 md:mx-auto animate-pulse"></div>
-          <div className="h-4 bg-neutral-800/40 rounded-lg w-1/2 md:mx-auto animate-pulse"></div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[1, 2].map((index) => (
-            <div
-              key={index}
-              className="bg-brand-card border border-brand-border rounded-[32px] overflow-hidden flex flex-col md:flex-row h-auto md:h-72 animate-pulse"
-            >
-              <div className="relative w-full md:w-2/5 h-64 md:h-auto bg-neutral-800/50 shrink-0"></div>
-              <div className="p-8 flex-1 flex flex-col justify-between space-y-4">
-                <div className="space-y-3">
-                  <div className="h-3.5 bg-neutral-800/80 rounded-md w-1/4"></div>
-                  <div className="h-6 bg-neutral-800 rounded-lg w-3/4"></div>
-                  <div className="h-3.5 bg-neutral-800/40 rounded-md w-full"></div>
-                  <div className="h-3.5 bg-neutral-800/40 rounded-md w-5/6"></div>
-                </div>
-                <div className="pt-4 border-t border-neutral-900 flex justify-between items-center">
-                  <div className="h-10 bg-neutral-800 rounded-2xl w-full"></div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-8" id="tours-list">

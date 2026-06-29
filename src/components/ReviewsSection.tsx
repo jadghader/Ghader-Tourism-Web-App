@@ -5,7 +5,6 @@ import { translations } from "../translations";
 
 interface ReviewsSectionProps {
   currentLang: Language;
-  isLoading?: boolean;
 }
 
 const DEFAULT_REVIEWS: Review[] = [
@@ -97,7 +96,7 @@ function LiveFluctuatingCounter({
   );
 }
 
-export default function ReviewsSection({ currentLang, isLoading = false }: ReviewsSectionProps) {
+export default function ReviewsSection({ currentLang }: ReviewsSectionProps) {
   const t = translations[currentLang];
   const isRtl = currentLang === "ar";
 
@@ -171,75 +170,6 @@ export default function ReviewsSection({ currentLang, isLoading = false }: Revie
   };
 
   const currentStats = statsLabels[currentLang];
-
-  if (isLoading) {
-    return (
-      <div className="space-y-10" id="reviews-section-skeleton">
-        {/* Header */}
-        <div className={`text-center max-w-2xl mx-auto space-y-3 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
-          <div className="h-8 bg-neutral-800/80 rounded-xl w-3/4 md:mx-auto animate-pulse"></div>
-          <div className="h-4 bg-neutral-800/40 rounded-lg w-1/2 md:mx-auto animate-pulse"></div>
-        </div>
-
-        {/* Stats banner skeleton */}
-        <div className="max-w-4xl mx-auto bg-brand-card/75 border border-brand-border/60 p-6 md:p-8 rounded-[32px] animate-pulse">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 divide-y md:divide-y-0 md:divide-x divide-brand-border/40">
-            <div className="flex flex-col items-center justify-center space-y-2 p-3">
-              <div className="w-10 h-10 rounded-xl bg-neutral-800/50"></div>
-              <div className="h-6 bg-neutral-800 rounded-md w-1/3"></div>
-              <div className="h-3 bg-neutral-800/40 rounded-md w-1/4"></div>
-            </div>
-            <div className="flex flex-col items-center justify-center space-y-2 p-3">
-              <div className="w-10 h-10 rounded-xl bg-neutral-800/50"></div>
-              <div className="h-6 bg-neutral-800 rounded-md w-1/3"></div>
-              <div className="h-3 bg-neutral-800/40 rounded-md w-1/4"></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-4 bg-brand-card border border-brand-border p-8 rounded-[32px] space-y-6 animate-pulse text-center flex flex-col items-center">
-            <div className="h-3 bg-neutral-800/80 rounded-md w-1/3"></div>
-            <div className="h-8 bg-neutral-800 rounded-md w-1/4 mt-2"></div>
-            <div className="flex gap-1 justify-center">
-              {[1, 2, 3, 4, 5].map((x) => (
-                <div key={x} className="w-4 h-4 bg-neutral-800 rounded-full"></div>
-              ))}
-            </div>
-            <div className="h-10 bg-neutral-800/40 rounded-2xl w-full mt-4"></div>
-          </div>
-
-          <div className="lg:col-span-8 space-y-4">
-            {[1, 2, 3].map((index) => (
-              <div
-                key={index}
-                className="bg-brand-card border border-brand-border p-6 rounded-[24px] space-y-3 animate-pulse"
-              >
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-neutral-800/50"></div>
-                    <div className="space-y-1.5">
-                      <div className="h-3 bg-neutral-800 rounded-md w-24"></div>
-                      <div className="h-2.5 bg-neutral-800/40 rounded-md w-16"></div>
-                    </div>
-                  </div>
-                  <div className="flex gap-0.5">
-                    {[1, 2, 3, 4, 5].map((x) => (
-                      <div key={x} className="w-3 h-3 bg-neutral-800/60 rounded-full"></div>
-                    ))}
-                  </div>
-                </div>
-                <div className="space-y-1.5 pt-1">
-                  <div className="h-3.5 bg-neutral-800/40 rounded-md w-full"></div>
-                  <div className="h-3.5 bg-neutral-800/40 rounded-md w-5/6"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-10" id="reviews-section">

@@ -65,14 +65,14 @@ export default function WhatsAppFAB({ currentLang }: WhatsAppFABProps) {
             animate={{ opacity: 1, width: "auto", x: 0 }}
             exit={{ opacity: 0, width: 0, x: isRtl ? -20 : 20 }}
             transition={{ type: "spring", stiffness: 220, damping: 24 }}
-            className={`flex flex-col justify-center px-4 py-2 bg-[#0d0d0d] hover:bg-[#141414] border border-emerald-500/30 hover:border-emerald-500/50 rounded-2xl shadow-xl whitespace-nowrap min-w-[120px] transition-colors cursor-pointer select-none`}
+            className={`flex flex-col justify-center px-4 py-2 bg-brand-card/95 hover:bg-brand-card border border-brand-accent/30 hover:border-brand-accent/50 rounded-2xl shadow-xl whitespace-nowrap min-w-[120px] transition-colors cursor-pointer select-none backdrop-blur-md`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <span className="text-[10px] uppercase font-mono tracking-wider font-extrabold text-emerald-400">
+            <span className="text-[10px] uppercase font-mono tracking-wider font-extrabold text-brand-accent">
               {subtext}
             </span>
-            <span className="text-[12px] font-sans font-bold text-neutral-100 leading-tight">
+            <span className="text-[12px] font-sans font-bold text-brand-text leading-tight">
               {label}
             </span>
           </motion.a>
@@ -82,8 +82,8 @@ export default function WhatsAppFAB({ currentLang }: WhatsAppFABProps) {
       {/* Main WhatsApp Pulsing Trigger Button */}
       <div className="relative">
         {/* Double animated ambient halo glow */}
-        <span className="absolute inset-0 rounded-full bg-[#25D366]/20 animate-ping duration-1000 pointer-events-none scale-125" />
-        <span className="absolute inset-0 rounded-full bg-[#25D366]/10 animate-pulse duration-1500 pointer-events-none scale-150" />
+        <span className="absolute inset-0 rounded-full bg-brand-accent/20 animate-ping duration-1000 pointer-events-none scale-125" />
+        <span className="absolute inset-0 rounded-full bg-brand-accent/10 animate-pulse duration-1500 pointer-events-none scale-150" />
 
         <motion.a
           href={whatsappUrl}
@@ -93,12 +93,12 @@ export default function WhatsAppFAB({ currentLang }: WhatsAppFABProps) {
           onMouseLeave={() => setIsHovered(false)}
           whileHover={{ scale: 1.12 }}
           whileTap={{ scale: 0.92 }}
-          className="relative w-14 h-14 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-2xl flex items-center justify-center transition-colors border border-[#25D366]/30 cursor-pointer focus:outline-none"
+          className="relative w-14 h-14 bg-brand-accent hover:bg-brand-accent-hover text-brand-bg rounded-full shadow-2xl flex items-center justify-center transition-all border border-brand-accent/30 cursor-pointer focus:outline-none"
           title={label}
         >
           {/* Authentic WhatsApp Logo */}
           <svg 
-            className="w-7 h-7 fill-white drop-shadow-md" 
+            className="w-7 h-7 fill-brand-bg drop-shadow-md" 
             viewBox="0 0 24 24" 
             xmlns="http://www.w3.org/2000/svg"
           >

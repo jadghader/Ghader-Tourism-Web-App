@@ -7,7 +7,6 @@ import VehicleGallery from "./VehicleGallery";
 interface FleetGridProps {
   currentLang: Language;
   onSelectVehicle: (vehicleId: string) => void;
-  isLoading?: boolean;
 }
 
 export const FLEET_VEHICLES: Vehicle[] = [
@@ -78,53 +77,9 @@ export const FLEET_VEHICLES: Vehicle[] = [
   }
 ];
 
-export default function FleetGrid({ currentLang, onSelectVehicle, isLoading = false }: FleetGridProps) {
+export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridProps) {
   const t = translations[currentLang];
   const isRtl = currentLang === "ar";
-
-  if (isLoading) {
-    return (
-      <div className="space-y-8" id="fleet-grid-skeleton">
-        <div className={`max-w-2xl mx-auto space-y-3 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
-          <div className="h-8 bg-neutral-800/80 rounded-xl w-3/4 md:mx-auto animate-pulse"></div>
-          <div className="h-4 bg-neutral-800/40 rounded-lg w-1/2 md:mx-auto animate-pulse"></div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3].map((index) => (
-            <div
-              key={index}
-              className="bg-brand-card border border-brand-border/60 rounded-[32px] overflow-hidden flex flex-col h-full animate-pulse"
-            >
-              <div className="relative h-56 w-full bg-neutral-800/50 shrink-0"></div>
-              <div className="p-8 flex-1 flex flex-col justify-between space-y-6">
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="h-3 bg-neutral-800/80 rounded-md w-1/4"></div>
-                    <div className="h-6 bg-neutral-800 rounded-lg w-3/4"></div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-3 bg-neutral-800/40 rounded-md w-full"></div>
-                    <div className="h-3 bg-neutral-800/40 rounded-md w-5/6"></div>
-                  </div>
-                  <div className="border-t border-neutral-900 pt-4 space-y-3">
-                    <div className="h-4 bg-neutral-800/50 rounded-md w-2/3"></div>
-                    <div className="flex gap-4">
-                      <div className="h-4 bg-neutral-800/50 rounded-md w-1/4"></div>
-                      <div className="h-4 bg-neutral-800/50 rounded-md w-1/4"></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="pt-4">
-                  <div className="h-11 bg-neutral-800 rounded-2xl w-full"></div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-16" id="fleet-grid">
