@@ -1,0 +1,47 @@
+{
+  "collections": {
+    "users": {
+      "fields": {
+        "uid": "string",
+        "email": "string",
+        "displayName": "string",
+        "photoURL": "string",
+        "createdAt": "timestamp"
+      }
+    },
+    "bookings": {
+      "fields": {
+        "userId": "string",
+        "name": "string",
+        "email": "string",
+        "phone": "string",
+        "serviceType": "string",
+        "pickupLocation": "string",
+        "destination": "string",
+        "date": "string",
+        "time": "string",
+        "status": "string",
+        "createdAt": "timestamp"
+      }
+    },
+    "contacts": {
+      "fields": {
+        "userId": "string",
+        "name": "string",
+        "email": "string",
+        "message": "string",
+        "createdAt": "timestamp"
+      }
+    },
+    "reviews": {
+      "fields": {
+        "userId": "string",
+        "name": "string",
+        "rating": "number",
+        "comment": "string",
+        "date": "string",
+        "createdAt": "timestamp"
+      }
+    }
+  }
+}

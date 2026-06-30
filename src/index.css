@@ -17,6 +17,7 @@
   --header-bg: rgba(12, 10, 9, 0.85);
   --footer-bg: #0c0a09;
   --footer-border: #1c1917;
+  --button-text-color: #000000;
 }
 
 :root.light {
@@ -35,6 +36,7 @@
   --header-bg: rgba(252, 252, 251, 0.85);
   --footer-bg: #f5f5f4; /* Stone-100 */
   --footer-border: #e7e5e4;
+  --button-text-color: #ffffff;
 }
 
 @theme {
@@ -54,6 +56,7 @@
   --color-brand-header: var(--header-bg);
   --color-brand-footer: var(--footer-bg);
   --color-brand-footer-border: var(--footer-border);
+  --color-brand-btn-text: var(--button-text-color);
 }
 
 html {

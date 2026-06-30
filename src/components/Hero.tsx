@@ -45,7 +45,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
             className="w-full h-full object-cover object-center transform scale-100 hover:scale-105 transition-transform duration-10000"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/75 to-transparent" />
+          <div className={`absolute inset-0 ${isRtl ? "bg-gradient-to-l from-[#0a0a0a]/95 via-[#0a0a0a]/80 to-[#0a0a0a]/45" : "bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/75 to-transparent"}`} />
         </div>
 
         {/* Hero Content Container */}
@@ -58,7 +58,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className={`inline-flex items-center gap-2.5 bg-[#141414]/90 backdrop-blur-md px-4 py-2 rounded-full border border-neutral-800 text-xs font-semibold text-white shadow-lg ${isRtl ? "flex-row-reverse" : ""}`}
+                className={`inline-flex items-center gap-2.5 bg-[#141414]/90 backdrop-blur-md px-4 py-2 rounded-full border border-neutral-800 text-xs font-semibold text-white shadow-lg ${isRtl ? "" : ""}`}
               >
                 <span className="flex h-2 w-2 relative">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -87,7 +87,9 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-neutral-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed"
+                className={`text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed ${
+                  isRtl ? "text-neutral-100 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" : "text-neutral-300"
+                }`}
               >
                 {t.heroSubhead}
               </motion.p>
@@ -97,7 +99,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className={`flex flex-wrap gap-3 pt-2 text-xs text-neutral-300 ${isRtl ? "justify-start flex-row-reverse" : ""}`}
+                className={`flex flex-wrap gap-3 pt-2 text-xs text-neutral-300 ${isRtl ? "justify-start" : "justify-start"}`}
               >
                 <div className="flex items-center gap-2 bg-neutral-900/80 px-3.5 py-2 rounded-xl border border-neutral-800">
                   <ShieldCheck className="w-4 h-4 text-brand-accent" />
@@ -114,26 +116,23 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className={`flex flex-col sm:flex-row gap-3 pt-4 ${isRtl ? "sm:flex-row-reverse justify-start" : ""}`}
+                className="flex pt-4 justify-start"
               >
-                <button
-                  onClick={() => onNavigate("booking")}
-                  className="bg-brand-accent hover:bg-brand-accent-hover text-black font-bold text-sm px-6 py-4 rounded-2xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2 cursor-pointer"
-                  id="hero-book-airport"
-                >
-                  <Calendar className="w-4 h-4 text-black" />
-                  {t.bookTransferBtn}
-                </button>
-
                 <a
-                  href="https://wa.me/9613460865?text=Hello%20Ghader%20Tourism,%20I'm%20interested%20in%20private%20transfers%20and%20tours%20in%20Lebanon."
+                  href={`https://wa.me/9613460865?text=${encodeURIComponent(
+                    currentLang === "ar"
+                      ? "مرحباً غادِر للسياحة، أود حجز تاكسي مخصص من وإلى مطار بيروت الدولي."
+                      : currentLang === "fr"
+                      ? "Bonjour Ghader Tourism, je souhaite réserver un transfert de/vers l'aéroport de Beyrouth."
+                      : "Hello Ghader Tourism, I would like to book a private transfer to/from Beirut Airport."
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-4 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/20"
-                  id="hero-whatsapp-contact"
+                  className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-btn-text font-black text-sm px-8 py-4 rounded-2xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2 cursor-pointer text-center"
+                  id="hero-book-airport"
                 >
-                  <Phone className="w-4 h-4" />
-                  {t.contactWhatsAppBtn}
+                  <Calendar className="w-4 h-4 text-brand-btn-text" />
+                  {t.bookTransferBtn}
                 </a>
               </motion.div>
             </div>

@@ -139,11 +139,11 @@ export default function SEO({ currentLang, activeView }: SEOProps) {
   // Use professional banner or scenic photo as og:image
   const ogImageUrl = `${siteUrl}/src/assets/images/lebanon_luxury_chauffeur_hero_1782464049590.jpg`;
 
-  // Structured Data JSON-LD markup to boost local SEO for Taxi and Private Chauffeur Searches
-  const schemaMarkup = {
+  // 1. Taxi Service Schema
+  const taxiSchemaMarkup = {
     "@context": "https://schema.org",
     "@type": "TaxiService",
-    "name": "Ghader Tourism",
+    "name": "Ghader Tourism Airport Transfers & Private Chauffeur",
     "image": ogImageUrl,
     "description": description,
     "@id": "https://ghadertourism.com/#taxidepartment",
@@ -165,13 +165,7 @@ export default function SEO({ currentLang, activeView }: SEOProps) {
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
       ],
       "opens": "00:00",
       "closes": "23:59"
@@ -194,6 +188,110 @@ export default function SEO({ currentLang, activeView }: SEOProps) {
     }
   };
 
+  // 2. LocalBusiness Schema
+  const localBusinessMarkup = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Ghader Tourism",
+    "image": ogImageUrl,
+    "description": "Premium Local Chauffeur Service and Private Transportation provider in Lebanon with over 25 years of family-owned heritage.",
+    "@id": "https://ghadertourism.com/#localbusiness",
+    "url": siteUrl,
+    "telephone": "+9613460865",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Airport Road, near Beirut Rafic Hariri International Airport Terminal",
+      "addressLocality": "Beirut",
+      "addressRegion": "Mount Lebanon",
+      "addressCountry": "LB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "33.8219",
+      "longitude": "35.4883"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  };
+
+  // 3. TourProvider (TravelAgency) Schema with featured tours listed
+  const tourProviderMarkup = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Ghader Tourism Guided Tours",
+    "image": ogImageUrl,
+    "description": "Highly acclaimed private customized sightseeing tours and excursions inside Lebanon led by licensed local chauffeur-guides.",
+    "@id": "https://ghadertourism.com/#tourprovider",
+    "url": `${siteUrl}/#tours`,
+    "telephone": "+9613460865",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Airport Road, near Beirut Rafic Hariri International Airport Terminal",
+      "addressLocality": "Beirut",
+      "addressRegion": "Mount Lebanon",
+      "addressCountry": "LB"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Private Custom Sightseeing Tours",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Tour",
+            "name": "Northern Wonders: Jeita Grotto, Harissa, Byblos & Batroun",
+            "description": "Wander the sparkling caves of Jeita, ride the scenic Teleferique cable car to Harissa, then explore ancient Byblos and the coastal charm of Batroun.",
+            "duration": "PT10H"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Tour",
+            "name": "Chouf Explorer: Moussa Castle, Beiteddine Palace, Ain w Zein & Cedar Forest",
+            "description": "Discover Chouf's gems: the handbuilt Moussa Castle, the majestic Beiteddine Palace, Ain w Zein natural cave, and the ancient Cedar Forest.",
+            "duration": "PT11H"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Tour",
+            "name": "Bekaa Heritage: Baalbek Temples & Zahle",
+            "description": "Marvel at the monumental Roman temples of Baalbek and relax by the picturesque Berdawni riverbanks in the valley city of Zahle.",
+            "duration": "PT10H"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Tour",
+            "name": "Bekaa Eco-Escape: Taanayel Farm, Aamiq Wetland & Chtoura",
+            "description": "Stroll the beautiful tree-lined paths of Taanayel Farm, discover rare wildlife at Aamiq Wetland, and enjoy authentic dairy tasting in Chtoura.",
+            "duration": "PT9H"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Tour",
+            "name": "Faraya Mountain Escape: Winter Ski or Summer ATV & Lake Adventure",
+            "description": "Experience the high snowfields of Faraya Ski Resort in winter, or ride ATVs around the high-altitude lake and natural bridges in summer.",
+            "duration": "PT10H"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <Helmet>
       {/* Primary HTML Meta Tags */}
@@ -203,6 +301,7 @@ export default function SEO({ currentLang, activeView }: SEOProps) {
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Ghader Tourism" />
       <meta name="robots" content="index, follow" />
+      <meta name="last-modified" content="2026-06-30T16:00:00Z" />
 
       {/* Language Alternates */}
       <link rel="alternate" hrefLang="en" href={`${siteUrl}`} />
@@ -226,9 +325,15 @@ export default function SEO({ currentLang, activeView }: SEOProps) {
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={ogImageUrl} />
 
-      {/* Local Business & Taxi Service Structured Data */}
+      {/* Structured Data: Taxi Service, LocalBusiness & TravelAgency/TourProvider */}
       <script type="application/ld+json">
-        {JSON.stringify(schemaMarkup)}
+        {JSON.stringify(taxiSchemaMarkup)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(localBusinessMarkup)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(tourProviderMarkup)}
       </script>
     </Helmet>
   );

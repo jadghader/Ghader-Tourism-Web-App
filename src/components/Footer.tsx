@@ -2,13 +2,15 @@ import React from "react";
 import { Phone, Mail, MapPin, Award, Shield, Heart } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
+import { getWhatsAppLink } from "../utils/whatsapp";
 
 interface FooterProps {
   currentLang: Language;
   setActiveView: (view: string) => void;
+  activeView: string;
 }
 
-export default function Footer({ currentLang, setActiveView }: FooterProps) {
+export default function Footer({ currentLang, setActiveView, activeView }: FooterProps) {
   const t = translations[currentLang];
   const isRtl = currentLang === "ar";
 
@@ -59,9 +61,7 @@ export default function Footer({ currentLang, setActiveView }: FooterProps) {
               <button onClick={() => handleLinkClick("fleet")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
                 • {t.navFleet}
               </button>
-              <button onClick={() => handleLinkClick("booking")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
-                • {t.bookNow}
-              </button>
+
               <button onClick={() => handleLinkClick("about")} className="hover:text-brand-accent transition-all text-left block w-full cursor-pointer" style={{ textAlign: isRtl ? "right" : "left" }}>
                 • {t.navAbout}
               </button>

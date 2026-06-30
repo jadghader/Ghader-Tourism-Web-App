@@ -1,7 +1,9 @@
 import React from "react";
-import { Globe, Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { motion } from "motion/react";
 import { Language } from "../types";
 import { translations } from "../translations";
+import { getWhatsAppLink } from "../utils/whatsapp";
 
 interface HeaderProps {
   currentLang: Language;
@@ -18,7 +20,7 @@ export default function Header({
   activeView, 
   setActiveView,
   theme,
-  setTheme
+  setTheme,
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const t = translations[currentLang];
@@ -41,13 +43,18 @@ export default function Header({
   };
 
   const isRtl = currentLang === "ar";
+  const whatsappUrl = getWhatsAppLink({
+    lang: currentLang,
+    activeView,
+    contextType: "general",
+  });
 
   return (
-    <header className="sticky top-0 z-50 bg-brand-header/90 backdrop-blur-md text-brand-text shadow-sm border-b border-brand-border" id="app-header">
+    <header className="fixed top-0 left-0 right-0 w-full z-[999] bg-brand-header/95 backdrop-blur-lg text-brand-text shadow-md border-b border-brand-border" id="app-header">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
         <div className={`flex justify-between items-center gap-4 ${isRtl ? "flex-row-reverse" : ""}`}>
           
-          {/* Logo & Brand Info - Compact, no hover effects */}
+          {/* Logo & Brand Info */}
           <div
             className="flex items-center gap-2.5 cursor-pointer shrink-0"
             onClick={() => handleNavClick("home")}
@@ -83,21 +90,29 @@ export default function Header({
 
           {/* Right: Quick Controls & CTA - All in a single line (Desktop Only) */}
           <div className={`hidden lg:flex items-center gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
-            {/* Language Segmented Control (Small, no icon) */}
+            {/* Language Segmented Control */}
             <div className="flex items-center bg-brand-card p-0.5 rounded-full border border-brand-border text-[10px] font-mono font-bold shrink-0">
-              {(["en", "ar", "fr"] as const).map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setLang(lang)}
-                  className={`px-2.5 py-1 rounded-full transition-all duration-200 uppercase cursor-pointer ${
-                    currentLang === lang
-                      ? "bg-brand-accent text-brand-bg font-black shadow-sm"
-                      : "text-brand-muted hover:text-brand-text"
-                  }`}
-                >
-                  {lang}
-                </button>
-              ))}
+              {(["en", "ar", "fr"] as const).map((lang) => {
+                const isActive = currentLang === lang;
+                return (
+                  <button
+                    key={lang}
+                    onClick={() => setLang(lang)}
+                    className={`relative px-3.5 py-1.5 rounded-full uppercase cursor-pointer transition-colors duration-200 text-center select-none ${
+                      isActive ? "text-brand-bg font-black" : "text-brand-muted hover:text-brand-text"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="active-lang-desktop"
+                        className="absolute inset-0 bg-brand-accent rounded-full shadow-sm"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{lang}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Theme Toggle */}
@@ -109,18 +124,9 @@ export default function Header({
             >
               {theme === "dark" ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
             </button>
-
-            {/* Book Now Button */}
-            <button
-              onClick={() => handleNavClick("booking")}
-              className="bg-brand-accent text-brand-bg hover:bg-brand-accent-hover font-black text-xs px-4 py-2.5 rounded-xl transition-all duration-300 shadow-sm cursor-pointer shrink-0"
-              id="header-book-btn"
-            >
-              {t.bookNow}
-            </button>
           </div>
 
-          {/* Mobile Navigation controls - Clean, adaptive and lightweight */}
+          {/* Mobile Navigation controls */}
           <div className="lg:hidden flex items-center gap-2">
             {/* Theme Toggle Mobile */}
             <button
@@ -167,33 +173,33 @@ export default function Header({
             ))}
           </div>
 
-          {/* Action Row: Language Select and Book CTA */}
-          <div className={`flex items-center gap-3 pt-3 border-t border-brand-border/40 ${isRtl ? "flex-row-reverse" : ""}`}>
+          {/* Action Row: Language Select */}
+          <div className={`flex items-center justify-center pt-3 border-t border-brand-border/40 ${isRtl ? "flex-row-reverse" : ""}`}>
             
             {/* Language Segmented Control */}
-            <div className="flex items-center bg-brand-input p-0.5 rounded-full border border-brand-border text-[10px] font-mono font-bold shrink-0">
-              {(["en", "ar", "fr"] as const).map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setLang(lang)}
-                  className={`px-3 py-1.5 rounded-full transition-all duration-200 uppercase cursor-pointer ${
-                    currentLang === lang
-                      ? "bg-brand-accent text-brand-bg font-black shadow-sm"
-                      : "text-brand-muted hover:text-brand-text"
-                  }`}
-                >
-                  {lang}
-                </button>
-              ))}
+            <div className="flex items-center bg-brand-input p-0.5 rounded-full border border-brand-border text-[10px] font-mono font-bold">
+              {(["en", "ar", "fr"] as const).map((lang) => {
+                const isActive = currentLang === lang;
+                return (
+                  <button
+                    key={lang}
+                    onClick={() => setLang(lang)}
+                    className={`relative px-5 py-2 rounded-full uppercase cursor-pointer transition-colors duration-200 text-center select-none ${
+                      isActive ? "text-brand-bg font-black" : "text-brand-muted hover:text-brand-text"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="active-lang-mobile"
+                        className="absolute inset-0 bg-brand-accent rounded-full shadow-sm"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{lang}</span>
+                  </button>
+                );
+              })}
             </div>
-
-            {/* CTA Button */}
-            <button
-              onClick={() => handleNavClick("booking")}
-              className="flex-1 bg-brand-accent text-brand-bg hover:bg-brand-accent-hover font-black text-xs py-3 rounded-xl shadow-md text-center transition-all cursor-pointer"
-            >
-              {t.bookNow}
-            </button>
             
           </div>
         </div>

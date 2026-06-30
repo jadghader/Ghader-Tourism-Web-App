@@ -1,32 +1,14 @@
 import React from "react";
-import { 
-  ShieldCheck, 
-  MapPin, 
-  Users, 
-  Compass, 
-  Clock, 
-  Car, 
-  Award, 
-  CheckCircle, 
-  Plane, 
-  PhoneCall, 
-  Sparkles,
-  CalendarDays,
-  UtensilsCrossed,
-  Map,
-  ArrowUp
-} from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { ArrowUp, Clock, UserCheck, Car, Crown } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import BookingWizard from "./components/BookingWizard";
 import FleetGrid, { FLEET_VEHICLES } from "./components/FleetGrid";
 import TourCard, { FEATURED_TOURS } from "./components/TourCard";
 import ReviewsSection from "./components/ReviewsSection";
 import ContactForm from "./components/ContactForm";
-import AdminDashboard from "./components/AdminDashboard";
 import BlogCarousel from "./components/BlogCarousel";
 import TransfersSection from "./components/TransfersSection";
 import SocialSection from "./components/SocialSection";
@@ -34,8 +16,65 @@ import SEO from "./components/SEO";
 import WhatsAppFAB from "./components/WhatsAppFAB";
 import UseCasesSection from "./components/UseCasesSection";
 
-import { Language, Booking } from "./types";
+import { Language } from "./types";
 import { translations } from "./translations";
+import { getWhatsAppLink } from "./utils/whatsapp";
+import { trackPageView, trackEvent } from "./utils/analytics";
+
+const PILLARS_DATA = [
+  {
+    icon: Clock,
+    title: {
+      en: "24/7 Premium Support",
+      ar: "دعم متميز ٢٤/٧",
+      fr: "Support Premium 24/7"
+    },
+    description: {
+      en: "Round-the-clock dispatch & support. We track your flight in real-time and adapt instantly.",
+      ar: "متابعة وتواصل على مدار الساعة. نتابع رحلتك الجوية مباشرة لتعديل موعد الاستقبال مجاناً.",
+      fr: "Assistance et coordination en continu. Nous suivons votre vol en temps réel."
+    }
+  },
+  {
+    icon: UserCheck,
+    title: {
+      en: "Experienced Chauffeurs",
+      ar: "سائقون خبراء ومحترفون",
+      fr: "Chauffeurs Certifiés"
+    },
+    description: {
+      en: "Highly experienced, polite, English-speaking professional drivers dedicated to your safety.",
+      ar: "نخبة من السائقين المحترفين يتميزون باللباقة والخبرة الكاملة بجميع الطرق والمناطق اللبنانية.",
+      fr: "Chauffeurs professionnels, courtois et multilingues dédiés à votre confort et sécurité."
+    }
+  },
+  {
+    icon: Car,
+    title: {
+      en: "Reliable Luxury Fleet",
+      ar: "أسطول سيارات موثوق وفاخر",
+      fr: "Flotte de Prestige"
+    },
+    description: {
+      en: "Immaculately clean, fully air-conditioned modern executive sedans, SUVs, and spacious family vans.",
+      ar: "مركبات حديثة، مكيفة بالكامل، وتخضع لتعقيم شامل وصيانة دورية لرحلة آمنة ومترفة.",
+      fr: "Véhicules récents, climatisés et nettoyés méticuleusement avant chaque transfert."
+    }
+  },
+  {
+    icon: Crown,
+    title: {
+      en: "Elite VIP Experience",
+      ar: "تجربة كبار الشخصيات الفخمة",
+      fr: "Expérience VIP d'Élite"
+    },
+    description: {
+      en: "VIP Salon coordinate services, premium luggage assistance, and customized tourism layouts.",
+      ar: "استقبال خاص بالاسم في صالة المطار، مساعدة كاملة بالحقائب، وترتيبات حصرية لكبار الزوار.",
+      fr: "Service d'accueil personnalisé, assistance bagages et services exclusifs VIP."
+    }
+  }
+];
 
 export default function App() {
   const [currentLang, setLang] = React.useState<Language>(() => {
@@ -61,11 +100,21 @@ export default function App() {
   React.useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("ghader-lang", currentLang);
+      trackEvent("change_language", "Engagement", currentLang);
     }
   }, [currentLang]);
+
   const [activeView, setActiveView] = React.useState<string>("home");
-  const [selectedVehicleId, setSelectedVehicleId] = React.useState<string | undefined>(undefined);
-  const [lastBooking, setLastBooking] = React.useState<Booking | null>(null);
+
+  // Scroll to top instantly when the active view changes to prevent layering or middle-of-page rendering issues
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+    // Track custom virtual page views for SPA routing
+    const path = activeView === "home" ? "/" : `/#${activeView}`;
+    const pageTitle = `Ghader Tourism - ${activeView.charAt(0).toUpperCase() + activeView.slice(1)}`;
+    trackPageView(path, pageTitle);
+  }, [activeView]);
+
   const [theme, setTheme] = React.useState<"light" | "dark" | any>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("ghader-theme");
@@ -73,6 +122,7 @@ export default function App() {
     }
     return "dark";
   });
+
   const [showScrollTop, setShowScrollTop] = React.useState(false);
 
   React.useEffect(() => {
@@ -111,28 +161,54 @@ export default function App() {
 
   // Handle vehicle quote request
   const handleSelectVehicle = (vehicleId: string) => {
-    setSelectedVehicleId(vehicleId);
-    setActiveView("booking");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const vehicle = FLEET_VEHICLES.find(v => v.id === vehicleId);
+    const vehicleName = vehicle ? vehicle.name : "Luxury Car";
+    
+    // Track conversion event for vehicle selection
+    trackEvent("select_vehicle", "Conversions", vehicleName);
+
+    const url = getWhatsAppLink({
+      lang: currentLang,
+      activeView,
+      contextType: "vehicle",
+      itemName: vehicleName,
+    });
+    window.open(url, "_blank");
   };
 
   // Handle standard tour booking
-  const handleBookTour = (tourId: string) => {
-    // Scroll to booking and set type
-    setActiveView("booking");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleBookTour = (tourId: string, translatedName?: string) => {
+    const tour = FEATURED_TOURS.find(t => t.id === tourId);
+    const tourName = translatedName || (tour ? tour.name : "Guided Tour");
+
+    // Track conversion event for tour booking
+    trackEvent("book_tour", "Conversions", tourName);
+
+    const url = getWhatsAppLink({
+      lang: currentLang,
+      activeView,
+      contextType: "tour",
+      itemName: tourName,
+    });
+    window.open(url, "_blank");
   };
 
-
-
-  const handleBookingCompleted = (booking: Booking) => {
-    setLastBooking(booking);
-    // Refresh admin data automatically
-  };
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 25,
+    restDelta: 0.001
+  });
 
   return (
     <div className={`min-h-screen bg-brand-bg text-brand-text flex flex-col font-sans selection:bg-brand-accent/30 selection:text-white ${isRtl ? "rtl" : "ltr"}`} dir={isRtl ? "rtl" : "ltr"}>
-      {/* Dynamic SEO Meta Tags via React Helmet Async */}
+      {/* Subtle fixed scroll progress bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-brand-accent origin-left z-50 pointer-events-none"
+        style={{ scaleX }}
+      />
+
+      {/* Dynamic SEO Meta Tags */}
       <SEO currentLang={currentLang} activeView={activeView} />
 
       {/* Dynamic Header */}
@@ -146,13 +222,50 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-grow">
+      <main className="flex-grow pt-[84px] md:pt-[92px]">
         
         {/* VIEW 1: HOME */}
         {activeView === "home" && (
           <div className="space-y-16 pb-20 animate-fade-in" id="home-view">
             {/* Elegant Hero */}
             <Hero currentLang={currentLang} onNavigate={setActiveView} />
+
+            {/* Key Trust Pillars Section */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 py-4" id="brand-pillars">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {PILLARS_DATA.map((pillar, idx) => {
+                  const Icon = pillar.icon;
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 }}
+                      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                      className="bg-brand-card border border-brand-border hover:border-brand-accent/30 rounded-[28px] p-6 space-y-4 shadow-md hover:shadow-xl transition-all relative overflow-hidden group/pillar"
+                    >
+                      {/* Decorative corner ambient glow */}
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-brand-accent/5 rounded-full blur-2xl group-hover/pillar:bg-brand-accent/10 transition-colors pointer-events-none" />
+
+                      {/* Icon container */}
+                      <div className="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent border border-brand-accent/20 shrink-0 group-hover/pillar:scale-110 transition-transform duration-300">
+                        <Icon className="w-6 h-6 stroke-[1.5]" />
+                      </div>
+
+                      <div className="space-y-2">
+                        <h3 className="text-base font-bold text-brand-text tracking-tight group-hover/pillar:text-brand-accent transition-colors">
+                          {pillar.title[currentLang]}
+                        </h3>
+                        <p className="text-xs text-neutral-400 leading-relaxed">
+                          {pillar.description[currentLang]}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </section>
 
             {/* Quick Pitch Callout */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
@@ -173,11 +286,11 @@ export default function App() {
                     
                     <div className={`flex flex-col sm:flex-row gap-4 pt-2 text-xs font-semibold ${isRtl ? "justify-start flex-row-reverse" : ""}`}>
                       <div className="flex items-center gap-1.5 text-brand-accent">
-                        <CheckCircle className="w-4 h-4 shrink-0 text-brand-accent" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block"></span>
                         <span>No Hidden Airport Surcharges</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-brand-accent">
-                        <CheckCircle className="w-4 h-4 shrink-0 text-brand-accent" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block"></span>
                         <span>Free Flight Delay Tracking</span>
                       </div>
                     </div>
@@ -185,17 +298,25 @@ export default function App() {
 
                   {/* Visual card on the right */}
                   <div className="bg-brand-input border border-brand-border p-8 rounded-[24px] space-y-4 shadow-2xl relative z-10">
-                    <span className="text-[10px] text-brand-accent font-mono uppercase tracking-widest block font-bold">{t.bookingFormTitle}</span>
-                    <h3 className="text-xl font-bold text-brand-text font-sans tracking-tight">{t.bookTransferBtn}</h3>
+                    <span className="text-[10px] text-brand-accent font-mono uppercase tracking-widest block font-bold">{currentLang === "ar" ? "تواصل مباشر وحجز سريع" : currentLang === "fr" ? "Réservation Directe" : "Direct Support & Quick Booking"}</span>
+                    <h3 className="text-xl font-bold text-brand-text font-sans tracking-tight">{currentLang === "ar" ? "حجز فوري عبر واتساب" : currentLang === "fr" ? "Réserver sur WhatsApp" : "Instant WhatsApp Booking"}</h3>
                     <p className="text-xs text-neutral-400 leading-relaxed">
-                      Select your travel dates, specify pickup coordinates, and complete reservation inside our high-speed interactive reservation wizard.
+                      {currentLang === "ar"
+                        ? "تحدث معنا مباشرة عبر تطبيق الواتساب لتحديد تواريخ رحلتك، واختيار مركبتك المفضلة، وسيقوم فريقنا بتأكيد حجزك فوراً."
+                        : "Connect with us instantly on WhatsApp. Specify your travel dates, choose your preferred luxury vehicle, and get an immediate booking confirmation."}
                     </p>
-                    <button
-                      onClick={() => setActiveView("booking")}
-                      className="w-full bg-brand-accent hover:bg-brand-accent-hover text-black font-bold text-xs py-3.5 rounded-xl cursor-pointer shadow-lg text-center block transition-all"
+                    <a
+                      href={getWhatsAppLink({
+                        lang: currentLang,
+                        activeView,
+                        contextType: "general"
+                      })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-brand-accent hover:bg-brand-accent-hover text-brand-btn-text font-bold text-xs py-3.5 rounded-xl cursor-pointer shadow-lg text-center block transition-all"
                     >
-                      {t.bookNow}
-                    </button>
+                      {t.contactWhatsApp}
+                    </a>
                   </div>
                 </div>
 
@@ -303,32 +424,14 @@ export default function App() {
         {/* VIEW 7: CONTACT */}
         {activeView === "contact" && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 animate-fade-in" id="contact-view">
-            <ContactForm currentLang={currentLang} />
-          </div>
-        )}
-
-        {/* VIEW 8: BOOKING WIZARD PAGE */}
-        {activeView === "booking" && (
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 animate-fade-in" id="booking-view">
-            <BookingWizard 
-              currentLang={currentLang} 
-              onBookingCompleted={handleBookingCompleted}
-              selectedVehicleId={selectedVehicleId}
-            />
-          </div>
-        )}
-
-        {/* VIEW 9: ADMIN PANEL */}
-        {activeView === "admin" && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 animate-fade-in" id="admin-view">
-            <AdminDashboard currentLang={currentLang} />
+            <ContactForm currentLang={currentLang} activeView={activeView} />
           </div>
         )}
 
       </main>
 
       {/* Dynamic Footer */}
-      <Footer currentLang={currentLang} setActiveView={setActiveView} />
+      <Footer currentLang={currentLang} setActiveView={setActiveView} activeView={activeView} />
 
       {/* Floating Scroll-to-Top Button */}
       <AnimatePresence>
@@ -349,8 +452,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Floating WhatsApp Action Button for 24/7 direct booking and inquiry support */}
-      <WhatsAppFAB currentLang={currentLang} />
+      {/* Floating WhatsApp Action Button */}
+      <WhatsAppFAB currentLang={currentLang} activeView={activeView} />
     </div>
   );
 }

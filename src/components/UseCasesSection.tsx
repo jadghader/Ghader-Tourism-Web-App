@@ -15,7 +15,7 @@ interface UseCaseItem {
   tag: { en: string; ar: string; fr: string };
   desc: { en: string; ar: string; fr: string };
   bullets: { en: string[]; ar: string[]; fr: string[] };
-  waMessage: string;
+  waMessage: { en: string; ar: string; fr: string };
   targetView: string;
 }
 
@@ -35,7 +35,11 @@ const USE_CASES: UseCaseItem[] = [
       ar: ["سائق ينتظرك داخل صالة الوصول مع لوحة باسمك", "ساعة انتظار مجانية بالكامل", "تتبع مباشر لمواعيد هبوط الطائرات مجاناً"],
       fr: ["Accueil personnalisé en terminal avec pancarte", "60 minutes d'attente gratuites", "Suivi des vols en temps réel"]
     },
-    waMessage: "Hello Ghader Tourism, I would like to book a premium Beirut Airport VIP transfer.",
+    waMessage: {
+      en: "Hello Ghader Tourism, I would like to book a premium Beirut Airport VIP transfer.",
+      ar: "مرحباً غادِر للسياحة، أود حجز تاكسي مخصص وممتاز من وإلى مطار بيروت الدولي.",
+      fr: "Bonjour Ghader Tourism, je souhaite réserver un transfert privé de premier choix pour l'aéroport de Beyrouth."
+    },
     targetView: "transfers"
   },
   {
@@ -53,7 +57,11 @@ const USE_CASES: UseCaseItem[] = [
       ar: ["سائقون محترفون يتحدثون عدة لغات", "سيارات مرسيدس ودفع رباعي معقمة وحديثة", "مرونة كاملة في تحديد المسارات والوقفات"],
       fr: ["Chauffeurs bilingues courtois et discrets", "Mercedes-Benz & SUV récents et désinfectés", "Flexibilité absolue des trajets et horaires"]
     },
-    waMessage: "Hello Ghader Tourism, I am interested in hiring a private VIP chauffeur and luxury vehicle.",
+    waMessage: {
+      en: "Hello Ghader Tourism, I am interested in hiring a private VIP chauffeur and luxury vehicle.",
+      ar: "مرحباً غادِر للسياحة، أنا مهتم باستئجار سيارة فاخرة مع سائق خاص لكبار الشخصيات.",
+      fr: "Bonjour Ghader Tourism, je suis intéressé par la location d'un véhicule de luxe avec chauffeur privé VIP."
+    },
     targetView: "fleet"
   },
   {
@@ -71,26 +79,12 @@ const USE_CASES: UseCaseItem[] = [
       ar: ["رحلات مخصصة إلى بعلبك، جبيل، جعيتا والأرز", "سائقون خبراء يشاركونك أسرار البلد والقصص", "مثالية للعائلات والمجموعات السياحية والأزواج"],
       fr: ["Excursions sur mesure à Baalbek, Byblos, Jeita & les Cèdres", "Chauffeurs experts partageant des conseils locaux", "Idéal pour les couples, familles et groupes"]
     },
-    waMessage: "Hello Ghader Tourism, I would like to design a custom guided sightseeing tour across Lebanon.",
+    waMessage: {
+      en: "Hello Ghader Tourism, I would like to design a custom guided sightseeing tour across Lebanon.",
+      ar: "مرحباً غادِر للسياحة، أود تصميم جولة سياحية خاصة مخصصة وموجهة في لبنان.",
+      fr: "Bonjour Ghader Tourism, je souhaite concevoir un circuit touristique privé sur mesure au Liban."
+    },
     targetView: "tours"
-  },
-  {
-    id: "ski",
-    icon: Snowflake,
-    tag: { en: "Mountain & Snow Transit", ar: "توصيلات جبلية وثلوج", fr: "Transferts Montagne & Ski" },
-    title: { en: "Faraya Ski Resort & Mountain Transfer", ar: "توصيل جبل لبنان ومنتجعات فاريا", fr: "Navette Ski Faraya & Mzaar" },
-    desc: {
-      en: "Safe and heated winter transfers to Faraya Mzaar Ski resort, mountain lodges, and snow excursions with rugged high-clearance 4x4 SUVs.",
-      ar: "توصيلات شتوية آمنة ومريحة لمنتجع فاريا مزار للتزلج والبلدات الجبلية مع سيارات دفع رباعي SUV مجهزة بالكامل للثلوج.",
-      fr: "Transferts d'hiver sécurisés et chauffés vers la station de ski de Faraya Mzaar et les chalets de montagne en SUV 4x4 robustes."
-    },
-    bullets: {
-      en: ["Snow-equipped high-clearance luxury 4x4s", "Experience in winter alpine driving safety", "Spacious roof racks for ski & snowboard gear"],
-      ar: ["سيارات دفع رباعي فاخرة ومجهزة للثلوج والطرق الوعرة", "خبرة سائقين في القيادة الوقائية الشتوية الآمنة", "حوامل سقفية وحقائب واسعة لعدة التزلج"],
-      fr: ["Véhicules 4x4 haut de gamme équipés pour la neige", "Chauffeurs expérimentés en conduite hivernale", "Porte-skis spacieux pour vos équipements"]
-    },
-    waMessage: "Hello Ghader Tourism, I'm planning a trip and need a private snow-equipped transfer to Faraya/Mzaar.",
-    targetView: "booking"
   },
   {
     id: "luxury",
@@ -107,7 +101,11 @@ const USE_CASES: UseCaseItem[] = [
       ar: ["تسريع معاملات الجوازات والجمارك", "دخول حصري لقاعة صالون الشرف والضيافة الراقية", "أسعار تفضيلية خاصة بالشركات في أرقى الفنادق"],
       fr: ["Formalités de passeport et douane prioritaires", "Accès exclusif au salon VIP / CIP de l'aéroport", "Tarifs préférentiels exclusifs dans les meilleurs hôtels"]
     },
-    waMessage: "Hello Ghader Tourism, I want to book Beirut Airport VIP Salon Access and request hotel assistance.",
+    waMessage: {
+      en: "Hello Ghader Tourism, I want to book Beirut Airport VIP Salon Access and request hotel assistance.",
+      ar: "مرحباً غادِر للسياحة، أود حجز صالون الشرف الـ VIP في مطار بيروت وطلب مساعدة في حجز الفنادق.",
+      fr: "Bonjour Ghader Tourism, je souhaite réserver l'accès au Salon VIP de l'aéroport de Beyrouth et solliciter votre aide pour l'hôtel."
+    },
     targetView: "transfers"
   }
 ];
@@ -119,12 +117,11 @@ export default function UseCasesSection({ currentLang, onNavigate }: UseCasesSec
     headerTag: { en: "OUR SERVICE USE CASES", ar: "حالات وخدمات الاستخدام", fr: "NOS CAS D'UTILISATION" },
     headerTitle: { en: "Bespoke Private Transit for Every Scenario", ar: "توصيلات ونقل سياحي مخصص لكل مناسبة", fr: "Le Transport Privé pour Chaque Occasion" },
     headerSub: {
-      en: "Whether you are a tourist seeking ancient ruins, a business executive landing in Beirut, or a family heading to ski resorts, we have the perfect custom setup for you.",
-      ar: "سواء كنت سائحاً ترغب باستكشاف التاريخ، أو رجل أعمال قادماً إلى بيروت، أو عائلة متوجهة للتزلج في الجبال، نحن نوفر لك الخدمة المثالية.",
-      fr: "Que vous soyez un touriste à la recherche d'histoire, un homme d'affaires ou une famille en route pour le ski, nous avons le service idéal pour vous."
+      en: "Whether you are a tourist seeking ancient ruins, a business executive landing in Beirut, or a family exploring Lebanon, we have the perfect custom setup for you.",
+      ar: "سواء كنت سائحاً ترغب باستكشاف التاريخ، أو رجل أعمال قادماً إلى بيروت، أو عائلة تستكشف لبنان، نحن نوفر لك الخدمة المثالية.",
+      fr: "Que vous soyez un touriste à la recherche d'histoire, un homme d'affaires ou une famille explorant le Liban, nous avons le service idéal pour vous."
     },
-    bookBtn: { en: "Book Online", ar: "احجز عبر الإنترنت", fr: "Réserver en Ligne" },
-    inquireBtn: { en: "WhatsApp Inquiry", ar: "استفسار عبر واتساب", fr: "Inscrire via WhatsApp" }
+    inquireBtn: { en: "Inquire via WhatsApp", ar: "استفسار وحجز عبر واتساب", fr: "S'informer via WhatsApp" }
   };
 
   return (
@@ -188,25 +185,14 @@ export default function UseCasesSection({ currentLang, onNavigate }: UseCasesSec
               </div>
 
               {/* Conversion Buttons */}
-              <div className="pt-6 grid grid-cols-2 gap-2.5">
-                <button
-                  onClick={() => {
-                    onNavigate(uc.targetView);
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className="bg-brand-accent hover:bg-brand-accent-hover text-brand-bg font-extrabold text-[11px] py-2.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 border border-brand-accent/15"
-                >
-                  <span>{t.bookBtn[currentLang]}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-brand-bg" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />
-                </button>
-
+              <div className="pt-6">
                 <a
-                  href={`https://wa.me/9613460865?text=${encodeURIComponent(uc.waMessage)}`}
+                  href={`https://wa.me/9613460865?text=${encodeURIComponent(uc.waMessage[currentLang])}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-emerald-600/10 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-500/20 px-3 py-2.5 rounded-xl font-bold text-[11px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-sm"
+                  className="w-full bg-brand-accent hover:bg-brand-accent-hover text-brand-bg font-extrabold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md border border-brand-accent/15"
                 >
-                  <MessageSquare className="w-3.5 h-3.5" />
+                  <MessageSquare className="w-4 h-4 text-brand-bg" />
                   <span>{t.inquireBtn[currentLang]}</span>
                 </a>
               </div>

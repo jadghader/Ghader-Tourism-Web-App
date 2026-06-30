@@ -2,6 +2,8 @@ import React from "react";
 import { Star, MessageSquare, Plus, Check, Users, Car, Radio } from "lucide-react";
 import { Language, Review } from "../types";
 import { translations } from "../translations";
+import { db } from "../firebase";
+import { collection, addDoc, getDocs, query } from "firebase/firestore";
 
 interface ReviewsSectionProps {
   currentLang: Language;
@@ -130,24 +132,46 @@ export default function ReviewsSection({ currentLang }: ReviewsSectionProps) {
   const [success, setSuccess] = React.useState(false);
 
   React.useEffect(() => {
-    const stored = localStorage.getItem("ghader_reviews");
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      // If the old default reviews without the specific words are still stored, replace them to ensure compliance
-      const hasNewReviewContent = parsed.some((r: any) => r.comment && (r.comment.includes("trusted agency") || r.comment.includes("موثوقة")));
-      if (!hasNewReviewContent) {
-        setReviews(DEFAULT_REVIEWS);
-        localStorage.setItem("ghader_reviews", JSON.stringify(DEFAULT_REVIEWS));
-      } else {
-        setReviews(parsed);
+    const fetchFirestoreReviews = async () => {
+      try {
+        const q = query(collection(db, "reviews"));
+        const querySnapshot = await getDocs(q);
+        const list: Review[] = [];
+        querySnapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          list.push({
+            id: docSnap.id,
+            name: data.name,
+            rating: Number(data.rating || 5),
+            comment: data.comment,
+            date: data.date || new Date().toISOString().split("T")[0]
+          } as Review);
+        });
+
+        // Merge default reviews and firestore reviews (prioritize firestore)
+        const merged = [...list];
+        DEFAULT_REVIEWS.forEach((defR) => {
+          if (!merged.some(r => r.comment === defR.comment)) {
+            merged.push(defR);
+          }
+        });
+        setReviews(merged);
+        localStorage.setItem("ghader_reviews", JSON.stringify(merged));
+      } catch (err) {
+        console.warn("Could not load reviews from Firestore, loading from local fallback:", err);
+        const stored = localStorage.getItem("ghader_reviews");
+        if (stored) {
+          setReviews(JSON.parse(stored));
+        } else {
+          setReviews(DEFAULT_REVIEWS);
+        }
       }
-    } else {
-      setReviews(DEFAULT_REVIEWS);
-      localStorage.setItem("ghader_reviews", JSON.stringify(DEFAULT_REVIEWS));
-    }
+    };
+
+    fetchFirestoreReviews();
   }, []);
 
-  const handleSubmitReview = (e: React.FormEvent) => {
+  const handleSubmitReview = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !comment) {
       alert("Please fill in all fields.");
@@ -161,6 +185,19 @@ export default function ReviewsSection({ currentLang }: ReviewsSectionProps) {
       comment,
       date: new Date().toISOString().split("T")[0]
     };
+
+    // Save to Firestore
+    try {
+      await addDoc(collection(db, "reviews"), {
+        name,
+        rating,
+        comment,
+        date: newReview.date,
+        createdAt: new Date()
+      });
+    } catch (fsErr) {
+      console.warn("Could not save review to Firestore:", fsErr);
+    }
 
     const updated = [newReview, ...reviews];
     setReviews(updated);

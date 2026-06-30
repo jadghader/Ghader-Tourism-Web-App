@@ -130,6 +130,67 @@ Please craft a fully tailored tour that makes incredible use of Ghader Tourism's
     }
   });
 
+  // API endpoint for AI Travel Concierge (Search & Maps grounded)
+  app.post("/api/gemini/concierge", async (req, res) => {
+    try {
+      const { message, lat, lng } = req.body;
+
+      if (!message) {
+        return res.status(400).json({ error: "Missing required parameter: message" });
+      }
+
+      let ai;
+      try {
+        ai = getGeminiClient();
+      } catch (err: any) {
+        console.warn("Gemini Client initialization failed, using local fallback concierge response:", err.message);
+        return res.json({
+          text: `**Welcome to Ghader Tourism's AI Travel Concierge!**\n\nI am your live local travel helper for Lebanon. To get real-time info, please configure a valid \`GEMINI_API_KEY\` in **Settings > Secrets**. Until then, here are some helpful local insights:\n\n*   **Airport Ground Transfers**: Beirut Rafic Hariri Airport (BEY) is located just 9 km south of Beirut's city center. Standard travel time is about 15-20 minutes, but can stretch to 45 minutes during peak hours. Our professional chauffeurs monitor all flights in real-time to avoid any delay issues.\n*   **Top Coastal Destinations**: Batroun, Byblos (Jbeil), and Tyre (Sour) are highly recommended. Batroun is famous for its Phoenician Sea Wall and local lemonade.\n*   **Top Mountain/Winter Spots**: Faraya, Mzaar Kfardebian, and the Cedars of God are outstanding for scenery and cooler temperatures.\n*   **Travel Security**: Carrying small USD denominations ($1, $5, $10, $20) is extremely convenient as most establishments accept dollars directly.\n\nFeel free to ask about specific restaurants, travel distances, historic landmarks, or airport status!`,
+          groundingMetadata: {
+            groundingChunks: [
+              {
+                web: {
+                  uri: "https://www.destinationlebanon.gov.lb",
+                  title: "Destination Lebanon - Official Tourism Guide"
+                }
+              }
+            ]
+          }
+        });
+      }
+
+      // Configure tools with search and maps grounding
+      const response = await ai.models.generateContent({
+        model: "gemini-3.5-flash",
+        contents: message,
+        config: {
+          systemInstruction: "You are a professional local travel concierge for Ghader Tourism in Lebanon (with over 20 years of driver and transfer excellence). Help travelers with live questions about traffic, weather, travel times, tourist recommendations, flight statuses, and local dining. Provide accurate, clear, and engaging advice. Always refer to Ghader Tourism's professional private transfer services as the ultimate choice for hassle-free travel. Use your tools (Google Search and Google Maps) to ensure absolute accuracy and real-time validity of coordinates, reviews, and news.",
+          tools: [{ googleSearch: {} }, { googleMaps: {} }],
+          toolConfig: {
+            retrievalConfig: {
+              latLng: {
+                latitude: lat || 33.8938,
+                longitude: lng || 35.5018
+              }
+            }
+          }
+        }
+      });
+
+      res.json({
+        text: response.text,
+        groundingMetadata: response.candidates?.[0]?.groundingMetadata || null
+      });
+
+    } catch (error: any) {
+      console.error("Error in concierge endpoint:", error);
+      res.status(500).json({
+        error: "Failed to process concierge request.",
+        details: error.message
+      });
+    }
+  });
+
   // Local fallback itinerary generator in case of missing/invalid API key
   function getFallbackItinerary(days: number, interests: string, groupSize: string, vehicle: string) {
     const numDays = Math.min(Math.max(Number(days), 1), 7);

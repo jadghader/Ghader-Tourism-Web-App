@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Language } from "../types";
+import { getWhatsAppLink } from "../utils/whatsapp";
 
 interface WhatsAppFABProps {
   currentLang: Language;
+  activeView: string;
 }
 
 const WHATSAPP_CONFIG = {
   phone: "9613460865", // +961 3 460 865
-  messages: {
-    en: "Hello Ghader Tourism, I would like to inquire about booking a premium private transfer or tour in Lebanon.",
-    ar: "مرحباً غادِر للسياحة، أود الاستفسار عن حجز توصيلة خاصة أو جولة سياحية في لبنان.",
-    fr: "Bonjour Ghader Tourism, je souhaite me renseigner sur la réservation d'un transfert privé ou d'un circuit au Liban."
-  },
   labels: {
     en: "Chat with Us 24/7",
     ar: "تواصل معنا ٢٤/٧",
@@ -25,7 +22,7 @@ const WHATSAPP_CONFIG = {
   }
 };
 
-export default function WhatsAppFAB({ currentLang }: WhatsAppFABProps) {
+export default function WhatsAppFAB({ currentLang, activeView }: WhatsAppFABProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const isRtl = currentLang === "ar";
@@ -38,10 +35,14 @@ export default function WhatsAppFAB({ currentLang }: WhatsAppFABProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  const message = WHATSAPP_CONFIG.messages[currentLang] || WHATSAPP_CONFIG.messages.en;
   const label = WHATSAPP_CONFIG.labels[currentLang] || WHATSAPP_CONFIG.labels.en;
   const subtext = WHATSAPP_CONFIG.subtext[currentLang] || WHATSAPP_CONFIG.subtext.en;
-  const whatsappUrl = `https://wa.me/${WHATSAPP_CONFIG.phone}?text=${encodeURIComponent(message)}`;
+  
+  const whatsappUrl = getWhatsAppLink({
+    lang: currentLang,
+    activeView,
+    contextType: "general"
+  });
 
   // Determine if label ribbon should be open
   const showRibbon = isExpanded || isHovered;
@@ -84,6 +85,18 @@ export default function WhatsAppFAB({ currentLang }: WhatsAppFABProps) {
         {/* Double animated ambient halo glow */}
         <span className="absolute inset-0 rounded-full bg-brand-accent/20 animate-ping duration-1000 pointer-events-none scale-125" />
         <span className="absolute inset-0 rounded-full bg-brand-accent/10 animate-pulse duration-1500 pointer-events-none scale-150" />
+
+        {/* 'Usually replies in minutes' Badge */}
+        <div className={`absolute -top-8 ${isRtl ? "left-0" : "right-0"} bg-emerald-500 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-full shadow-lg whitespace-nowrap flex items-center gap-1 border border-emerald-400/20 backdrop-blur-sm z-10 animate-bounce`}>
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          <span>
+            {currentLang === "ar"
+              ? "يرد عادةً خلال دقائق"
+              : currentLang === "fr"
+              ? "Répond en quelques minutes"
+              : "Usually replies in minutes"}
+          </span>
+        </div>
 
         <motion.a
           href={whatsappUrl}

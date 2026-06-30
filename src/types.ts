@@ -35,7 +35,7 @@ export interface Review {
 export interface Vehicle {
   id: string;
   name: string;
-  category: "Economy Sedan" | "Executive Sedan" | "Luxury Vehicle" | "Minivan" | "Van";
+  category: string;
   suitableFor: string;
   capacity: string;
   luggage: string;
@@ -43,7 +43,7 @@ export interface Vehicle {
   description: string;
   image: string;
   basePriceUSD: number; // approximate base prices for transparent pricing
-  type?: "Sedan" | "SUV" | "Luxury Minivan" | "Buses";
+  type?: string;
 }
 
 export interface Tour {

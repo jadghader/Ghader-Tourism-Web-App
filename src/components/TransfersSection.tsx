@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
+import { getWhatsAppLink } from "../utils/whatsapp";
 
 interface TransfersSectionProps {
   currentLang: Language;
@@ -298,7 +299,13 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
             </div>
             <div className="pt-4">
               <a
-                href="https://wa.me/9613460865?text=Hello%20Ghader%20Tourism,%20I%20would%20like%20assistance%20with%20booking%20a%20hotel%20for%20my%20stay%20in%20Lebanon."
+                href={`https://wa.me/9613460865?text=${encodeURIComponent(
+                  currentLang === "ar"
+                    ? "مرحباً غادِر للسياحة، أود المساعدة في حجز فندق لإقامتي في لبنان."
+                    : currentLang === "fr"
+                    ? "Bonjour Ghader Tourism, je souhaite obtenir de l'aide pour réserver un hôtel pour mon séjour au Liban."
+                    : "Hello Ghader Tourism, I would like assistance with booking a hotel for my stay in Lebanon."
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-bg px-5 py-2.5 rounded-xl font-sans text-xs font-bold transition-all inline-flex items-center gap-2 border border-brand-accent/20 w-fit"
@@ -328,7 +335,13 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
             </div>
             <div className="pt-4">
               <a
-                href="https://wa.me/9613460865?text=Hello%20Ghader%20Tourism,%20I'm%20interested%20in%20booking%20Beirut%20Airport%20VIP%20Salon%20access."
+                href={`https://wa.me/9613460865?text=${encodeURIComponent(
+                  currentLang === "ar"
+                    ? "مرحباً غادِر للسياحة، أنا مهتم بحجز صالون الشرف الـ VIP في مطار بيروت."
+                    : currentLang === "fr"
+                    ? "Bonjour Ghader Tourism, je suis intéressé par la réservation de l'accès au Salon VIP de l'aéroport de Beyrouth."
+                    : "Hello Ghader Tourism, I'm interested in booking Beirut Airport VIP Salon access."
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-bg px-5 py-2.5 rounded-xl font-sans text-xs font-bold transition-all inline-flex items-center gap-2 border border-brand-accent/20 w-fit"
@@ -377,18 +390,25 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
                     {route.time}
                   </td>
                   <td className="px-4 py-3.5 text-right">
-                    <button
-                      onClick={() => {
-                        setActiveView("booking");
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
+                    <a
+                      href={getWhatsAppLink({
+                        lang: currentLang,
+                        activeView: "transfers",
+                        contextType: "route",
+                        routeFromTo: {
+                          from: currentLang === "ar" ? "مطار بيروت الدولي" : currentLang === "fr" ? "Aéroport de Beyrouth" : "Beirut Airport",
+                          to: route.to[currentLang]
+                        }
+                      })}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-bg px-4 py-1.5 rounded-xl font-sans text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1 border border-brand-accent/20"
                     >
                       <span>
                         {currentLang === "ar" ? "طلب تسعيرة" : currentLang === "fr" ? "Obtenir un devis" : "Get Quote"}
                       </span>
                       <span>→</span>
-                    </button>
+                    </a>
                   </td>
                 </tr>
               ))}
@@ -459,25 +479,19 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
             : "Complete our seamless online reservation form, select your premium vehicle class, and enjoy a professional stress-free transportation service in Lebanon."}
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
-          <button
-            onClick={() => {
-              setActiveView("booking");
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="bg-brand-accent hover:bg-brand-accent-hover text-brand-bg font-extrabold text-xs px-6 py-4 rounded-xl shadow-lg transition-all cursor-pointer inline-flex items-center justify-center gap-2"
-          >
-            <span>{t.bookNow}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-          
+        <div className="flex justify-center pt-2">
           <a
-            href="https://wa.me/9613460865?text=Hello%20Ghader%20Tourism,%20I'm%20interested%20in%20booking%20a%20private%20VIP%20transfer."
+            href={getWhatsAppLink({
+              lang: currentLang,
+              activeView: "transfers",
+              contextType: "airport_transfer"
+            })}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-6 py-4 rounded-xl transition-all cursor-pointer inline-flex items-center justify-center gap-2 shadow-md"
+            className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-btn-text font-extrabold text-xs px-8 py-4 rounded-xl shadow-lg transition-all cursor-pointer inline-flex items-center justify-center gap-2 text-center"
           >
-            <span>{currentLang === "ar" ? "احجز عبر واتساب فوراً" : "WhatsApp Fast Booking"}</span>
+            <span>{t.bookNow}</span>
+            <ArrowRight className="w-4 h-4 text-brand-btn-text" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />
           </a>
         </div>
       </div>

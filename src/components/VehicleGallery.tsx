@@ -71,12 +71,12 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
   const [activeIdx, setActiveIdx] = React.useState<number>(1); // Start with second item active
   const isRtl = currentLang === "ar";
 
-  // Auto-slide to next portrait image every 3.5 seconds.
+  // Auto-slide to next portrait image every 2.6 seconds.
   // Re-runs and resets timer when manual click updates activeIdx.
   React.useEffect(() => {
     const timer = setInterval(() => {
       setActiveIdx((prev) => (prev + 1) % GALLERY_ITEMS.length);
-    }, 3500);
+    }, 2600);
     return () => clearInterval(timer);
   }, [activeIdx]);
 
@@ -128,7 +128,7 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
                 onClick={() => {
                   if (!isMiddle) setActiveIdx(idx);
                 }}
-                className={`absolute w-[260px] md:w-[380px] aspect-[3/4.5] rounded-[36px] overflow-hidden cursor-pointer transition-all duration-500 select-none ${
+                className={`absolute w-[260px] md:w-[380px] aspect-[3/4.5] rounded-[36px] overflow-hidden cursor-pointer select-none ${
                   isMiddle
                     ? "shadow-brand bg-brand-card border-2 border-brand-accent"
                     : "shadow-lg bg-brand-card/40 border border-brand-border/40"
@@ -146,8 +146,8 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 260,
-                  damping: 26,
+                  stiffness: 300,
+                  damping: 25,
                 }}
               >
                 {/* Portrait Image Only - Pure, clean, no text overlays */}
