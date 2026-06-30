@@ -2,7 +2,6 @@ import React from "react";
 import { CheckCircle, Info } from "lucide-react";
 import { Language, Vehicle } from "../types";
 import { translations } from "../translations";
-import VehicleGallery from "./VehicleGallery";
 
 interface FleetGridProps {
   currentLang: Language;
@@ -83,10 +82,7 @@ export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridPro
 
   return (
     <div className="space-y-16" id="fleet-grid">
-      {/* 3D Portrait Carousel Gallery First */}
-      <VehicleGallery currentLang={currentLang} />
-
-      <div className="border-t border-brand-border/40 pt-16 space-y-8">
+      <div className="space-y-8">
         <div className={`text-center max-w-2xl mx-auto space-y-3 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
           <h2 className="text-xl md:text-2xl font-bold text-brand-text font-sans tracking-tight">
             {currentLang === "ar" ? "تفاصيل المواصفات والأسعار التقديرية" : currentLang === "fr" ? "Spécifications & Tarifs Estimés" : "Technical Specifications & Estimations"}

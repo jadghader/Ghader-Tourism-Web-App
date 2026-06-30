@@ -12,6 +12,7 @@ import ContactForm from "./components/ContactForm";
 import BlogCarousel from "./components/BlogCarousel";
 import TransfersSection from "./components/TransfersSection";
 import SocialSection from "./components/SocialSection";
+import VehicleGallery from "./components/VehicleGallery";
 import SEO from "./components/SEO";
 import WhatsAppFAB from "./components/WhatsAppFAB";
 import UseCasesSection from "./components/UseCasesSection";
@@ -348,6 +349,11 @@ export default function App() {
             {/* REVIEWS */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6">
               <ReviewsSection currentLang={currentLang} />
+            </section>
+
+            {/* IMAGES CAROUSEL GALLERY */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+              <VehicleGallery currentLang={currentLang} />
             </section>
 
             {/* SOCIAL MEDIA */}

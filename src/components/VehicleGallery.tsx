@@ -81,24 +81,7 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
   }, [activeIdx]);
 
   return (
-    <div className="space-y-12 py-8 overflow-hidden" id="vehicle-portrait-gallery">
-      {/* Title */}
-      <div className={`text-center max-w-2xl mx-auto space-y-3 px-4 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
-        <span className="text-xs text-brand-accent font-mono font-bold uppercase tracking-widest block mb-1">
-          {currentLang === "ar" ? "معرض سيارات الـ VIP" : currentLang === "fr" ? "Galerie de Prestige VIP" : "VIP Showroom Experience"}
-        </span>
-        <h2 className="text-2xl md:text-3xl font-black text-brand-text font-sans tracking-tight">
-          {currentLang === "ar" ? "تصفح أسطول النخبة الفاخر" : currentLang === "fr" ? "Découvrez Notre Flotte Exclusive" : "Explore Our Curated Luxury Fleet"}
-        </h2>
-        <p className="text-gray-400 text-sm leading-relaxed">
-          {currentLang === "ar" 
-            ? "تصفح صوراً تفصيلية وفخمة لأسطولنا المميز المصمم خصيصاً لراحتك المطلقة" 
-            : currentLang === "fr" 
-            ? "Visualisez les images exclusives de nos véhicules haut de gamme pensés pour votre confort absolu" 
-            : "Immerse yourself in our premium vehicle models optimized for absolute security and elite comfort."}
-        </p>
-      </div>
-
+    <div className="py-2 overflow-hidden" id="vehicle-portrait-gallery">
       {/* 3D-Style Portrait Carousel Gallery with expanded width */}
       <div className="relative max-w-6xl mx-auto px-4">
         {/* Carousel Tracks */}
