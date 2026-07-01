@@ -9,7 +9,7 @@ declare global {
 }
 
 // Support a configurable Measurement ID with a reliable default fallback
-export const GA_MEASUREMENT_ID = (import.meta as any).env?.VITE_GA_MEASUREMENT_ID || "G-K4L6G6Z7X1";
+export const GA_MEASUREMENT_ID = (import.meta as any).env?.VITE_GA_MEASUREMENT_ID;
 
 /**
  * Initializes the GA4 global tag script in the document head and triggers configuration.

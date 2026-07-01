@@ -25,8 +25,8 @@ export default function BlogCarousel({ currentLang }: BlogCarouselProps) {
         </div>
       </div>
 
-      <div className="relative overflow-hidden rounded-[40px] sm:rounded-[52px] border-[12px] sm:border-[14px] border-brand-border bg-[#0a0a0a] shadow-2xl h-[460px] sm:h-[560px] md:h-[720px] flex items-center justify-center group transition-all duration-300 animate-fade-in">
-        <div className="w-full h-full flex items-center justify-center relative overflow-hidden rounded-[28px] sm:rounded-[36px]">
+      <div className="relative overflow-hidden rounded-[32px] sm:rounded-[40px] md:rounded-[52px] border-2 sm:border-[2.5px] md:border-3 border-brand-accent bg-[#0a0a0a] shadow-2xl aspect-video sm:aspect-auto sm:h-[560px] md:h-[720px] flex items-center justify-center group transition-all duration-300 animate-fade-in">
+        <div className="w-full h-full flex items-center justify-center relative overflow-hidden rounded-[24px] sm:rounded-[28px] md:rounded-[36px]">
           <img
             src={activeImage}
             alt={currentLang === "ar" ? "Ghader Tourism Lebanon Arabic story" : "Ghader Tourism Lebanon story"}
