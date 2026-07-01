@@ -2,6 +2,11 @@ import React from "react";
 import { CheckCircle, Info } from "lucide-react";
 import { Language, Vehicle } from "../types";
 import { translations } from "../translations";
+import carImage1 from "../assets/images/1.png";
+import carImage2 from "../assets/images/2.png";
+import carImage3 from "../assets/images/3.png";
+import carImage4 from "../assets/images/4.png";
+import carImage5 from "../assets/images/5.png";
 
 interface FleetGridProps {
   currentLang: Language;
@@ -18,7 +23,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     luggage: "3",
     features: ["Full Air Conditioning (A/C)", "Perfect for Airport Transfers", "Matches your trip budget perfectly"],
     description: "Comfortable, clean, and budget-friendly A/C car matching your daily trip needs and swift airport transfers perfectly.",
-    image: "/images/cars/sedan_2025.jpg",
+    image: carImage1,
     basePriceUSD: 0,
     type: "Sedan"
   },
@@ -31,7 +36,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     luggage: "4",
     features: ["Advanced Dual Climate A/C", "VIP Chauffeur Experience", "All-Wheel Drive Performance"],
     description: "Prestige luxury SUV with robust mountain capabilities and exceptional cabin comfort.",
-    image: "/images/cars/suv_2025.jpg",
+    image: carImage2,
     basePriceUSD: 0,
     type: "SUV"
   },
@@ -44,7 +49,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     luggage: "6",
     features: ["High-Output Air Conditioning", "Spacious Modular Seating", "Comfortable for Family Roadtrips"],
     description: "Comfortable and roomy caravan designed to make long family journeys easy and stress-free.",
-    image: "/images/cars/caravan_2025.jpg",
+    image: carImage3,
     basePriceUSD: 0,
     type: "Caravan"
   },
@@ -57,7 +62,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     luggage: "10",
     features: ["Tri-Zone Climate Control", "Sliding Doors", "Comfortable for Medium Groups"],
     description: "Extra-spacious van ideal for corporate transfers or mid-sized tourist groups exploring Lebanon.",
-    image: "/images/cars/minivan_2025.jpg",
+    image: carImage4,
     basePriceUSD: 0,
     type: "Minivan"
   },
@@ -70,7 +75,7 @@ export const FLEET_VEHICLES: Vehicle[] = [
     luggage: "Heavy Bags",
     features: ["High-Capacity A/C System", "Tourism Group Friendly", "Maximum Passenger Comfort"],
     description: "Heavy-duty modern buses perfect for large events, conferences, and tours.",
-    image: "/images/cars/bus_2025.jpg",
+    image: carImage5,
     basePriceUSD: 0,
     type: "Buses"
   }
@@ -177,26 +182,15 @@ export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridPro
               className="bg-brand-card border border-brand-border rounded-[32px] overflow-hidden hover:border-brand-border-hover transition-all duration-300 flex flex-col group h-full shadow-lg"
               id={`fleet-card-${vehicle.id}`}
             >
-              {/* Premium Upload Path Placeholder for Vehicles */}
-              <div className="relative h-44 w-full bg-gradient-to-br from-[#121212] to-[#070707] border-b border-brand-border flex flex-col items-center justify-center p-6 shrink-0 group/img text-center">
-                <div className="absolute inset-0 bg-[radial-gradient(#1e1e1e_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
-                
+              <div className="relative h-44 w-full bg-gradient-to-br from-[#121212] to-[#070707] border-b border-brand-border overflow-hidden shrink-0 group/img">
+                <img
+                  src={vehicle.image}
+                  alt={vehicle.name}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute top-3 right-3 bg-neutral-950/90 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-neutral-800 text-[10px] font-mono font-bold text-brand-accent">
                   {vehicle.type || "Chauffeur Service"}
-                </div>
-
-                <div className="relative z-10 space-y-2 flex flex-col items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent shadow-sm group-hover/img:scale-110 transition-transform duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-car"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
-                  </div>
-                  <div className="space-y-0.5">
-                    <span className="text-[9px] text-brand-accent font-mono font-bold tracking-wider block uppercase">
-                      {currentLang === "ar" ? "مسار رفع الصورة" : currentLang === "fr" ? "Chemin de l'image" : "Image Upload Path"}
-                    </span>
-                    <code className="text-[10px] text-brand-muted bg-neutral-900/90 px-2 py-0.5 rounded border border-neutral-800 font-mono select-all block">
-                      {vehicle.image}
-                    </code>
-                  </div>
                 </div>
               </div>
 

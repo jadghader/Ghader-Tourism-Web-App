@@ -1,19 +1,33 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import config from "../firebase-applet-config.json";
 
-// Standard Firebase config loaded from the applet configuration
-const firebaseConfig = {
-  apiKey: config.apiKey,
-  authDomain: config.authDomain,
-  projectId: config.projectId,
-  storageBucket: config.storageBucket,
-  messagingSenderId: config.messagingSenderId,
-  appId: config.appId,
+type FirebaseConfig = {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+  measurementId?: string;
 };
 
-// Initialize Firebase
+function decodeFirebaseConfigFromBase64(encoded: string): FirebaseConfig {
+  if (!encoded) {
+    throw new Error("VITE_FIREBASE_CONFIG_BASE64 is missing.");
+  }
+
+  try {
+    const normalized = encoded.replace(/\s+/g, "");
+    const decoded = window.atob(normalized);
+    return JSON.parse(decoded) as FirebaseConfig;
+  } catch (error) {
+    throw new Error("Unable to decode VITE_FIREBASE_CONFIG_BASE64.");
+  }
+}
+
+const firebaseConfig = decodeFirebaseConfigFromBase64(import.meta.env.VITE_FIREBASE_CONFIG_BASE64 || "");
+
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 const db = getFirestore(app);

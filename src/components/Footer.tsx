@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Award, Shield, Heart } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
 import { getWhatsAppLink } from "../utils/whatsapp";
+import logoImage from "../assets/images/logo.jpg";
 
 interface FooterProps {
   currentLang: Language;
@@ -25,7 +26,12 @@ export default function Footer({ currentLang, setActiveView, activeView }: Foote
         <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 ${isRtl ? "text-right" : "text-left"}`}>
           {/* Column 1: Brand details */}
           <div className="space-y-3">
-            <div className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}>
+            <div className={`flex items-center gap-2.5 ${isRtl ? "flex-row-reverse" : ""}`}>
+              <img
+                src={logoImage}
+                alt="Ghader Tourism logo"
+                className="h-10 w-10 rounded-full object-cover border border-brand-border shadow-sm"
+              />
               <span className="text-brand-text font-extrabold text-base font-sans tracking-tight">
                 {t.brandName}
               </span>

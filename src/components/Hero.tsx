@@ -3,6 +3,7 @@ import { Phone, Calendar, Compass, ShieldCheck } from "lucide-react";
 import { motion } from "motion/react";
 import { Language } from "../types";
 import { translations } from "../translations";
+import heroImage from "../assets/images/lebanon_luxury_chauffeur_hero_1782464049590.jpg";
 
 interface HeroProps {
   currentLang: Language;
@@ -31,12 +32,11 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
     return () => clearInterval(interval);
   }, [currentLang]);
 
-  // Use the generated hero image
-  const bgImage = "/src/assets/images/lebanon_luxury_chauffeur_hero_1782464049590.jpg";
+  const bgImage = heroImage;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden text-white rounded-[32px] border border-neutral-800 shadow-2xl" id="app-hero">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 pt-4 sm:pt-6">
+      <section className="relative min-h-[520px] h-[72vh] sm:h-[600px] flex items-center justify-center overflow-hidden text-white rounded-[24px] sm:rounded-[32px] border border-neutral-800 shadow-2xl" id="app-hero">
         {/* Background Image with elegant overlay */}
         <div className="absolute inset-0 z-0">
           <img
@@ -49,7 +49,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
         </div>
 
         {/* Hero Content Container */}
-        <div className="relative z-10 w-full px-8 md:px-12 py-12">
+        <div className="relative z-10 w-full px-4 sm:px-8 md:px-12 py-8 sm:py-12">
           <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${isRtl ? "text-right" : "text-left"}`}>
             
             <div className="lg:col-span-8 space-y-6">

@@ -1,6 +1,13 @@
 import { Clock, MessageSquare } from "lucide-react";
 import { Language, Tour } from "../types";
 import { translations } from "../translations";
+import tourImage1 from "../assets/images/landing_en.png";
+import tourImage2 from "../assets/images/landing_ar.png";
+import tourImage3 from "../assets/images/6.png";
+import tourImage4 from "../assets/images/7.png";
+import tourImage5 from "../assets/images/8.png";
+import tourImage6 from "../assets/images/9.png";
+import tourImage7 from "../assets/images/10.png";
 
 interface ToursListProps {
   currentLang: Language;
@@ -14,7 +21,7 @@ export const FEATURED_TOURS: Tour[] = [
     duration: "Full Day (8-10 Hours)",
     highlights: [],
     description: "Wander the sparkling caves of Jeita, ride the scenic Teleferique cable car to Harissa, then explore ancient Byblos and the coastal charm of Batroun.",
-    image: "https://images.unsplash.com/photo-1607627000458-210e8d261a14?auto=format&fit=crop&q=80&w=800",
+    image: tourImage1,
     priceEstimateUSD: 140
   },
   {
@@ -162,28 +169,13 @@ export default function TourCard({ currentLang, onBookTour }: ToursListProps) {
               className="bg-brand-card border border-brand-border rounded-[32px] overflow-hidden hover:border-brand-border-hover transition-all duration-300 flex flex-col md:flex-row group shadow-xl"
               id={`tour-card-${tour.id}`}
             >
-              {/* Tour Image - Premium Upload Path Placeholder */}
-              <div className="relative w-full md:w-2/5 h-48 md:h-auto min-h-[180px] bg-gradient-to-br from-[#121212] to-[#070707] border-b md:border-b-0 md:border-r border-brand-border flex flex-col items-center justify-center p-6 shrink-0 group/img text-center">
-                <div className="absolute inset-0 bg-[radial-gradient(#1e1e1e_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
-                <div className="relative z-10 space-y-2.5 flex flex-col items-center justify-center">
-                  <div className="w-11 h-11 rounded-full bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent shadow-sm group-hover/img:scale-110 transition-transform duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-image"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-[10px] text-brand-accent font-mono font-bold tracking-wider block uppercase">
-                      {currentLang === "ar" ? "مسار رفع الصورة" : currentLang === "fr" ? "Chemin de l'image" : "Image Upload Path"}
-                    </span>
-                    <code className="text-[11px] text-brand-muted bg-neutral-900/90 px-3 py-1 rounded border border-neutral-800 font-mono select-all block">
-                      {tour.id === "t1" ? "/images/tours/jeita.jpg" :
-                       tour.id === "t2" ? "/images/tours/chouf.jpg" :
-                       tour.id === "t3" ? "/images/tours/baalbek.jpg" :
-                       tour.id === "t4" ? "/images/tours/taanayel.jpg" :
-                       tour.id === "t5" ? "/images/tours/saida.jpg" :
-                       tour.id === "t6" ? "/images/tours/beirut.jpg" :
-                       "/images/tours/faraya.jpg"}
-                    </code>
-                  </div>
-                </div>
+              <div className="relative w-full md:w-2/5 h-48 md:h-auto min-h-[180px] bg-gradient-to-br from-[#121212] to-[#070707] border-b md:border-b-0 md:border-r border-brand-border overflow-hidden shrink-0 group/img">
+                <img
+                  src={tour.image}
+                  alt={tourName}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               </div>
 
               {/* Tour Info */}

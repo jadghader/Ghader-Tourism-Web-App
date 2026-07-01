@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { Language } from "../types";
 import { translations } from "../translations";
 import { getWhatsAppLink } from "../utils/whatsapp";
+import logoImage from "../assets/images/logo.jpg";
 
 interface HeaderProps {
   currentLang: Language;
@@ -60,6 +61,11 @@ export default function Header({
             onClick={() => handleNavClick("home")}
             id="brand-logo"
           >
+            <img
+              src={logoImage}
+              alt="Ghader Tourism logo"
+              className="h-10 w-10 rounded-full object-cover border border-brand-border shadow-sm"
+            />
             <div className={`flex flex-col ${isRtl ? "text-right" : "text-left"}`}>
               <span className="font-extrabold text-base leading-none tracking-tight font-sans text-brand-text">
                 {t.brandName}

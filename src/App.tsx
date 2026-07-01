@@ -223,11 +223,11 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-grow pt-[84px] md:pt-[92px]">
+      <main className="flex-grow pt-[72px] sm:pt-[84px] md:pt-[92px] overflow-x-hidden">
         
         {/* VIEW 1: HOME */}
         {activeView === "home" && (
-          <div className="space-y-16 pb-20 animate-fade-in" id="home-view">
+          <div className="space-y-10 sm:space-y-16 pb-16 sm:pb-20 animate-fade-in" id="home-view">
             {/* Elegant Hero */}
             <Hero currentLang={currentLang} onNavigate={setActiveView} />
 
@@ -336,6 +336,11 @@ export default function App() {
               <BlogCarousel currentLang={currentLang} onNavigate={setActiveView} />
             </section>
 
+            {/* IMAGES CAROUSEL GALLERY */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
+              <VehicleGallery currentLang={currentLang} />
+            </section>
+
             {/* FLEET GRID */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6">
               <FleetGrid currentLang={currentLang} onSelectVehicle={handleSelectVehicle} />
@@ -349,11 +354,6 @@ export default function App() {
             {/* REVIEWS */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6">
               <ReviewsSection currentLang={currentLang} />
-            </section>
-
-            {/* IMAGES CAROUSEL GALLERY */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-              <VehicleGallery currentLang={currentLang} />
             </section>
 
             {/* SOCIAL MEDIA */}
