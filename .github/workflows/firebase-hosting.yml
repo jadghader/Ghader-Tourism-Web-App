@@ -6,21 +6,32 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "22.22.0"
           cache: npm
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
+
+      - name: Restore Firebase Service Account
+        env:
+          FIREBASE_SERVICE_ACCOUNT_BASE64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BASE64 }}
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT_BASE64" | base64 --decode > "$RUNNER_TEMP/firebase-service-account.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/firebase-service-account.json" >> "$GITHUB_ENV"
 
       - name: Build
         env:
@@ -29,14 +40,13 @@ jobs:
         run: npm run build
 
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: npm install -g firebase-tools@latest
 
-      - name: Decode Firebase service account
-        env:
-          FIREBASE_SERVICE_ACCOUNT_BASE64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BASE64 }}
-        run: |
-          echo "$FIREBASE_SERVICE_ACCOUNT_BASE64" | base64 -d > "$RUNNER_TEMP/firebase-service-account.json"
-          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/firebase-service-account.json" >> "$GITHUB_ENV"
+      - name: Verify Authentication
+        run: firebase projects:list
 
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --project ghadertourism --non-interactive
+        run: |
+          firebase deploy \
+            --project ghadertourism \
+            --only hosting \
