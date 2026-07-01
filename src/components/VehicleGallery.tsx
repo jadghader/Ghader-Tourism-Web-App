@@ -58,17 +58,6 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
   return (
     <div className="py-3 sm:py-6 md:py-8 overflow-hidden" id="vehicle-portrait-gallery">
       <div className="relative max-w-7xl mx-auto px-2 sm:px-4">
-        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3">
-          <div>
-            <span className="text-[10px] text-brand-accent font-mono uppercase tracking-[0.35em] font-bold block mb-1">
-              {currentLang === "ar" ? "معرض المركبات" : currentLang === "fr" ? "Galerie de Véhicules" : "Fleet Gallery"}
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-brand-text tracking-tight font-sans">
-              {currentLang === "ar" ? "اكتشف فخامة أسطولنا" : currentLang === "fr" ? "Découvrez la Sophistication de Notre Flotte" : "Discover the Prestige of Our Fleet"}
-            </h3>
-          </div>
-        </div>
-
         <div className="flex justify-center items-center h-[430px] sm:h-[500px] md:h-[620px] lg:h-[720px] relative w-full overflow-visible">
           {GALLERY_ITEMS.map((item, idx) => {
             // Determine position status relative to active index supporting 10+ items beautifully
