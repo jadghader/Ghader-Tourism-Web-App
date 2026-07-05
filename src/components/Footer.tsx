@@ -2,7 +2,6 @@ import React from "react";
 import { Phone, Mail, MapPin, Award, Shield, Heart } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
-import { getWhatsAppLink } from "../utils/whatsapp";
 import logoImage from "../assets/images/logo.jpg";
 
 interface FooterProps {
@@ -29,8 +28,12 @@ export default function Footer({ currentLang, setActiveView, activeView }: Foote
             <div className={`flex items-center gap-2.5 ${isRtl ? "flex-row-reverse" : ""}`}>
               <img
                 src={logoImage}
-                alt="Ghader Tourism logo"
+                alt="Ghader Tourism premium chauffeur service logo"
                 className="h-10 w-10 rounded-full object-cover border border-brand-border shadow-sm"
+                loading="lazy"
+                decoding="async"
+                width="40"
+                height="40"
               />
               <span className="text-brand-text font-extrabold text-base font-sans tracking-tight">
                 {t.brandName}

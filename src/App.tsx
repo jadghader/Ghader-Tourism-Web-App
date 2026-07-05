@@ -77,6 +77,29 @@ const PILLARS_DATA = [
   }
 ];
 
+const getViewFromPath = (path = typeof window !== "undefined" ? window.location.pathname : "/") => {
+  const normalizedPath = path.replace(/\/+$/, "") || "/";
+
+  switch (normalizedPath) {
+    case "/transfers":
+      return "transfers";
+    case "/fleet":
+      return "fleet";
+    case "/tours":
+      return "tours";
+    case "/about":
+      return "about";
+    case "/contact":
+      return "contact";
+    case "/reviews":
+      return "reviews";
+    default:
+      return "home";
+  }
+};
+
+const getRouteForView = (view: string) => (view === "home" ? "/" : `/${view}`);
+
 export default function App() {
   const [currentLang, setLang] = React.useState<Language>(() => {
     if (typeof window !== "undefined") {
@@ -105,13 +128,28 @@ export default function App() {
     }
   }, [currentLang]);
 
-  const [activeView, setActiveView] = React.useState<string>("home");
+  const [activeView, setActiveView] = React.useState<string>(() => getViewFromPath());
+
+  React.useEffect(() => {
+    const handlePopState = () => {
+      setActiveView(getViewFromPath(window.location.pathname));
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  React.useEffect(() => {
+    const nextPath = getRouteForView(activeView);
+    if (typeof window !== "undefined" && window.location.pathname !== nextPath) {
+      window.history.pushState({ view: activeView }, "", nextPath);
+    }
+  }, [activeView]);
 
   // Scroll to top instantly when the active view changes to prevent layering or middle-of-page rendering issues
   React.useEffect(() => {
     window.scrollTo(0, 0);
-    // Track custom virtual page views for SPA routing
-    const path = activeView === "home" ? "/" : `/#${activeView}`;
+    const path = getRouteForView(activeView);
     const pageTitle = `Ghader Tourism - ${activeView.charAt(0).toUpperCase() + activeView.slice(1)}`;
     trackPageView(path, pageTitle);
   }, [activeView]);
@@ -404,7 +442,7 @@ export default function App() {
 
               <div className="border-t border-brand-border pt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div className="space-y-1">
-                  <span className="text-3xl font-black text-brand-text font-sans block">20+</span>
+                  <span className="text-3xl font-black text-brand-text font-sans block">25+</span>
                   <span className="text-[10px] text-brand-muted uppercase tracking-wider font-mono font-bold block">Years of Excellence</span>
                 </div>
                 <div className="space-y-1">

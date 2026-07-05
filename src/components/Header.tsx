@@ -63,8 +63,12 @@ export default function Header({
           >
             <img
               src={logoImage}
-              alt="Ghader Tourism logo"
+              alt="Ghader Tourism premium private chauffeur and airport transfer logo"
               className="h-10 w-10 rounded-full object-cover border border-brand-border shadow-sm"
+              loading="lazy"
+              decoding="async"
+              width="40"
+              height="40"
             />
             <div className={`flex flex-col ${isRtl ? "text-right" : "text-left"}`}>
               <span className="font-extrabold text-base leading-none tracking-tight font-sans text-brand-text">

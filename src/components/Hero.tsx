@@ -41,8 +41,12 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
         <div className="absolute inset-0 z-0">
           <img
             src={bgImage}
-            alt="Luxury Chauffeur Services Lebanon"
+            alt="Luxury private chauffeur and airport transfer service in Beirut, Lebanon"
             className="w-full h-full object-cover object-center transform scale-100 hover:scale-105 transition-transform duration-10000"
+            loading="eager"
+            decoding="async"
+            width="1600"
+            height="960"
             referrerPolicy="no-referrer"
           />
           <div className={`absolute inset-0 ${isRtl ? "bg-gradient-to-l from-[#0a0a0a]/95 via-[#0a0a0a]/80 to-[#0a0a0a]/45" : "bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/75 to-transparent"}`} />

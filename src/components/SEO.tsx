@@ -13,192 +13,203 @@ interface MetaContent {
   keywords: string;
 }
 
+const SITE_URL = "https://ghadertourism.com";
+const OG_IMAGE_URL = `${SITE_URL}/og-image.svg`;
+
 const SEO_DATA: Record<Language, Record<string, MetaContent>> = {
   en: {
     home: {
       title: "Private Chauffeur Lebanon & VIP Airport Transfer Beirut | Ghader Tourism",
-      description: "Elite Private Chauffeur Lebanon & 24/7 VIP Airport Transfer Beirut. Book premier private taxi services, executive airport pickups, and Guided Lebanon Tours with transparent flat rates and 25+ years of expertise.",
-      keywords: "Private Chauffeur Lebanon, VIP Airport Transfer Beirut, Guided Lebanon Tours, beirut airport taxi, private driver lebanon, vip taxi beirut, private chauffeur beirut, lebanon tours, car hire with driver lebanon, beirut airport transfers, luxury taxi lebanon, faraya taxi, byblos taxi, private driver beirut"
+      description: "Premium private chauffeur service in Lebanon and VIP airport transfers in Beirut. Book airport taxis, luxury drivers, and guided private tours with 24/7 support.",
+      keywords: "private chauffeur lebanon, vip airport transfer beirut, private driver lebanon, beirut airport taxi, lebanon tours, luxury taxi lebanon, private driver beirut"
     },
     transfers: {
-      title: "VIP Airport Transfer Beirut & Premium Taxi Services | Ghader Tourism",
-      description: "Book reliable, premium VIP Airport Transfer Beirut and elite Private Chauffeur Lebanon. 24/7 airport taxi pickup at Beirut Rafic Hariri Airport (BEY) with free flight tracking and meets-and-greets.",
-      keywords: "VIP Airport Transfer Beirut, Private Chauffeur Lebanon, Guided Lebanon Tours, beirut airport pickup, luxury taxi beirut, private taxi beirut airport, lebanon VIP driver, executive transport lebanon, taxi faraya airport, airport transit beirut, beirut hotel pickup taxi"
+      title: "VIP Airport Transfer Beirut & Private Taxi Lebanon | Ghader Tourism",
+      description: "Reserve a private airport taxi in Beirut with meet and greet, flight tracking, and premium executive vehicles for Beirut, Byblos, Faraya, Baalbek and beyond.",
+      keywords: "vip airport transfer beirut, private taxi lebanon, beirut airport transfer, private driver lebanon, airport taxi beirut"
     },
     tours: {
-      title: "Guided Lebanon Tours & Private Custom Sightseeing | Ghader Tourism",
-      description: "Embark on bespoke Guided Lebanon Tours. Hire a top Private Chauffeur Lebanon to explore majestic Baalbek ruins, Jeita Grotto, historic Byblos, and ancient Cedar forests in premium SUVs and sedans.",
-      keywords: "Guided Lebanon Tours, Private Chauffeur Lebanon, VIP Airport Transfer Beirut, lebanon private tours, sightseeing lebanon, baalbek tour guide, jeita grotto excursion, byblos private tour, cedars of god bcharre tour, custom tours lebanon, private driver guide lebanon"
+      title: "Guided Lebanon Tours, Jeita, Byblos & Baalbek | Ghader Tourism",
+      description: "Explore Lebanon with private guided tours to Jeita Grotto, Byblos, Batroun, Baalbek, Cedars, and scenic mountain routes with a professional local chauffeur.",
+      keywords: "guided lebanon tours, private tours lebanon, jeita tour, byblos tour, baalbek tour, cedars tour, tour guide lebanon"
     },
     fleet: {
-      title: "Our Premium Luxury Fleet - Executive Sedan & SUV Rentals | Ghader Tourism",
-      description: "Browse our impeccable fleet of latest premium Mercedes-Benz, executive SUVs, and family luxury vans. Complete with professional, multilingual private chauffeurs across Lebanon.",
-      keywords: "mercedes rental beirut, luxury SUV driver lebanon, luxury van hire beirut, vip cars lebanon, private luxury transport lebanon, family minivan lebanon, sprinters vip beirut"
+      title: "Luxury Fleet for Airport Transfers & Private Tours | Ghader Tourism",
+      description: "Browse our executive sedans, premium SUVs, and family vans for private transfers, airport pickups, and luxury Lebanon travel.",
+      keywords: "luxury fleet lebanon, executive sedan lebanon, suv with driver lebanon, vip van lebanon, private chauffeur lebanon"
     },
     about: {
-      title: "About Ghader Tourism | 25+ Years of Elite Transportation in Lebanon",
-      description: "Discover our family heritage of luxury tourism and private transportation in Lebanon. Certified airport terminal access permits, specialized local driver guides, and 24/7 travel desk since 2000.",
-      keywords: "ghader tourism history, luxury travel company lebanon, reputable tour operator beirut, professional taxi service lebanon, secure transport beirut"
-    },
-    booking: {
-      title: "Book Private Drivers & Beirut Airport Taxi Online | Ghader Tourism",
-      description: "Reserve your premium private taxi or custom sightseeing tour in Lebanon. Quick 5-step online booking with instant WhatsApp validation and transparent flat rates.",
-      keywords: "book beirut taxi, book private driver lebanon, reserve tour beirut, airport taxi reservation lebanon, hire chauffeur online beirut"
+      title: "About Ghader Tourism | Premium Lebanon Transportation & Tours",
+      description: "Learn about Ghader Tourism, a trusted Lebanon transportation provider with 25+ years of experience in airport transfers, private drivers and guided tours.",
+      keywords: "ghader tourism, lebanon transportation, private driver lebanon, luxury tourism lebanon, airport transfer beirut"
     },
     contact: {
-      title: "Contact Ghader Tourism | 24/7 VIP Chauffeur Help Desk Lebanon",
-      description: "Get in touch with our live travel support. 24/7 helpline for customized tour itineraries, airport taxi bookings, hotel transfers, and corporate executive travel in Lebanon.",
-      keywords: "contact ghader tourism, beirut private driver phone, vip travel desk lebanon, hire driver beirut whatsapp, contact airport taxi beirut"
+      title: "Contact Ghader Tourism | 24/7 Beirut Airport Taxi & Tour Support",
+      description: "Reach Ghader Tourism for airport transfers, private drivers, customized tours, and VIP chauffeur support in Lebanon.",
+      keywords: "contact ghader tourism, beirut airport taxi, private chauffeur lebanon, vip taxi lebanon, lebanon travel support"
+    },
+    reviews: {
+      title: "Guest Reviews & Trusted Transfer Service in Lebanon | Ghader Tourism",
+      description: "Read about our trusted airport transfer and private chauffeur service in Lebanon from guests who rely on us for safe, comfortable travel.",
+      keywords: "ghader tourism reviews, beirut airport transfer reviews, private driver lebanon reviews"
     }
   },
   ar: {
     home: {
-      title: "تاكسي مطار بيروت وسائق خاص كبار الشخصيات VIP لبنان | غادِر للسياحة",
-      description: "احجز تاكسي مطار بيروت وسائق خاص كبار الشخصيات VIP في جميع أنحاء لبنان على مدار الساعة. خبرة تفوق ٢٥ عاماً، أسعار ثابتة ومراقبة رحلات الطيران مجاناً. جولات سياحية خاصة وعائلية فاخرة.",
-      keywords: "تاكسي مطار بيروت, سائق خاص في لبنان, توصيل مطار بيروت, تاكسي فاخر لبنان, حجز سائق بيروت, جولات سياحية لبنان, سائق سياحي بيروت, تاكسي فاريا, تاكسي جبيل"
+      title: "تاكسي مطار بيروت وسائق خاص VIP في لبنان | غادِر للسياحة",
+      description: "خدمات سائق خاص فاخرة في لبنان وتوصيل VIP من وإلى مطار بيروت مع أسعار ثابتة ودعم على مدار الساعة.",
+      keywords: "سائق خاص لبنان, تاكسي مطار بيروت, سائق خاص بيروت, جولات لبنان, تاكسي فاخر لبنان"
     },
     transfers: {
-      title: "تاكسي المطار وسائق خاص كبار الشخصيات VIP | غادِر للسياحة",
-      description: "خدمات استقبال وتاكسي فاخر مخصص من وإلى مطار رفيق الحريري الدولي ببيروت. سائق بانتظارك داخل المطار بلوحة اسمك، تتبع مباشر لرحلات الطيران مجاناً، وأقصى درجات الأمان.",
-      keywords: "توصيل مطار بيروت, سائق خاص كبار الشخصيات, تاكسي VIP بيروت, تتبع الطيران مطار رفيق الحريري, تاكسي خاص مطار بيروت, حجز سيارة سائق مطار بيروت"
+      title: "تاكسي مطار بيروت VIP وتوصيلات خاصة في لبنان | غادِر للسياحة",
+      description: "احجز تاكسي مطار خاص في بيروت مع استقبال في المطار وتتبع رحلات ومركبات فاخرة إلى جبيل وفاريا وبعلبك.",
+      keywords: "توصيل مطار بيروت, تاكسي خاص لبنان, سائق خاص لبنان, تاكسي VIP بيروت"
     },
     tours: {
-      title: "جولات سياحية خاصة ورحلات يومية في لبنان | غادِر للسياحة",
-      description: "احجز رحلاتك السياحية الخاصة في لبنان. اكتشف معابد بعلبك الرومانية، مغارة جعيتا الخلابة، قلعة جبيل التاريخية، وغابات الأرز الساحرة برفقة سائقين محليين ومرشدين خبراء.",
-      keywords: "جولات سياحية خاصة, رحلة بعلبك, جعيتا وجبيل, سياحة لبنان, حجز مرشد سياحي لبنان, جولة سياحية خاصة لبنان, معالم لبنان السياحية"
+      title: "جولات سياحية خاصة في لبنان | غادِر للسياحة",
+      description: "استكشف لبنان مع جولات خاصة إلى جعيتا وجبيل وبعلبك والأرز مع سائق محلي محترف وخبرة محلية.",
+      keywords: "جولات سياحية خاصة لبنان, جولة جعيتا, جولة جبيل, جولة بعلبك, مرشد سياحي لبنان"
     },
     fleet: {
-      title: "سياراتنا الفاخرة والحديثة وسيارات الدفع الرباعي والـ SUV | غادِر للسياحة",
-      description: "تصفح أسطولنا المميز من سيارات مرسيدس الفاخرة، سيارات الدفع الرباعي العائلية الـ SUV، والفانات السياحية المجهزة بالكامل لضمان راحة وخصوصية كبار الشخصيات.",
-      keywords: "تأجير مرسيدس بيروت, سيارات فاخرة مع سائق لبنان, فان سياحي بيروت, أسطول سيارات غادر للسياحة, سيارات VIP مع سائق لبنان"
+      title: "أسطول فخم للنقل الخاص والسياحي في لبنان | غادِر للسياحة",
+      description: "تصفح سيارات إكزكيوتيڤ وSUVs وفانات فاخرة لرحلات المطار والرحلات الخاصة في لبنان.",
+      keywords: "أسطول فخم لبنان, سيارة فاخرة مع سائق, SUV لبنان, فان VIP لبنان"
     },
     about: {
-      title: "من نحن | غادِر للسياحة وخبرة ٢٥+ عاماً من التميز والنقل في لبنان",
-      description: "تعرف على مسيرتنا العريقة في تقديم أرقى خدمات النقل السياحي، تاكسي المطار والرحلات الخاصة في لبنان. شركة عائلية مرخصة تضمن أمان رحلتك على مدار الساعة.",
-      keywords: "شركة غادر للسياحة, سياحة وسفر لبنان, تاريخ غادر للسياحة, افضل تاكسي مطار بيروت"
-    },
-    booking: {
-      title: "احجز رحلتك أو تاكسي المطار مباشرة وسريعاً | غادِر للسياحة",
-      description: "منصة حجز سهلة وسريعة لتاكسي المطار والرحلات السياحية الخاصة في لبنان. حدد تفاصيل رحلتك واحصل على تأكيد فوري عبر الواتساب مباشرة.",
-      keywords: "حجز تاكسي بيروت, حجز سائق خاص, تأكيد جولة سياحية لبنان, حجز تاكسي المطار اون لاين"
+      title: "عن غادِر للسياحة | نقل سياحي فاخر في لبنان",
+      description: "تعرف على غادِر للسياحة، مزود موثوق للنقل في لبنان مع خبرة تتجاوز 25 عاماً في التوصيل والسياحة الخاصة.",
+      keywords: "غادر للسياحة, نقل لبنان, سائق خاص لبنان, سياحة فاخرة لبنان"
     },
     contact: {
-      title: "اتصل بنا | مكتب خدمة العملاء والمساعدة ٢٤/٧ | غادِر للسياحة",
-      description: "تواصل معنا في أي وقت لتنسيق جولاتك السياحية وتوصيلات تاكسي المطار في لبنان. نحن متاحون على مدار الساعة عبر الهاتف والواتساب لخدمتكم.",
-      keywords: "رقم غادر للسياحة, حجز سائق بيروت واتساب, دعم سياحي لبنان, رقم تاكسي مطار بيروت"
+      title: "تواصل مع غادِر للسياحة | دعم 24/7 لحجز التاكسي والم Tours",
+      description: "تواصل معنا لحجز تاكسي المطار، السائق الخاص، الجولات المخصصة وخدمات VIP في لبنان.",
+      keywords: "تواصل غادر للسياحة, تاكسي مطار بيروت, سائق خاص لبنان, تاكسي VIP لبنان"
+    },
+    reviews: {
+      title: "تقييمات العملاء وخدمة موثوقة في لبنان | غادِر للسياحة",
+      description: "اطلع على تقييمات العملاء حول خدماتنا الموثوقة في النقل الخاص وتأجير السائقين في لبنان.",
+      keywords: "تقييمات غادر للسياحة, تاكسي مطار بيروت تقييمات"
     }
   },
   fr: {
     home: {
-      title: "Taxi Aéroport Beyrouth & Chauffeur Privé VIP au Liban | Ghader Tourism",
-      description: "Réservez votre Taxi Aéroport de Beyrouth (BEY) et Chauffeurs Privés de prestige au Liban. Plus de 25 ans d'excellence, circuits touristiques guidés sur mesure et tarifs fixes transparents.",
-      keywords: "taxi aeroport beyrouth, chauffeur prive liban, transfert vip beyrouth, voiture avec chauffeur liban, excursions liban, taxi vip liban, chauffeur prive beyrouth"
+      title: "Chauffeur Privé au Liban & Transfert VIP Aéroport Beyrouth | Ghader Tourism",
+      description: "Service de chauffeur privé premium au Liban et transferts VIP de l'aéroport de Beyrouth avec assistance 24/7.",
+      keywords: "chauffeur privé liban, transfert vip aéroport beyrouth, taxi aéroport beyrouth, excursion liban, taxi luxe liban"
     },
     transfers: {
-      title: "Taxis Aéroport VIP & Chauffeurs de Prestige Liban | Ghader Tourism",
-      description: "Service haut de gamme de transfert depuis l'Aéroport de Beyrouth (BEY). Accueil personnalisé en terminal, suivi des vols en temps réel, chauffeurs bilingues et confort optimal.",
-      keywords: "transfert vip aéroport beyrouth, chauffeur prestige liban, taxi privé aéroport liban, taxi beyrouth faraya, navette aeroport beyrouth"
+      title: "Transfert VIP Aéroport Beyrouth & Taxi Privé Liban | Ghader Tourism",
+      description: "Réservez un taxi privé depuis Beyrouth avec accueil en terminal, suivi de vols et véhicules premium vers Byblos, Faraya et Baalbek.",
+      keywords: "transfert vip aéroport beyrouth, taxi privé liban, chauffeur privé liban, taxi aéroport beyrouth"
     },
     tours: {
-      title: "Circuits Touristiques Guidés & Excursions Privées au Liban | Ghader Tourism",
-      description: "Réservez vos excursions privées au Liban. Explorez Baalbek, la Grotte de Jeita, Byblos et les Cèdres millénaires dans le confort absolu de nos véhicules de luxe avec chauffeurs.",
-      keywords: "excursion privée liban, visiter baalbek, guide francophone liban, circuit touristique beyrouth, visiter le liban chauffeur"
+      title: "Circuits Privés au Liban, Jeita, Byblos & Baalbek | Ghader Tourism",
+      description: "Découvrez le Liban avec des circuits privés vers Jeita, Byblos, Batroun, Baalbek, les Cèdres et les routes de montagne.",
+      keywords: "circuits privés liban, excursion jeita, excursion byblos, excursion baalbek, guide liban"
     },
     fleet: {
-      title: "Notre Gamme de Véhicules de Prestige - Mercedes & SUV | Ghader Tourism",
-      description: "Découvrez notre gamme de véhicules récents avec chauffeurs privés professionnels : Mercedes-Benz Classe E/S, SUV haut de gamme et Vans exécutifs pour vos déplacements.",
-      keywords: "louer mercedes beyrouth, van luxe liban, voiture chauffeur privé beyrouth, transport premium liban"
+      title: "Flotte de Luxe pour Transferts & Circuits Privés | Ghader Tourism",
+      description: "Découvrez nos berlines, SUV premium et vans familiaux pour vos transferts aéroport et voyages privés au Liban.",
+      keywords: "flotte luxe liban, berline chauffeur liban, suv avec chauffeur liban, van vip liban"
     },
     about: {
-      title: "À Propos de Ghader Tourism | 25 Ans d'Excellence et de Prestige au Liban",
-      description: "Notre histoire, notre engagement et nos accréditations pour un transport privé d'élite au Liban. Chauffeurs professionnels certifiés et assistance sur mesure 24h/24.",
-      keywords: "histoire ghader tourism, agence transport prestige liban, voyage sur mesure beyrouth"
-    },
-    booking: {
-      title: "Réservez Votre Chauffeur Privé & Taxi Aéroport en Ligne | Ghader Tourism",
-      description: "Réservez facilement et en toute sécurité vos taxis d'affaires, transferts aéroport ou excursions guidées privées au Liban. Confirmation instantanée via WhatsApp.",
-      keywords: "réserver taxi beyrouth, réserver chauffeur privé liban, réservation circuit liban, taxi aeroport beyrouth en ligne"
+      title: "À Propos de Ghader Tourism | Transport Premium au Liban",
+      description: "Découvrez Ghader Tourism, un fournisseur de transport au Liban reconnu pour ses transferts, chauffeurs privés et circuits guidés.",
+      keywords: "ghader tourism, transport liban, chauffeur privé liban, tourisme luxe liban"
     },
     contact: {
-      title: "Contactez Ghader Tourism | Bureau d'Assistance VIP Chauffeurs 24h/24",
-      description: "Contactez notre équipe d'experts pour planifier votre voyage sur mesure ou réserver un taxi au Liban. Assistance téléphonique et WhatsApp disponible 24/7.",
-      keywords: "contact ghader tourism, numéro chauffeur liban, assistance voyage beyrouth, whatsapp taxi beyrouth"
+      title: "Contactez Ghader Tourism | Support 24/7 pour Taxi & Tours",
+      description: "Contactez Ghader Tourism pour vos transferts aéroport, chauffeurs privés, circuits personnalisés et services VIP au Liban.",
+      keywords: "contact ghader tourism, taxi aéroport beyrouth, chauffeur privé liban, taxi vip liban"
+    },
+    reviews: {
+      title: "Avis Clients & Service de Confiance au Liban | Ghader Tourism",
+      description: "Consultez les avis clients sur notre service de transfert et chauffeur privé au Liban.",
+      keywords: "avis ghader tourism, transfert aéroport beyrouth avis"
     }
   }
 };
 
+const getRouteForView = (view: string) => (view === "home" ? "/" : `/${view}`);
+
 export default function SEO({ currentLang, activeView }: SEOProps) {
-  // Safe lookup with home as fallback if view not defined
   const viewKey = SEO_DATA[currentLang]?.[activeView] ? activeView : "home";
-  const { title, description, keywords } = SEO_DATA[currentLang][viewKey] || SEO_DATA[currentLang]["home"];
+  const { title, description, keywords } = SEO_DATA[currentLang][viewKey] || SEO_DATA[currentLang].home;
+  const currentPath = getRouteForView(viewKey);
+  const canonicalUrl = `${SITE_URL}${currentPath}`;
+  const locale = currentLang === "ar" ? "ar_LB" : currentLang === "fr" ? "fr_FR" : "en_US";
 
-  // Absolute URL for canonical & open graph tags (fallback using development host or standard domain)
-  const siteUrl = "https://ghadertourism.com"; 
-  const currentUrl = `${siteUrl}${activeView !== "home" ? `/#${activeView}` : ""}`;
-  
-  // Use professional banner or scenic photo as og:image
-  const ogImageUrl = `${siteUrl}/src/assets/images/lebanon_luxury_chauffeur_hero_1782464049590.jpg`;
-
-  // 1. Taxi Service Schema
-  const taxiSchemaMarkup = {
+  const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "TaxiService",
-    "name": "Ghader Tourism Airport Transfers & Private Chauffeur",
-    "image": ogImageUrl,
+    "@type": "Organization",
+    "name": "Ghader Tourism",
+    "url": SITE_URL,
+    "logo": `${SITE_URL}/favicon.svg`,
     "description": description,
-    "@id": "https://ghadertourism.com/#taxidepartment",
-    "url": siteUrl,
-    "telephone": "+9613460865",
-    "priceRange": "$$",
+    "sameAs": ["https://instagram.com/ghadertourism", "https://facebook.com/ghadertourism", "https://tiktok.com/@ghadertourism"],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+9613460865",
+      "contactType": "customer service",
+      "email": "ghadertourism@gmail.com",
+      "areaServed": "LB",
+      "availableLanguage": ["English", "Arabic", "French"]
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Airport Road, near Beirut Rafic Hariri International Airport Terminal",
       "addressLocality": "Beirut",
       "addressRegion": "Mount Lebanon",
       "addressCountry": "LB"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "33.8219",
-      "longitude": "35.4883"
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
-      ],
-      "opens": "00:00",
-      "closes": "23:59"
-    },
-    "areaServed": [
-      { "@type": "AdministrativeArea", "name": "Lebanon" },
-      { "@type": "AdministrativeArea", "name": "Beirut" },
-      { "@type": "AdministrativeArea", "name": "Jounieh" },
-      { "@type": "AdministrativeArea", "name": "Byblos" },
-      { "@type": "AdministrativeArea", "name": "Faraya" },
-      { "@type": "AdministrativeArea", "name": "Tripoli" },
-      { "@type": "AdministrativeArea", "name": "Sidon" },
-      { "@type": "AdministrativeArea", "name": "Tyre" },
-      { "@type": "AdministrativeArea", "name": "Baalbek" }
-    ],
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Ghader Tourism",
-      "telephone": "+9613460865"
     }
   };
 
-  // 2. LocalBusiness Schema
-  const localBusinessMarkup = {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Private Airport Transfer and VIP Chauffeur Service in Lebanon",
+    "serviceType": "Airport transfer, private chauffeur, luxury tourism transportation",
+    "provider": {
+      "@type": "Organization",
+      "name": "Ghader Tourism",
+      "url": SITE_URL
+    },
+    "areaServed": ["Lebanon", "Beirut", "Byblos", "Faraya", "Baalbek"],
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
+  const travelAgencySchema = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Ghader Tourism",
+    "url": SITE_URL,
+    "image": OG_IMAGE_URL,
+    "description": description,
+    "telephone": "+9613460865",
+    "email": "ghadertourism@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Airport Road, near Beirut Rafic Hariri International Airport Terminal",
+      "addressLocality": "Beirut",
+      "addressRegion": "Mount Lebanon",
+      "addressCountry": "LB"
+    }
+  };
+
+  const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Ghader Tourism",
-    "image": ogImageUrl,
-    "description": "Premium Local Chauffeur Service and Private Transportation provider in Lebanon with over 25 years of family-owned heritage.",
-    "@id": "https://ghadertourism.com/#localbusiness",
-    "url": siteUrl,
+    "image": OG_IMAGE_URL,
+    "url": SITE_URL,
     "telephone": "+9613460865",
+    "email": "ghadertourism@gmail.com",
     "priceRange": "$$",
+    "description": description,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Airport Road, near Beirut Rafic Hariri International Airport Terminal",
@@ -206,135 +217,114 @@ export default function SEO({ currentLang, activeView }: SEOProps) {
       "addressRegion": "Mount Lebanon",
       "addressCountry": "LB"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "33.8219",
-      "longitude": "35.4883"
-    },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
-      ],
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "00:00",
       "closes": "23:59"
     }
   };
 
-  // 3. TourProvider (TravelAgency) Schema with featured tours listed
-  const tourProviderMarkup = {
+  const websiteSchema = {
     "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    "name": "Ghader Tourism Guided Tours",
-    "image": ogImageUrl,
-    "description": "Highly acclaimed private customized sightseeing tours and excursions inside Lebanon led by licensed local chauffeur-guides.",
-    "@id": "https://ghadertourism.com/#tourprovider",
-    "url": `${siteUrl}/#tours`,
-    "telephone": "+9613460865",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Airport Road, near Beirut Rafic Hariri International Airport Terminal",
-      "addressLocality": "Beirut",
-      "addressRegion": "Mount Lebanon",
-      "addressCountry": "LB"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Private Custom Sightseeing Tours",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Tour",
-            "name": "Northern Wonders: Jeita Grotto, Harissa, Byblos & Batroun",
-            "description": "Wander the sparkling caves of Jeita, ride the scenic Teleferique cable car to Harissa, then explore ancient Byblos and the coastal charm of Batroun.",
-            "duration": "PT10H"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Tour",
-            "name": "Chouf Explorer: Moussa Castle, Beiteddine Palace, Ain w Zein & Cedar Forest",
-            "description": "Discover Chouf's gems: the handbuilt Moussa Castle, the majestic Beiteddine Palace, Ain w Zein natural cave, and the ancient Cedar Forest.",
-            "duration": "PT11H"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Tour",
-            "name": "Bekaa Heritage: Baalbek Temples & Zahle",
-            "description": "Marvel at the monumental Roman temples of Baalbek and relax by the picturesque Berdawni riverbanks in the valley city of Zahle.",
-            "duration": "PT10H"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Tour",
-            "name": "Bekaa Eco-Escape: Taanayel Farm, Aamiq Wetland & Chtoura",
-            "description": "Stroll the beautiful tree-lined paths of Taanayel Farm, discover rare wildlife at Aamiq Wetland, and enjoy authentic dairy tasting in Chtoura.",
-            "duration": "PT9H"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Tour",
-            "name": "Faraya Mountain Escape: Winter Ski or Summer ATV & Lake Adventure",
-            "description": "Experience the high snowfields of Faraya Ski Resort in winter, or ride ATVs around the high-altitude lake and natural bridges in summer.",
-            "duration": "PT10H"
-          }
-        }
-      ]
+    "@type": "WebSite",
+    "name": "Ghader Tourism",
+    "url": SITE_URL,
+    "description": description,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${SITE_URL}/?s={search_term_string}`,
+      "query-input": "required name=search_term_string"
     }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+      { "@type": "ListItem", "position": 2, "name": viewKey.charAt(0).toUpperCase() + viewKey.slice(1), "item": canonicalUrl }
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I book a tour or private transfer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can reserve directly through WhatsApp, phone, or by using our contact form for airport transfers, private chauffeur bookings, and guided Lebanon tours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer airport transfers in Beirut?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Ghader Tourism provides premium Beirut airport transfers with meet and greet service, flight tracking, and private executive vehicles."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I customize a Lebanon tour?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We can tailor private tours to Jeita, Byblos, Baalbek, Cedars, Batroun, and other destinations across Lebanon."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide private drivers in Lebanon?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We provide private drivers in Beirut and across Lebanon for transfers, sightseeing, corporate travel, and luxury day trips."
+        }
+      }
+    ]
   };
 
   return (
     <Helmet>
-      {/* Primary HTML Meta Tags */}
       <title>{title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Ghader Tourism" />
-      <meta name="robots" content="index, follow" />
-      <meta name="last-modified" content="2026-06-30T16:00:00Z" />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta httpEquiv="content-language" content={currentLang === "ar" ? "ar" : currentLang === "fr" ? "fr" : "en"} />
+      <meta name="theme-color" content="#05070b" />
+      <meta name="last-modified" content="2026-07-05T00:00:00Z" />
 
-      {/* Language Alternates */}
-      <link rel="alternate" hrefLang="en" href={`${siteUrl}`} />
-      <link rel="alternate" hrefLang="ar" href={`${siteUrl}`} />
-      <link rel="alternate" hrefLang="fr" href={`${siteUrl}`} />
-      <link rel="canonical" href={currentUrl} />
+      <link rel="canonical" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+      <link rel="alternate" hrefLang="en" href={SITE_URL} />
+      <link rel="alternate" hrefLang="ar" href={SITE_URL} />
+      <link rel="alternate" hrefLang="fr" href={SITE_URL} />
 
-      {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={currentUrl} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImageUrl} />
-      <meta property="og:locale" content={currentLang === "ar" ? "ar_LB" : currentLang === "fr" ? "fr_FR" : "en_US"} />
+      <meta property="og:image" content={OG_IMAGE_URL} />
+      <meta property="og:locale" content={locale} />
       <meta property="og:site_name" content="Ghader Tourism" />
 
-      {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={currentUrl} />
+      <meta property="twitter:url" content={canonicalUrl} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={ogImageUrl} />
+      <meta property="twitter:image" content={OG_IMAGE_URL} />
 
-      {/* Structured Data: Taxi Service, LocalBusiness & TravelAgency/TourProvider */}
-      <script type="application/ld+json">
-        {JSON.stringify(taxiSchemaMarkup)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(localBusinessMarkup)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(tourProviderMarkup)}
-      </script>
+      <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(travelAgencySchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
     </Helmet>
   );
 }

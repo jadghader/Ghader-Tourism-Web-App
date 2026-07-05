@@ -51,7 +51,7 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
   React.useEffect(() => {
     const timer = setInterval(() => {
       setActiveIdx((prev) => (prev + 1) % GALLERY_ITEMS.length);
-    }, 2600);
+    }, 5000);
     return () => clearInterval(timer);
   }, [activeIdx]);
 
@@ -110,8 +110,12 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
                 <div className="relative w-full h-full bg-neutral-950">
                   <img
                     src={item.image}
-                    alt={`Vehicle portrait ${idx + 1}`}
+                    alt={`Luxury vehicle portrait ${idx + 1} for private airport transfers and Lebanon chauffeur service`}
                     className="w-full h-full object-contain object-center select-none pointer-events-none bg-black/95"
+                    loading="lazy"
+                    decoding="async"
+                    width="480"
+                    height="480"
                     referrerPolicy="no-referrer"
                   />
                   

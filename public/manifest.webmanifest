@@ -1,0 +1,19 @@
+{
+  "name": "Ghader Tourism | Premium Lebanon Chauffeur & Airport Transfers",
+  "short_name": "Ghader Tourism",
+  "description": "Private airport transfers, VIP chauffeurs, and luxury Lebanon tours with Ghader Tourism.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#05070b",
+  "theme_color": "#0f172a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

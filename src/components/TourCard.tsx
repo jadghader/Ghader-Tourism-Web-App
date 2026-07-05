@@ -172,8 +172,12 @@ export default function TourCard({ currentLang, onBookTour }: ToursListProps) {
               <div className="relative w-full md:w-2/5 h-48 md:h-auto min-h-[180px] bg-gradient-to-br from-[#121212] to-[#070707] border-b md:border-b-0 md:border-r border-brand-border overflow-hidden shrink-0 group/img">
                 <img
                   src={tour.image}
-                  alt={tourName}
+                  alt={`${tourName} private Lebanon tour with a professional chauffeur and local guide`}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="600"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               </div>

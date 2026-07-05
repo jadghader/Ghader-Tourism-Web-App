@@ -29,8 +29,12 @@ export default function BlogCarousel({ currentLang }: BlogCarouselProps) {
         <div className="w-full h-full flex items-center justify-center relative overflow-hidden rounded-[24px] sm:rounded-[28px] md:rounded-[36px]">
           <img
             src={activeImage}
-            alt={currentLang === "ar" ? "Ghader Tourism Lebanon Arabic story" : "Ghader Tourism Lebanon story"}
+            alt={currentLang === "ar" ? "رحلات ومشاهد سياحية خاصة في لبنان من غادر للسياحة" : currentLang === "fr" ? "Circuits et paysages du Liban avec Ghader Tourism" : "Luxury Lebanon sightseeing and private tour experiences with Ghader Tourism"}
             className="w-full h-full object-cover object-center transition-transform duration-[10000ms] ease-out group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+            width="1600"
+            height="900"
             referrerPolicy="no-referrer"
           />
         </div>

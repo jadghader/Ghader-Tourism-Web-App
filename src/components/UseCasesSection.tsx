@@ -85,28 +85,6 @@ const USE_CASES: UseCaseItem[] = [
       fr: "Bonjour Ghader Tourism, je souhaite concevoir un circuit touristique privé sur mesure au Liban."
     },
     targetView: "tours"
-  },
-  {
-    id: "luxury",
-    icon: Hotel,
-    tag: { en: "Elite Travel Management", ar: "إدارة وتنسيق السفر الفاخر", fr: "Gestion de Voyage Elite" },
-    title: { en: "Beirut Airport VIP Salon & Hotel Setup", ar: "صالون الشرف بمطار بيروت وحجوزات الفنادق", fr: "Salon VIP Aéroport & Réservations" },
-    desc: {
-      en: "Skip the airport crowds with fast-track VIP Salon bookings and coordinate your premium hotel check-ins through our local travel desk.",
-      ar: "تجنب الازدحام في صالون الشرف بمطار بيروت (VIP Salon) مع تسريع المعاملات، ونسق إقامتك الفندقية بأفضل الأسعار.",
-      fr: "Évitez l'attente avec l'accès au Salon VIP de l'aéroport et coordonnez vos réservations d'hôtels prestigieux au meilleur tarif."
-    },
-    bullets: {
-      en: ["Fast-track passport & airport clearance", "Exclusive access to Beirut Airport CIP lounge", "Preferential corporate rates at top hotels in Lebanon"],
-      ar: ["تسريع معاملات الجوازات والجمارك", "دخول حصري لقاعة صالون الشرف والضيافة الراقية", "أسعار تفضيلية خاصة بالشركات في أرقى الفنادق"],
-      fr: ["Formalités de passeport et douane prioritaires", "Accès exclusif au salon VIP / CIP de l'aéroport", "Tarifs préférentiels exclusifs dans les meilleurs hôtels"]
-    },
-    waMessage: {
-      en: "Hello Ghader Tourism, I want to book Beirut Airport VIP Salon Access and request hotel assistance.",
-      ar: "مرحباً غادِر للسياحة، أود حجز صالون الشرف الـ VIP في مطار بيروت وطلب مساعدة في حجز الفنادق.",
-      fr: "Bonjour Ghader Tourism, je souhaite réserver l'accès au Salon VIP de l'aéroport de Beyrouth et solliciter votre aide pour l'hôtel."
-    },
-    targetView: "transfers"
   }
 ];
 

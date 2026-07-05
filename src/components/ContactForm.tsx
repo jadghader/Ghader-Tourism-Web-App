@@ -107,9 +107,12 @@ export default function ContactForm({ currentLang, activeView }: ContactFormProp
         <div className="relative inline-block bg-white p-4 rounded-3xl shadow-xl transition-transform duration-300 hover:scale-105">
           <img
             src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwa.me%2F9613460865&color=059669&bgcolor=ffffff"
-            alt="WhatsApp QR Code"
+            alt="Scan this WhatsApp QR code to book a Beirut airport transfer or private Lebanon tour"
             className="w-40 h-40 object-contain block mx-auto"
             loading="lazy"
+            decoding="async"
+            width="200"
+            height="200"
             referrerPolicy="no-referrer"
           />
           <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[9px] font-mono font-bold px-3 py-1 rounded-full shadow-md whitespace-nowrap">

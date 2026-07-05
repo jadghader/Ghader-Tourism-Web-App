@@ -185,8 +185,12 @@ export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridPro
               <div className="relative h-44 w-full bg-gradient-to-br from-[#121212] to-[#070707] border-b border-brand-border overflow-hidden shrink-0 group/img">
                 <img
                   src={vehicle.image}
-                  alt={vehicle.name}
+                  alt={`${vehicle.name} for private chauffeur service, airport transfer, and luxury travel in Lebanon`}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="600"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute top-3 right-3 bg-neutral-950/90 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-neutral-800 text-[10px] font-mono font-bold text-brand-accent">
