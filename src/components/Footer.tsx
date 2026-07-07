@@ -2,7 +2,7 @@ import React from "react";
 import { Phone, Mail, MapPin, Award, Shield, Heart } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
-import logoImage from "../assets/images/logo.jpg";
+import logoImage from "../assets/images/logo.webp";
 
 interface FooterProps {
   currentLang: Language;
@@ -32,6 +32,7 @@ export default function Footer({ currentLang, setActiveView, activeView }: Foote
                 className="h-10 w-10 rounded-full object-cover border border-brand-border shadow-sm"
                 loading="lazy"
                 decoding="async"
+                fetchPriority="low"
                 width="40"
                 height="40"
               />

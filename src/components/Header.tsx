@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { Language } from "../types";
 import { translations } from "../translations";
 import { getWhatsAppLink } from "../utils/whatsapp";
-import logoImage from "../assets/images/logo.jpg";
+import logoImage from "../assets/images/logo.webp";
 
 interface HeaderProps {
   currentLang: Language;
@@ -67,6 +67,7 @@ export default function Header({
               className="h-10 w-10 rounded-full object-cover border border-brand-border shadow-sm"
               loading="lazy"
               decoding="async"
+              fetchPriority="low"
               width="40"
               height="40"
             />

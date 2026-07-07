@@ -1,13 +1,13 @@
 import { Clock, MessageSquare } from "lucide-react";
 import { Language, Tour } from "../types";
 import { translations } from "../translations";
-import tourImage1 from "../assets/images/landing_en.png";
-import tourImage2 from "../assets/images/landing_ar.png";
-import tourImage3 from "../assets/images/6.png";
-import tourImage4 from "../assets/images/7.png";
-import tourImage5 from "../assets/images/8.png";
-import tourImage6 from "../assets/images/9.png";
-import tourImage7 from "../assets/images/10.png";
+import tourImage1 from "../assets/images/landing_en.webp";
+import tourImage2 from "../assets/images/landing_ar.webp";
+import tourImage3 from "../assets/images/6.webp";
+import tourImage4 from "../assets/images/7.webp";
+import tourImage5 from "../assets/images/8.webp";
+import tourImage6 from "../assets/images/9.webp";
+import tourImage7 from "../assets/images/10.webp";
 
 interface ToursListProps {
   currentLang: Language;
@@ -176,6 +176,7 @@ export default function TourCard({ currentLang, onBookTour }: ToursListProps) {
                   className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   width="800"
                   height="600"
                 />

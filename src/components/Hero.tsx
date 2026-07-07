@@ -3,7 +3,7 @@ import { Phone, Calendar, Compass, ShieldCheck } from "lucide-react";
 import { motion } from "motion/react";
 import { Language } from "../types";
 import { translations } from "../translations";
-import heroImage from "../assets/images/lebanon_luxury_chauffeur_hero_1782464049590.jpg";
+import heroImage from "../assets/images/lebanon_luxury_chauffeur_hero_1782464049590.webp";
 
 interface HeroProps {
   currentLang: Language;
@@ -45,6 +45,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
             className="w-full h-full object-cover object-center transform scale-100 hover:scale-105 transition-transform duration-10000"
             loading="eager"
             decoding="async"
+            fetchPriority="high"
             width="1600"
             height="960"
             referrerPolicy="no-referrer"

@@ -2,11 +2,11 @@ import React from "react";
 import { CheckCircle, Info } from "lucide-react";
 import { Language, Vehicle } from "../types";
 import { translations } from "../translations";
-import carImage1 from "../assets/images/1.png";
-import carImage2 from "../assets/images/2.png";
-import carImage3 from "../assets/images/3.png";
-import carImage4 from "../assets/images/4.png";
-import carImage5 from "../assets/images/5.png";
+import carImage1 from "../assets/images/1.webp";
+import carImage2 from "../assets/images/2.webp";
+import carImage3 from "../assets/images/3.webp";
+import carImage4 from "../assets/images/4.webp";
+import carImage5 from "../assets/images/5.webp";
 
 interface FleetGridProps {
   currentLang: Language;
@@ -189,6 +189,7 @@ export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridPro
                   className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   width="800"
                   height="600"
                 />

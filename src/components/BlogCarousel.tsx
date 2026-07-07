@@ -1,7 +1,7 @@
 import React from "react";
 import { Language } from "../types";
-import landscapeImage1 from "../assets/images/landing_en.png";
-import landscapeImage2 from "../assets/images/landing_ar.png";
+import landscapeImage1 from "../assets/images/landing_en.webp";
+import landscapeImage2 from "../assets/images/landing_ar.webp";
 
 interface BlogCarouselProps {
   currentLang: Language;
@@ -33,6 +33,7 @@ export default function BlogCarousel({ currentLang }: BlogCarouselProps) {
             className="w-full h-full object-cover object-center transition-transform duration-[10000ms] ease-out group-hover:scale-105"
             loading="lazy"
             decoding="async"
+            fetchPriority="low"
             width="1600"
             height="900"
             referrerPolicy="no-referrer"

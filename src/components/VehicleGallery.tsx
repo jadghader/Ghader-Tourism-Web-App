@@ -2,19 +2,19 @@ import React from "react";
 import { motion } from "motion/react";
 import { Camera } from "lucide-react";
 import { Language } from "../types";
-import galleryImage1 from "../assets/images/1.png";
-import galleryImage2 from "../assets/images/2.png";
-import galleryImage3 from "../assets/images/3.png";
-import galleryImage4 from "../assets/images/4.png";
-import galleryImage5 from "../assets/images/5.png";
-import galleryImage6 from "../assets/images/6.png";
-import galleryImage7 from "../assets/images/7.png";
-import galleryImage8 from "../assets/images/8.png";
-import galleryImage9 from "../assets/images/9.png";
-import galleryImage10 from "../assets/images/10.png";
-import galleryImage11 from "../assets/images/11.png";
-import galleryImage12 from "../assets/images/12.png";
-import galleryImage13 from "../assets/images/13.png";
+import galleryImage1 from "../assets/images/1.webp";
+import galleryImage2 from "../assets/images/2.webp";
+import galleryImage3 from "../assets/images/3.webp";
+import galleryImage4 from "../assets/images/4.webp";
+import galleryImage5 from "../assets/images/5.webp";
+import galleryImage6 from "../assets/images/6.webp";
+import galleryImage7 from "../assets/images/7.webp";
+import galleryImage8 from "../assets/images/8.webp";
+import galleryImage9 from "../assets/images/9.webp";
+import galleryImage10 from "../assets/images/10.webp";
+import galleryImage11 from "../assets/images/11.webp";
+import galleryImage12 from "../assets/images/12.webp";
+import galleryImage13 from "../assets/images/13.webp";
 
 interface GalleryItem {
   id: string;
@@ -114,6 +114,7 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
                     className="w-full h-full object-contain object-center select-none pointer-events-none bg-black/95"
                     loading="lazy"
                     decoding="async"
+                    fetchPriority="low"
                     width="480"
                     height="480"
                     referrerPolicy="no-referrer"
