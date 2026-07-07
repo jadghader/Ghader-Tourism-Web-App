@@ -14,7 +14,6 @@ import galleryImage9 from "../assets/images/9.webp";
 import galleryImage10 from "../assets/images/10.webp";
 import galleryImage11 from "../assets/images/11.webp";
 import galleryImage12 from "../assets/images/12.webp";
-import galleryImage13 from "../assets/images/13.webp";
 
 interface GalleryItem {
   id: string;
@@ -35,7 +34,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
   { id: "g10", image: galleryImage10 },
   { id: "g11", image: galleryImage11 },
   { id: "g12", image: galleryImage12 },
-  { id: "g13", image: galleryImage13 },
 ];
 
 interface VehicleGalleryProps {
