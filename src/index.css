@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -14,10 +14,13 @@
   --accent-color: #10b981; /* Premium Cedar Emerald Green representing the Lebanese flag and elite nature */
   --accent-hover: #059669;
   --accent-bg-glow: rgba(16, 185, 129, 0.15);
-  --header-bg: rgba(12, 10, 9, 0.85);
+  --secondary-color: #dc2626; /* Lebanese flag red, used sparingly */
+  --header-bg: rgba(12, 10, 9, 0.98);
   --footer-bg: #0c0a09;
   --footer-border: #1c1917;
   --button-text-color: #000000;
+  --surface-raised: #24201d;
+  --soft-accent: rgba(16, 185, 129, 0.10);
 }
 
 :root.light {
@@ -33,15 +36,18 @@
   --accent-color: #059669; /* Emerald Cedar Green */
   --accent-hover: #047857;
   --accent-bg-glow: rgba(5, 150, 105, 0.1);
-  --header-bg: rgba(252, 252, 251, 0.85);
+  --secondary-color: #b91c1c;
+  --header-bg: rgba(252, 252, 251, 0.98);
   --footer-bg: #f5f5f4; /* Stone-100 */
   --footer-border: #e7e5e4;
   --button-text-color: #ffffff;
+  --surface-raised: #ffffff;
+  --soft-accent: rgba(5, 150, 105, 0.08);
 }
 
 @theme {
   --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   
   --color-brand-bg: var(--bg-color);
   --color-brand-text: var(--text-color);
@@ -53,16 +59,42 @@
   --color-brand-accent: var(--accent-color);
   --color-brand-accent-hover: var(--accent-hover);
   --color-brand-accent-glow: var(--accent-bg-glow);
+  --color-brand-red: var(--secondary-color);
   --color-brand-header: var(--header-bg);
   --color-brand-footer: var(--footer-bg);
   --color-brand-footer-border: var(--footer-border);
   --color-brand-btn-text: var(--button-text-color);
+  --color-brand-raised: var(--surface-raised);
+  --color-brand-accent-soft: var(--soft-accent);
 }
 
 html {
   scroll-behavior: smooth;
   transition: background-color 0.3s ease;
   overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent-color) 75%, white);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2000;
+  transform: translateY(-150%);
+  border-radius: 0.75rem;
+  background: var(--accent-color);
+  color: var(--button-text-color);
+  padding: 0.75rem 1rem;
+  font-weight: 800;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 body {
@@ -72,6 +104,26 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   min-height: 100%;
+  line-height: 1.6;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 #root {
@@ -80,6 +132,32 @@ body {
 
 img {
   max-width: 100%;
+}
+
+/* Skip layout and paint work for long home-page sections until they approach the viewport. */
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
+@media (max-width: 767px) {
+  .deferred-section {
+    contain-intrinsic-size: auto 560px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Elegant fade in transitions for layout changes */

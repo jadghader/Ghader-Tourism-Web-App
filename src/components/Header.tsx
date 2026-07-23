@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { Language } from "../types";
 import { translations } from "../translations";
 import { getWhatsAppLink } from "../utils/whatsapp";
-import logoImage from "../assets/images/logo.webp";
+import logoImage from "../assets/images/logo-optimized.jpg";
 
 interface HeaderProps {
   currentLang: Language;
@@ -28,10 +28,7 @@ export default function Header({
 
   const navItems = [
     { id: "home", label: t.navHome },
-    { 
-      id: "transfers", 
-      label: currentLang === "ar" ? "تاكسي وسائقون" : currentLang === "fr" ? "Taxi & Chauffeurs" : "Taxi & Drivers" 
-    },
+    { id: "transfers", label: t.navAirport },
     { id: "tours", label: t.navTours },
     { id: "fleet", label: t.navFleet },
     { id: "contact", label: t.navContact },
@@ -51,42 +48,49 @@ export default function Header({
   });
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-[999] bg-brand-header/95 backdrop-blur-lg text-brand-text shadow-md border-b border-brand-border" id="app-header">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+    <header className="fixed top-0 left-0 right-0 w-full z-[999] bg-brand-header text-brand-text shadow-md border-b border-brand-border" id="app-header">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3" dir="ltr">
         <div className={`flex justify-between items-center gap-4 ${isRtl ? "flex-row-reverse" : ""}`}>
           
           {/* Logo & Brand Info */}
-          <div
+          <a
+            href="/"
             className="flex items-center gap-2.5 cursor-pointer shrink-0"
-            onClick={() => handleNavClick("home")}
+            dir={isRtl ? "rtl" : "ltr"}
+            onClick={(event) => {
+              event.preventDefault();
+              handleNavClick("home");
+            }}
             id="brand-logo"
           >
-            <img
-              src={logoImage}
-              alt="Ghader Tourism premium private chauffeur and airport transfer logo"
-              className="h-10 w-10 rounded-full object-cover border border-brand-border shadow-sm"
-              loading="lazy"
-              decoding="async"
-              fetchPriority="low"
-              width="40"
-              height="40"
-            />
-            <div className={`flex flex-col ${isRtl ? "text-right" : "text-left"}`}>
-              <span className="font-extrabold text-base leading-none tracking-tight font-sans text-brand-text">
-                {t.brandName}
-              </span>
-              <span className="text-[9px] text-brand-muted font-mono tracking-wider mt-0.5">
-                {currentLang === "ar" ? "نقل سياحي فاخر" : currentLang === "fr" ? "Transport de Prestige" : "Premium Lebanon Taxi & Drivers"}
-              </span>
-            </div>
-          </div>
+            <span className="h-12 w-12 rounded-xl overflow-hidden bg-white border border-brand-border shadow-sm flex items-center justify-center shrink-0 p-0.5">
+              <img
+                src={logoImage}
+                alt={isRtl ? "شعار غادر للسياحة" : "Ghader Tourism logo"}
+                className="h-full w-full object-contain object-center"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                width="48"
+                height="48"
+              />
+            </span>
+            <span className={`font-extrabold text-base leading-tight tracking-tight font-sans text-brand-text ${isRtl ? "text-right" : "text-left"}`}>
+              {isRtl ? "غادر للسياحة" : t.brandName}
+            </span>
+          </a>
 
           {/* Center: Desktop Navigation - Highly compact pills */}
           <nav className={`hidden lg:flex items-center gap-1 ${isRtl ? "flex-row-reverse" : ""}`} id="desktop-nav">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                href={item.id === "home" ? "/" : `/${item.id}`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleNavClick(item.id);
+                }}
+                aria-current={activeView === item.id ? "page" : undefined}
                 className={`px-3.5 py-1.5 text-xs font-bold rounded-full transition-all duration-200 cursor-pointer ${
                   activeView === item.id
                     ? "bg-brand-accent text-brand-bg font-black shadow-sm"
@@ -95,7 +99,7 @@ export default function Header({
                 id={`nav-${item.id}`}
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </nav>
 
@@ -103,7 +107,7 @@ export default function Header({
           <div className={`hidden lg:flex items-center gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
             {/* Language Segmented Control */}
             <div className="flex items-center bg-brand-card p-0.5 rounded-full border border-brand-border text-[10px] font-mono font-bold shrink-0">
-              {(["en", "ar", "fr"] as const).map((lang) => {
+              {(["en", "ar"] as const).map((lang) => {
                 const isActive = currentLang === lang;
                 return (
                   <button
@@ -128,12 +132,22 @@ export default function Header({
 
             {/* Theme Toggle */}
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full bg-brand-card border border-brand-border hover:border-brand-accent text-brand-accent transition-all cursor-pointer flex items-center justify-center shrink-0"
-              title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
-              id="theme-toggle-desktop"
-            >
-              {theme === "dark" ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-full bg-brand-card border border-brand-border hover:border-brand-accent text-brand-accent transition-all cursor-pointer flex items-center justify-center shrink-0 relative w-9 h-9"
+                title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
+                id="theme-toggle-desktop"
+                aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+              >
+                <motion.div
+                  key={theme}
+                  initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 260, damping: 20 }}
+                  className="absolute"
+                >
+                  {theme === "dark" ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+                </motion.div>
             </button>
           </div>
 
@@ -153,6 +167,8 @@ export default function Header({
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-brand-muted hover:text-brand-text hover:bg-brand-card border border-brand-border rounded-xl focus:outline-none"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
               id="mobile-menu-toggle"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -169,9 +185,14 @@ export default function Header({
           {/* Navigation Links */}
           <div className="space-y-1">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                href={item.id === "home" ? "/" : `/${item.id}`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleNavClick(item.id);
+                }}
+                aria-current={activeView === item.id ? "page" : undefined}
                 className={`w-full px-4 py-2.5 rounded-xl text-xs font-bold transition-all block cursor-pointer ${
                   activeView === item.id
                     ? "bg-brand-accent text-brand-bg font-black"
@@ -180,7 +201,7 @@ export default function Header({
                 id={`mobile-nav-${item.id}`}
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </div>
 
@@ -189,7 +210,7 @@ export default function Header({
             
             {/* Language Segmented Control */}
             <div className="flex items-center bg-brand-input p-0.5 rounded-full border border-brand-border text-[10px] font-mono font-bold">
-              {(["en", "ar", "fr"] as const).map((lang) => {
+              {(["en", "ar"] as const).map((lang) => {
                 const isActive = currentLang === lang;
                 return (
                   <button

@@ -31,7 +31,7 @@ const HIGHWAY_ROUTES: Record<string, [number, number][]> = {
     [33.916, 35.584],
     [33.945, 35.601],
     [33.9814, 35.6172], // Jounieh
-    [34.015, 35.642],  // Casino du Liban
+    [34.015, 35.642],  // Casino area
     [34.032, 35.629],  // Tabarja
     [34.095, 35.645],  // Fidar
     [34.1221, 35.6517] // Byblos
@@ -119,12 +119,12 @@ const HIGHWAY_ROUTES: Record<string, [number, number][]> = {
 
 export interface DestinationItem {
   id: string;
-  name: { en: string; fr: string; ar: string };
+  name: { en: string; ar: string };
   lat: number;
   lng: number;
   distance: string;
   duration: string;
-  routeType: { en: string; fr: string; ar: string };
+  routeType: { en: string; ar: string };
   keywords: string[];
 }
 
@@ -133,7 +133,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     id: "beirut",
     name: {
       en: "Beirut (Downtown)",
-      fr: "Beyrouth (Centre-ville)",
       ar: "وسط بيروت"
     },
     lat: 33.8971,
@@ -142,16 +141,14 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "15 mins",
     routeType: {
       en: "Airport Highway",
-      fr: "Autoroute de l'Aéroport",
       ar: "طريق مطار بيروت"
     },
-    keywords: ["beirut", "بيروت", "beyrouth", "downtown", "وسط البلد", "الحمرا", "hamra", "ashrafieh", "الأشرفية"]
+    keywords: ["beirut", "بيروت", "downtown", "وسط البلد", "الحمرا", "hamra", "ashrafieh", "الأشرفية"]
   },
   {
     id: "jounieh",
     name: {
       en: "Jounieh",
-      fr: "Jounieh",
       ar: "جونيه"
     },
     lat: 33.9814,
@@ -160,7 +157,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "30 mins",
     routeType: {
       en: "Northern Coastal Highway",
-      fr: "Autoroute Côtière Nord",
       ar: "الأوتوستراد الساحلي الشمالي"
     },
     keywords: ["jounieh", "جونيه", "jouny", "kaslik", "الكسليك"]
@@ -169,7 +165,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     id: "byblos",
     name: {
       en: "Byblos (Jbeil)",
-      fr: "Byblos (Jbeil)",
       ar: "جبيل"
     },
     lat: 34.1221,
@@ -178,7 +173,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "45 mins",
     routeType: {
       en: "Northern Coastal Highway",
-      fr: "Autoroute Côtière Nord",
       ar: "الأوتوستراد الساحلي الشمالي"
     },
     keywords: ["byblos", "jbeil", "جبيل", "جبييل", "ببلوس"]
@@ -187,7 +181,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     id: "batroun",
     name: {
       en: "Batroun",
-      fr: "Batroun",
       ar: "البترون"
     },
     lat: 34.2541,
@@ -196,7 +189,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "55 mins",
     routeType: {
       en: "Northern Coastal Highway",
-      fr: "Autoroute Côtière Nord",
       ar: "الأوتوستراد الساحلي الشمالي"
     },
     keywords: ["batroun", "البترون", "batroune", "بترون"]
@@ -205,7 +197,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     id: "tripoli",
     name: {
       en: "Tripoli",
-      fr: "Tripoli",
       ar: "طرابلس"
     },
     lat: 34.4361,
@@ -214,7 +205,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "1 hr 15 mins",
     routeType: {
       en: "Northern Coastal Highway",
-      fr: "Autoroute Côtière Nord",
       ar: "أوتوستراد طرابلس الساحلي"
     },
     keywords: ["tripoli", "طرابلس", "trablos", "mina", "الميناء"]
@@ -223,7 +213,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     id: "sidon",
     name: {
       en: "Sidon (Saida)",
-      fr: "Sidon (Saida)",
       ar: "صيدا"
     },
     lat: 33.5631,
@@ -232,7 +221,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "40 mins",
     routeType: {
       en: "Southern Coastal Highway",
-      fr: "Autoroute Côtière Sud",
       ar: "الأوتوستراد الساحلي الجنوبي"
     },
     keywords: ["sidon", "saida", "صيدا", "صيدون"]
@@ -241,7 +229,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     id: "tyre",
     name: {
       en: "Tyre (Sour)",
-      fr: "Tyr (Sour)",
       ar: "صور"
     },
     lat: 33.2708,
@@ -250,7 +237,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "1 hr 15 mins",
     routeType: {
       en: "Southern Coastal Highway",
-      fr: "Autoroute Côtière Sud",
       ar: "طريق الجنوب السريع"
     },
     keywords: ["tyre", "sour", "صور", "tyr"]
@@ -259,7 +245,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     id: "faraya",
     name: {
       en: "Faraya (Mzaar)",
-      fr: "Faraya (Mzaar)",
       ar: "فاريا كفردبيان"
     },
     lat: 34.0150,
@@ -268,7 +253,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "1 hr 10 mins",
     routeType: {
       en: "Mount Lebanon Highway",
-      fr: "Route de Mont-Liban",
       ar: "طريق جبل لبنان الجبلية"
     },
     keywords: ["faraya", "mzaar", "فاريا", "kfardebian", "كفردبيان", "عيون السيمان", "فقرا"]
@@ -277,7 +261,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     id: "baalbek",
     name: {
       en: "Baalbek",
-      fr: "Baalbek",
       ar: "بعلبك"
     },
     lat: 34.0058,
@@ -286,7 +269,6 @@ export const POPULAR_DESTINATIONS: DestinationItem[] = [
     duration: "1 hr 45 mins",
     routeType: {
       en: "Damascus Highway",
-      fr: "Autoroute de Damas",
       ar: "طريق الشام الدولي / البقاع"
     },
     keywords: ["baalbek", "بعلبك", "balbek", "bekaa", "البقاع", "زحلة", "zahle"]
@@ -386,8 +368,6 @@ export default function TransferMap({
       .bindPopup(
         currentLang === "ar"
           ? "<b>مطار بيروت رفيق الحريري الدولي (BEY)</b><br/>نقطة الانطلاق الرئيسية"
-          : currentLang === "fr"
-          ? "<b>Aéroport International de Beyrouth (BEY)</b><br/>Point de départ"
           : "<b>Beirut Rafic Hariri Airport (BEY)</b><br/>Main pickup point"
       );
 
@@ -505,18 +485,12 @@ export default function TransferMap({
           <div className="flex items-center gap-2">
             <Compass className="w-5 h-5 text-brand-accent animate-spin-slow" />
             <h4 className="font-extrabold text-sm md:text-base text-brand-text">
-              {currentLang === "ar"
-                ? "دليل المسافات والمسارات التفاعلي"
-                : currentLang === "fr"
-                ? "Planificateur d'Itinéraire Interactif"
-                : "Interactive Distance & Route Map"}
+              {currentLang === "ar" ? "دليل المسافات والمسارات التفاعلي" : "Interactive Distance & Route Map"}
             </h4>
           </div>
           <p className="text-[11px] text-brand-muted mt-0.5">
             {currentLang === "ar"
               ? "موقع مطار بيروت رفيق الحريري الدولي (BEY) بالنسبة لأبرز المدن والمناطق اللبنانية."
-              : currentLang === "fr"
-              ? "Visualisez la distance de transfert entre l'Aéroport de Beyrouth (BEY) et les principales villes."
               : "Visualize the transfer path and distance from Beirut Airport (BEY) to key regions."}
           </p>
         </div>
@@ -531,7 +505,7 @@ export default function TransferMap({
         {/* Route Selector Panel */}
         <div className="lg:col-span-5 p-4 border-b lg:border-b-0 lg:border-r border-brand-border/40 max-h-[350px] overflow-y-auto space-y-2 order-2 lg:order-1">
           <span className="text-[10px] uppercase font-bold tracking-wider text-brand-muted block mb-2 px-1">
-            {currentLang === "ar" ? "اختر وجهة سياحية:" : currentLang === "fr" ? "Sélectionnez un transfert:" : "Select popular transfer:"}
+            {currentLang === "ar" ? "اختر وجهة سياحية:" : "Select popular transfer:"}
           </span>
           <div className="grid grid-cols-2 lg:grid-cols-1 gap-2">
             {POPULAR_DESTINATIONS.map((route) => {
@@ -602,9 +576,7 @@ export default function TransferMap({
         <Info className="w-4 h-4 text-brand-accent shrink-0 mt-0.5 animate-pulse" />
         <p className="text-[10px] md:text-xs text-brand-muted">
           {currentLang === "ar"
-            ? "الأسعار المعروضة في الخطوة التالية مبنية على المسافة والمنطقة المختارة. يشمل الحجز الاستقبال المجاني داخل صالة المطار وتتبع الرحلة والرسوم."
-            : currentLang === "fr"
-            ? "Les tarifs affichés à l'étape suivante dépendent de la distance de transfert. L'accueil à l'aéroport avec pancarte et le suivi de vol sont inclus sans frais supplémentaires."
+            ? "الأسعار المعروضة في الخطوة التالية مبنية على المسافة والمنطقة المختارة. يشمل الحجز تنسيق نقطة اللقاء في المطار ومتابعة الرحلة والرسوم."
             : "Distance rates are integrated seamlessly. Your premium airport transfer always includes professional meet & greet, standard flight monitoring, and highway toll fees."}
         </p>
       </div>

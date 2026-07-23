@@ -1,178 +1,200 @@
 import React from "react";
-import { CheckCircle, Info } from "lucide-react";
+import { Bluetooth, ShieldCheck, Snowflake, Sparkles, Usb, UserCheck, Users } from "lucide-react";
 import { Language, Vehicle } from "../types";
 import { translations } from "../translations";
-import carImage1 from "../assets/images/1.webp";
-import carImage2 from "../assets/images/2.webp";
-import carImage3 from "../assets/images/3.webp";
-import carImage4 from "../assets/images/4.webp";
-import carImage5 from "../assets/images/5.webp";
+import premiumSedanImage from "../assets/images/fleet-sedan.webp";
+import versatileSuvImage from "../assets/images/fleet-versatile-suv.webp";
+import luxurySuvImage from "../assets/images/fleet-luxury-suv.webp";
+import familyMinivanImage from "../assets/images/fleet-minivan.webp";
+import passengerVanImage from "../assets/images/fleet-passenger-van.webp";
+import tourCoachImage from "../assets/images/fleet-tour-coach.webp";
 
 interface FleetGridProps {
   currentLang: Language;
   onSelectVehicle: (vehicleId: string) => void;
+  pageHeading?: boolean;
 }
 
 export const FLEET_VEHICLES: Vehicle[] = [
   {
     id: "v1",
-    name: "Comfort Sedan",
-    category: "Sedan",
-    suitableFor: "4–5 Passengers",
-    capacity: "4-5",
+    name: "Sedan",
+    category: "Refined Everyday Travel",
+    suitableFor: "1–3 Passengers",
+    capacity: "1-3",
     luggage: "3",
-    features: ["Full Air Conditioning (A/C)", "Perfect for Airport Transfers", "Matches your trip budget perfectly"],
-    description: "Comfortable, clean, and budget-friendly A/C car matching your daily trip needs and swift airport transfers perfectly.",
-    image: carImage1,
+    features: ["Quiet air-conditioned cabin", "Ideal for airport and city transfers", "Comfortable rear passenger seating"],
+    description: "Comfortable private travel for airport pickups, city rides, and business trips.",
+    image: premiumSedanImage,
     basePriceUSD: 0,
     type: "Sedan"
   },
   {
     id: "v2",
-    name: "Luxurious SUV",
-    category: "Luxury SUV",
-    suitableFor: "VIP, Corporate & Executive Travel",
-    capacity: "4-6",
+    name: "SUV",
+    category: "Comfort & Capability",
+    suitableFor: "1–5 Passengers",
+    capacity: "1-5",
     luggage: "4",
-    features: ["Advanced Dual Climate A/C", "VIP Chauffeur Experience", "All-Wheel Drive Performance"],
-    description: "Prestige luxury SUV with robust mountain capabilities and exceptional cabin comfort.",
-    image: carImage2,
+    features: ["Spacious climate-controlled cabin", "Confident on city and mountain roads", "Flexible passenger and luggage space"],
+    description: "Extra comfort and space for airport transfers, day trips, and mountain roads.",
+    image: versatileSuvImage,
     basePriceUSD: 0,
     type: "SUV"
   },
   {
     id: "v3",
-    name: "Premium Caravan",
-    category: "Caravan",
-    suitableFor: "Families & Small Groups (6–7 Pax)",
-    capacity: "6-7",
-    luggage: "6",
-    features: ["High-Output Air Conditioning", "Spacious Modular Seating", "Comfortable for Family Roadtrips"],
-    description: "Comfortable and roomy caravan designed to make long family journeys easy and stress-free.",
-    image: carImage3,
+    name: "Luxury SUV",
+    category: "Executive & VIP Travel",
+    suitableFor: "1–6 Passengers",
+    capacity: "1-6",
+    luggage: "4",
+    features: ["Premium interior and ride comfort", "Discreet chauffeur presentation", "Suited to executive and special occasions"],
+    description: "Our highest-comfort option for executive travel, special occasions, and VIP guests.",
+    image: luxurySuvImage,
     basePriceUSD: 0,
     type: "Caravan"
   },
   {
     id: "v4",
-    name: "Executive Minivan",
-    category: "Minivan",
-    suitableFor: "Up to 12 Passengers",
-    capacity: "Up to 12",
-    luggage: "10",
-    features: ["Tri-Zone Climate Control", "Sliding Doors", "Comfortable for Medium Groups"],
-    description: "Extra-spacious van ideal for corporate transfers or mid-sized tourist groups exploring Lebanon.",
-    image: carImage4,
+    name: "Minivan",
+    category: "Families & Small Groups",
+    suitableFor: "Up to 7 Passengers",
+    capacity: "Up to 7",
+    luggage: "6",
+    features: ["Easy-access sliding doors", "Flexible family seating", "Generous luggage capacity"],
+    description: "Easy access and flexible seating for families, small groups, and luggage.",
+    image: familyMinivanImage,
     basePriceUSD: 0,
     type: "Minivan"
   },
   {
     id: "v5",
-    name: "Buses",
-    category: "Group Bus",
-    suitableFor: "Large Groups & Delegations",
-    capacity: "15-50",
-    luggage: "Heavy Bags",
-    features: ["High-Capacity A/C System", "Tourism Group Friendly", "Maximum Passenger Comfort"],
-    description: "Heavy-duty modern buses perfect for large events, conferences, and tours.",
-    image: carImage5,
+    name: "Van",
+    category: "Medium Group Transport",
+    suitableFor: "8–12 Passengers",
+    capacity: "8-12",
+    luggage: "10",
+    features: ["High-roof passenger cabin", "Group-friendly boarding", "Practical luggage storage"],
+    description: "Practical group transport for hotel transfers, gatherings, and private tours.",
+    image: passengerVanImage,
     basePriceUSD: 0,
-    type: "Buses"
+    type: "Van"
+  },
+  {
+    id: "v6",
+    name: "Bus",
+    category: "Large Group Transport",
+    suitableFor: "15–50 Passengers",
+    capacity: "15-50",
+    luggage: "Group luggage",
+    features: ["Powerful cabin air conditioning", "Dedicated group luggage storage", "Suitable for tours, events, and delegations"],
+    description: "Comfortable group travel for tours, events, conferences, and airport transfers.",
+    image: tourCoachImage,
+    basePriceUSD: 0,
+    type: "Coach"
   }
 ];
 
-export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridProps) {
+export default function FleetGrid({ currentLang, onSelectVehicle, pageHeading = false }: FleetGridProps) {
   const t = translations[currentLang];
   const isRtl = currentLang === "ar";
+  const fleetStandards = [
+    {
+      icon: Sparkles,
+      en: "Deep-cleaned before every booking",
+      ar: "تنظيف وتعقيم قبل كل حجز",
+    },
+    {
+      icon: UserCheck,
+      en: "Professional, well-presented driver",
+      ar: "سائق محترف وحسن المظهر",
+    },
+    {
+      icon: Snowflake,
+      en: "Air-conditioned comfort",
+      ar: "تكييف هواء لراحة كاملة",
+    },
+    {
+      icon: Usb,
+      en: "Phone charging available",
+      ar: "شحن للهاتف عند الطلب وبحسب تجهيز السيارة",
+    },
+    {
+      icon: ShieldCheck,
+      en: "Hygiene essentials on board",
+      ar: "مستلزمات النظافة بحسب تجهيز السيارة",
+    },
+    {
+      icon: Bluetooth,
+      en: "Bluetooth where equipped",
+      ar: "بلوتوث حسب تجهيز المركبة",
+    },
+  ];
 
   return (
     <div className="space-y-16" id="fleet-grid">
       <div className="space-y-8">
         <div className={`text-center max-w-2xl mx-auto space-y-3 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
-          <h2 className="text-xl md:text-2xl font-bold text-brand-text font-sans tracking-tight">
-            {currentLang === "ar" ? "تفاصيل المواصفات والأسعار التقديرية" : currentLang === "fr" ? "Spécifications & Tarifs Estimés" : "Technical Specifications & Estimations"}
-          </h2>
-          <p className="text-gray-400 text-xs leading-relaxed">
-            {currentLang === "ar" 
-              ? "قارن بين السعات وتفاصيل الراحة لكل مركبة لاختيار الأنسب لرحلتك" 
-              : currentLang === "fr" 
-              ? "Comparez les capacités et options pour sélectionner le véhicule parfait" 
-              : "Compare capacities, premium characteristics, and passenger comfort properties below."}
+          {pageHeading ? (
+            <h1 className="text-3xl md:text-5xl font-black text-brand-text font-sans tracking-tight">{t.fleetHeaderTitle}</h1>
+          ) : (
+            <h2 className="text-xl md:text-2xl font-bold text-brand-text font-sans tracking-tight">
+              {currentLang === "ar" ? "تفاصيل المركبات وخيارات الرحلة" : "Vehicles for Every Group Size"}
+            </h2>
+          )}
+          <p className="text-brand-muted text-sm leading-relaxed">
+            {currentLang === "ar"
+              ? "قارن بين السعات وتفاصيل الراحة لكل مركبة لاختيار الأنسب لرحلتك"
+              : "Choose the right level of comfort, space, and luggage capacity for your journey."}
           </p>
+        </div>
+
+        <div className="bg-brand-card border border-brand-border rounded-[24px] p-5 sm:p-6">
+          <div className={`mb-4 ${isRtl ? "text-right" : "text-left"}`}>
+            <h3 className="text-lg font-extrabold text-brand-text">
+              {currentLang === "ar" ? "معاييرنا في جميع المركبات" : "Our standard in every vehicle"}
+            </h3>
+            <p className="text-sm text-brand-muted mt-1">
+              {currentLang === "ar"
+                ? "كل ضيف يحصل على خدمة راقية، مركبة نظيفة وسائق يهتم بالتفاصيل."
+                : "Every guest receives thoughtful service, a spotless vehicle, and a driver who cares about the details."}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+            {fleetStandards.map(({ icon: Icon, en, ar }) => (
+              <div key={en} className={`flex items-center gap-2 text-xs text-brand-text/90 ${isRtl ? "flex-row-reverse text-right" : ""}`}>
+                <Icon className="w-4 h-4 text-brand-accent shrink-0" />
+                <span>{currentLang === "ar" ? ar : en}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {FLEET_VEHICLES.map((vehicle) => {
-          // Translate dynamic fields
-          let categoryLabel: string = vehicle.category;
-          let suitableForLabel = vehicle.suitableFor;
-          let descLabel = vehicle.description;
-          let featuresList = vehicle.features;
           let vehicleName = vehicle.name;
+          let vehicleDescription = vehicle.description;
 
           if (currentLang === "ar") {
             if (vehicle.id === "v1") {
-              vehicleName = "سيارة سيدان مريحة";
-              categoryLabel = "سيدان";
-              suitableForLabel = "٤ إلى ٥ ركاب";
-              descLabel = "سيارة سيدان مريحة واقتصادية مع مكيف هواء، ممتازة لتوصيلات المطار وتناسب ميزانية رحلتك تماماً.";
-              featuresList = ["مكيف هواء كامل (A/C)", "مثالية لتوصيلات المطار", "تناسب ميزانية رحلتك تماماً"];
+              vehicleName = "سيدان";
+              vehicleDescription = "تنقّل خاص مريح لاستقبال المطار والرحلات داخل المدينة ومواعيد العمل.";
             } else if (vehicle.id === "v2") {
-              vehicleName = "سيارة دفع رباعي فاخرة (SUV)";
-              categoryLabel = "دفع رباعي فاخرة";
-              suitableForLabel = "كبار الشخصيات، رجال الأعمال، جولات جبلية";
-              descLabel = "سيارة رياضية متعددة الاستخدامات فخمة للغاية ومثالية لكبار الشخصيات والجولات الجبلية.";
-              featuresList = ["تحكم حراري مزدوج ومطور", "تجربة سائق فاخرة (VIP)", "أداء فائق على الطرقات الجبلية"];
+              vehicleName = "سيارة SUV";
+              vehicleDescription = "راحة ومساحة إضافية لتوصيلات المطار والجولات والطرق الجبلية.";
             } else if (vehicle.id === "v3") {
-              vehicleName = "كرفان عائلي واسع";
-              categoryLabel = "كرفان";
-              suitableForLabel = "العائلات والمجموعات الصغيرة (٦-٧ ركاب)";
-              descLabel = "كرفان مريح وواسع يتسع لـ ٦ إلى ٧ ركاب مع مساحة أمتعة ممتازة لسفر عائلي مريح.";
-              featuresList = ["مكيف هواء عالي الكفاءة", "مقاعد مرنة وواسعة", "مثالي للرحلات العائلية الطويلة"];
+              vehicleName = "سيارة SUV فاخرة";
+              vehicleDescription = "أعلى مستوى من الراحة لرحلات رجال الأعمال والمناسبات وضيوف VIP.";
             } else if (vehicle.id === "v4") {
-              vehicleName = "ميني فان تنفيذي";
-              categoryLabel = "ميني فان";
-              suitableForLabel = "مجموعات سياحية متوسطة وتوصيلات جماعية (حتى ١٢ راكب)";
-              descLabel = "حافلة ميني فان واسعة تتسع لما يصل إلى ١٢ راكباً، ممتازة للتنقل الجماعي المريح.";
-              featuresList = ["تحكم مناخي ثلاثي المناطق", "أبواب منزلقة سهلة الاستخدام", "مريحة جداً للمجموعات المتوسطة"];
+              vehicleName = "ميني فان";
+              vehicleDescription = "دخول سهل ومقاعد مرنة للعائلات والمجموعات الصغيرة والأمتعة.";
             } else if (vehicle.id === "v5") {
-              vehicleName = "باصات سياحية";
-              categoryLabel = "حافلة مجموعات";
-              suitableForLabel = "المجموعات الكبيرة والوفود السياحية";
-              descLabel = "باصات سياحية مجهزة وممتازة للمجموعات الكبيرة، المؤتمرات، والوفود الرسمية.";
-              featuresList = ["مكيف هواء مركزي عالي القدرة", "مثالي للأفواج السياحية الكبيرة", "أقصى مساحة لتخزين الأمتعة"];
-            }
-          } else if (currentLang === "fr") {
-            if (vehicle.id === "v1") {
-              vehicleName = "Berline Confortable";
-              categoryLabel = "Berline";
-              suitableForLabel = "4–5 Passagers";
-              descLabel = "Berline confortable et économique avec climatisation, idéale pour vos transferts aéroport et vos trajets quotidiens.";
-              featuresList = ["Climatisation Complète (A/C)", "Idéal pour Transferts Aéroport", "S'adapte parfaitement à votre budget"];
-            } else if (vehicle.id === "v2") {
-              vehicleName = "SUV de Luxe";
-              categoryLabel = "SUV de Prestige";
-              suitableForLabel = "VIP, Voyageurs d'Affaires, Montagne";
-              descLabel = "SUV de prestige avec d'excellentes capacités en montagne et un confort exceptionnel.";
-              featuresList = ["Climatisation Bizone Avancée", "Service Chauffeur VIP", "Performance 4x4 Supérieure"];
-            } else if (vehicle.id === "v3") {
-              vehicleName = "Caravane Spacieuse";
-              categoryLabel = "Caravane";
-              suitableForLabel = "Familles & Petits Groupes (6-7 Pax)";
-              descLabel = "Caravane confortable et spacieuse conçue pour 6 à 7 passagers avec tout le confort moderne.";
-              featuresList = ["Climatisation Haute Performance", "Sièges Modulables Confortables", "Idéal pour les road trips en famille"];
-            } else if (vehicle.id === "v4") {
-              vehicleName = "Minivan Exécutif";
-              categoryLabel = "Minivan";
-              suitableForLabel = "Groupes & Transferts (Jusqu'à 12 Pax)";
-              descLabel = "Grand minivan idéal pour les transferts d'affaires ou les groupes de touristes au Liban.";
-              featuresList = ["Climatisation Tri-zone", "Portes Coulissantes Pratiques", "Très confortable pour les groupes moyens"];
-            } else if (vehicle.id === "v5") {
-              vehicleName = "Bus de Tourisme";
-              categoryLabel = "Bus de Groupe";
-              suitableForLabel = "Grands Groupes & Délégations";
-              descLabel = "Grands bus de tourisme modernes parfaits pour les événements de groupe.";
-              featuresList = ["Climatisation Centrale Haute Capacité", "Idéal pour Groupes de Tourisme", "Max d'Espace pour Bagages"];
+              vehicleName = "فان";
+              vehicleDescription = "نقل عملي للمجموعات وتوصيلات الفنادق والتجمعات والجولات الخاصة.";
+            } else if (vehicle.id === "v6") {
+              vehicleName = "باص";
+              vehicleDescription = "سفر مريح للمجموعات والجولات والمناسبات والمؤتمرات وتوصيلات المطار.";
             }
           }
 
@@ -194,53 +216,31 @@ export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridPro
                   height="600"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute top-3 right-3 bg-neutral-950/90 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-neutral-800 text-[10px] font-mono font-bold text-brand-accent">
-                  {vehicle.type || "Chauffeur Service"}
-                </div>
               </div>
 
               {/* Card Body */}
               <div className={`p-6 md:p-8 flex-1 flex flex-col justify-between ${isRtl ? "text-right" : "text-left"}`}>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div>
-                    <span className="text-[10px] text-brand-accent font-mono tracking-wider font-extrabold uppercase">
-                      {categoryLabel}
-                    </span>
-                    <h3 className="text-lg md:text-xl font-bold text-brand-text mt-0.5 group-hover:text-brand-accent transition-colors">
+                    <h3 className="text-lg md:text-xl font-bold text-brand-text group-hover:text-brand-accent transition-colors">
                       {vehicleName}
                     </h3>
+                    <p className="text-sm text-brand-muted leading-relaxed mt-1.5">
+                      {vehicleDescription}
+                    </p>
                   </div>
 
-                  <p className="text-xs text-neutral-400 leading-relaxed">
-                    {descLabel}
-                  </p>
-
-                  <div className="border-t border-neutral-900 pt-4 space-y-2.5">
-                    <div className={`flex items-center gap-2 text-xs text-neutral-300 ${isRtl ? "flex-row-reverse" : ""}`}>
-                      <Info className="w-4 h-4 text-brand-accent shrink-0" />
-                      <span>
-                        <strong>{t.suitableFor}</strong> {suitableForLabel}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Features list */}
-                  <div className="grid grid-cols-1 gap-1.5 pt-1">
-                    {featuresList.map((feat, index) => (
-                      <div
-                        key={index}
-                        className={`flex items-center gap-1.5 text-[11px] text-neutral-300 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}
-                      >
-                        <CheckCircle className="w-3.5 h-3.5 text-brand-accent shrink-0" />
-                        <span className="truncate">{feat}</span>
-                      </div>
-                    ))}
+                  <div className={`flex items-center gap-2 text-sm text-brand-muted ${isRtl ? "flex-row-reverse" : ""}`}>
+                    <Users className="w-4 h-4 text-brand-accent" />
+                    <span>
+                      {currentLang === "ar" ? "السعة:" : "Capacity:"} {vehicle.capacity}
+                    </span>
                   </div>
                 </div>
 
                 <div className="pt-8 relative group/btn">
                   {/* Subtle pulsing background glow to draw attention */}
-                  <div className="absolute inset-x-0 bottom-0 top-8 bg-brand-accent/25 rounded-2xl blur-md opacity-60 group-hover/btn:opacity-100 transition duration-1000 group-hover/btn:duration-200 animate-pulse pointer-events-none"></div>
+                  <div className="absolute inset-x-0 bottom-0 top-8 bg-brand-accent/15 rounded-2xl opacity-60 group-hover/btn:opacity-100 transition-opacity pointer-events-none"></div>
                   
                   <div className="relative">
                     <button
@@ -250,7 +250,6 @@ export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridPro
                     >
                       <span>{t.requestQuote}</span>
                       <span className="flex h-2 w-2 relative">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-600 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                       </span>
                     </button>
@@ -260,11 +259,7 @@ export default function FleetGrid({ currentLang, onSelectVehicle }: FleetGridPro
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-brand-accent border border-brand-accent-hover text-brand-btn-text text-[9px] font-mono font-bold px-2 py-0.5 rounded-md shadow-lg opacity-0 group-hover/btn:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-20 flex items-center gap-1">
                     <span>⚡</span>
                     <span>
-                      {currentLang === "ar"
-                        ? "رد فوري عبر واتساب"
-                        : currentLang === "fr"
-                        ? "Réponse WhatsApp"
-                        : "Instant WhatsApp"}
+                      {currentLang === "ar" ? "رد فوري عبر واتساب" : "Instant WhatsApp"}
                     </span>
                   </div>
                 </div>

@@ -1,19 +1,17 @@
 import React from "react";
-import { motion } from "motion/react";
-import { Camera } from "lucide-react";
 import { Language } from "../types";
-import galleryImage1 from "../assets/images/1.webp";
-import galleryImage2 from "../assets/images/2.webp";
-import galleryImage3 from "../assets/images/3.webp";
-import galleryImage4 from "../assets/images/4.webp";
-import galleryImage5 from "../assets/images/5.webp";
-import galleryImage6 from "../assets/images/6.webp";
-import galleryImage7 from "../assets/images/7.webp";
-import galleryImage8 from "../assets/images/8.webp";
-import galleryImage9 from "../assets/images/9.webp";
-import galleryImage10 from "../assets/images/10.webp";
-import galleryImage11 from "../assets/images/11.webp";
-import galleryImage12 from "../assets/images/12.webp";
+import galleryImage1En from "../assets/images/1_en.webp";
+import galleryImage2En from "../assets/images/2_en.webp";
+import galleryImage3En from "../assets/images/3_en.webp";
+import galleryImage4En from "../assets/images/4_en.webp";
+import galleryImage6En from "../assets/images/6_en.webp";
+import galleryImage7En from "../assets/images/7_en.webp";
+import galleryImage1Ar from "../assets/images/1_ar.webp";
+import galleryImage2Ar from "../assets/images/2_ar.webp";
+import galleryImage3Ar from "../assets/images/3_ar.webp";
+import galleryImage4Ar from "../assets/images/4_ar.webp";
+import galleryImage5Ar from "../assets/images/5_ar.webp";
+import galleryImage7Ar from "../assets/images/7_ar.webp";
 
 interface GalleryItem {
   id: string;
@@ -21,20 +19,24 @@ interface GalleryItem {
   image: string;
 }
 
-const GALLERY_ITEMS: GalleryItem[] = [
-  { id: "g1", image: galleryImage1 },
-  { id: "g2", image: galleryImage2 },
-  { id: "g3", image: galleryImage3 },
-  { id: "g4", image: galleryImage4 },
-  { id: "g5", image: galleryImage5 },
-  { id: "g6", image: galleryImage6 },
-  { id: "g7", image: galleryImage7 },
-  { id: "g8", image: galleryImage8 },
-  { id: "g9", image: galleryImage9 },
-  { id: "g10", image: galleryImage10 },
-  { id: "g11", image: galleryImage11 },
-  { id: "g12", image: galleryImage12 },
-];
+const GALLERY_ITEMS: Record<Language, GalleryItem[]> = {
+  en: [
+    { id: "g1-en", image: galleryImage1En },
+    { id: "g2-en", image: galleryImage2En },
+    { id: "g3-en", image: galleryImage3En },
+    { id: "g4-en", image: galleryImage4En },
+    { id: "g6-en", image: galleryImage6En },
+    { id: "g7-en", image: galleryImage7En },
+  ],
+  ar: [
+    { id: "g1-ar", image: galleryImage1Ar },
+    { id: "g2-ar", image: galleryImage2Ar },
+    { id: "g3-ar", image: galleryImage3Ar },
+    { id: "g4-ar", image: galleryImage4Ar },
+    { id: "g5-ar", image: galleryImage5Ar },
+    { id: "g7-ar", image: galleryImage7Ar },
+  ],
+};
 
 interface VehicleGalleryProps {
   currentLang: Language;
@@ -43,25 +45,37 @@ interface VehicleGalleryProps {
 export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
   const [activeIdx, setActiveIdx] = React.useState<number>(0);
   const isRtl = currentLang === "ar";
+  const galleryItems = GALLERY_ITEMS[currentLang];
 
-  // Auto-slide to next portrait image every 2.6 seconds.
-  // Re-runs and resets timer when manual click updates activeIdx.
+  React.useEffect(() => {
+    setActiveIdx(0);
+  }, [currentLang]);
+
+  // Keep one lightweight timer and render only the three visible slides.
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIdx((prev) => (prev + 1) % GALLERY_ITEMS.length);
+      setActiveIdx((prev) => (prev + 1) % galleryItems.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [activeIdx]);
+  }, [galleryItems.length]);
+
+  const visibleItems = React.useMemo(() => {
+    const count = galleryItems.length;
+    const visibleIndexes = new Set([
+      (activeIdx - 1 + count) % count,
+      activeIdx,
+      (activeIdx + 1) % count,
+    ]);
+    return galleryItems.map((item, idx) => ({ item, idx })).filter(({ idx }) => visibleIndexes.has(idx));
+  }, [activeIdx, galleryItems]);
 
   return (
-    <div className="py-3 sm:py-6 md:py-8 overflow-hidden" id="vehicle-portrait-gallery">
-      <div className="relative max-w-7xl mx-auto px-2 sm:px-4">
-        <div className="flex justify-center items-center h-[430px] sm:h-[500px] md:h-[620px] lg:h-[720px] relative w-full overflow-visible">
-          {GALLERY_ITEMS.map((item, idx) => {
-            // Determine position status relative to active index supporting 10+ items beautifully
-            const count = GALLERY_ITEMS.length;
-            
-            let position: "left" | "middle" | "right" | "hidden" = "hidden";
+    <div className="py-1 sm:py-2 overflow-hidden" id="vehicle-portrait-gallery">
+      <div className="relative max-w-7xl mx-auto">
+        <div className="flex justify-center items-center h-[340px] sm:h-[450px] md:h-[540px] lg:h-[620px] relative w-full overflow-visible">
+          {visibleItems.map(({ item, idx }) => {
+            const count = galleryItems.length;
+            let position: "left" | "middle" | "right" = "middle";
             
             if (idx === activeIdx) {
               position = "middle";
@@ -74,41 +88,30 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
             const isMiddle = position === "middle";
             const isLeft = position === "left";
             const isRight = position === "right";
-            const isHidden = position === "hidden";
-
             return (
-              <motion.div
+              <div
                 key={item.id}
                 onClick={() => {
                   if (!isMiddle) setActiveIdx(idx);
                 }}
-                className={`absolute w-[240px] sm:w-[280px] md:w-[330px] lg:w-[390px] aspect-square rounded-[26px] sm:rounded-[34px] overflow-hidden cursor-pointer select-none ${
+                className={`absolute w-[300px] sm:w-[400px] md:w-[480px] lg:w-[560px] aspect-square rounded-[24px] sm:rounded-[30px] overflow-hidden cursor-pointer select-none transition-[transform,opacity] duration-500 ease-out ${
                   isMiddle
                     ? "shadow-brand bg-brand-card border-2 border-brand-accent"
                     : "shadow-lg bg-brand-card/40 border border-brand-border/40"
                 }`}
                 style={{
-                  pointerEvents: isHidden ? "none" : "auto"
-                }}
-                animate={{
-                  scale: isMiddle ? 1.1 : isHidden ? 0.58 : 0.84,
-                  opacity: isMiddle ? 1 : isHidden ? 0 : 0.56,
-                  x: isLeft ? "-58%" : isRight ? "58%" : "0%",
-                  rotateY: isLeft ? 12 : isRight ? -12 : 0,
-                  y: isMiddle ? -6 : 6,
-                  zIndex: isMiddle ? 20 : isHidden ? 0 : 10,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 25,
+                  opacity: isMiddle ? 1 : 0.56,
+                  transform: `translate3d(${isLeft ? "-62%" : isRight ? "62%" : "0%"}, 0, 0) scale(${isMiddle ? 1 : 0.76})`,
+                  zIndex: isMiddle ? 20 : 10,
                 }}
               >
                 {/* Portrait Image Only - Pure, clean, no text overlays */}
                 <div className="relative w-full h-full bg-neutral-950">
                   <img
                     src={item.image}
-                    alt={`Luxury vehicle portrait ${idx + 1} for private airport transfers and Lebanon chauffeur service`}
+                    alt={currentLang === "ar"
+                      ? `خدمات غادر للسياحة في لبنان، صورة ${idx + 1}`
+                      : `Ghader Tourism services in Lebanon, image ${idx + 1}`}
                     className="w-full h-full object-contain object-center select-none pointer-events-none bg-black/95"
                     loading="lazy"
                     decoding="async"
@@ -117,28 +120,22 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
                     height="480"
                     referrerPolicy="no-referrer"
                   />
-                  
-                  {/* Subtle Camera / Path Info Badge for User on Hover */}
-                  <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 text-[9px] font-mono text-neutral-300 opacity-0 hover:opacity-100 transition-opacity flex items-center gap-1.5 z-20">
-                    <Camera className="w-3.5 h-3.5 text-brand-accent" />
-                    <span>Local asset #{idx + 1}</span>
-                  </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
         {/* Indicator Dots */}
-        <div className="flex justify-center gap-1.5 mt-5 sm:mt-6 max-w-md mx-auto flex-wrap" dir="ltr">
-          {GALLERY_ITEMS.map((_, idx) => (
+        <div className="flex justify-center gap-1.5 mt-2 max-w-md mx-auto flex-wrap" dir="ltr">
+          {galleryItems.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setActiveIdx(idx)}
               className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                 idx === activeIdx ? "w-8 bg-brand-accent" : "w-2.5 bg-neutral-800 hover:bg-neutral-700"
               }`}
-              aria-label={`Show vehicle ${idx + 1}`}
+              aria-label={currentLang === "ar" ? `عرض الصورة ${idx + 1}` : `Show image ${idx + 1}`}
             />
           ))}
         </div>

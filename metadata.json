@@ -1,6 +1,5 @@
 {
   "name": "Ghader Tourism",
-  "description": "Premium airport transfers, private chauffeur services, and tours across Lebanon backed by over 20 years of experience.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "description": "Private airport transfers, chauffeur services, and tours across Lebanon with direct WhatsApp booking.",
+  "requestFramePermissions": []
 }

@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, type Firestore } from "firebase/firestore";
 
 type FirebaseConfig = {
   apiKey: string;
@@ -26,11 +26,11 @@ function decodeFirebaseConfigFromBase64(encoded: string): FirebaseConfig {
   }
 }
 
-const firebaseConfig = decodeFirebaseConfigFromBase64(import.meta.env.VITE_FIREBASE_CONFIG_BASE64 || "");
-
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
-const db = getFirestore(app);
+const encodedConfig = import.meta.env.VITE_FIREBASE_CONFIG_BASE64 || "";
+const firebaseConfig = encodedConfig ? decodeFirebaseConfigFromBase64(encodedConfig) : null;
+const app = firebaseConfig ? (getApps().length === 0 ? initializeApp(firebaseConfig) : getApp()) : null;
+const auth = app ? getAuth(app) : null;
+const db: Firestore | null = app ? getFirestore(app) : null;
 const googleProvider = new GoogleAuthProvider();
 
 export { app, auth, db, googleProvider, signInWithPopup, signOut };

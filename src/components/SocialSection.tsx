@@ -34,11 +34,6 @@ export default function SocialSection({ currentLang }: SocialSectionProps) {
       name: "Instagram",
       handle: "@ghadertourism",
       icon: Instagram,
-      description: {
-        en: "Daily travel stories, luxury VIP rides, and scenic Lebanon views.",
-        ar: "يوميات السفر، جولات كبار الشخصيات الفاخرة، ومناظر خلابة للبنان.",
-        fr: "Stories de voyage quotidiennes, trajets VIP de luxe et vues panoramiques du Liban."
-      },
       url: "https://instagram.com/ghadertourism",
       color: "hover:border-pink-500/30 hover:shadow-pink-950/10 hover:text-pink-400",
       iconBg: "bg-pink-500/10 text-pink-400 border-pink-500/20"
@@ -47,11 +42,6 @@ export default function SocialSection({ currentLang }: SocialSectionProps) {
       name: "Facebook",
       handle: "Ghader Tourism",
       icon: Facebook,
-      description: {
-        en: "Join our active community for customer reviews, updates, and tour albums.",
-        ar: "انضم إلى مجتمعنا لمتابعة آراء العملاء والتحديثات وألبومات الجولات.",
-        fr: "Rejoignez notre communauté pour les avis clients, les mises à jour et les albums de visites."
-      },
       url: "https://facebook.com/ghadertourism",
       color: "hover:border-blue-500/30 hover:shadow-blue-950/10 hover:text-blue-400",
       iconBg: "bg-blue-500/10 text-blue-400 border-blue-500/20"
@@ -60,11 +50,6 @@ export default function SocialSection({ currentLang }: SocialSectionProps) {
       name: "TikTok",
       handle: "@ghadertourism",
       icon: TiktokIcon,
-      description: {
-        en: "Watch quick travel logs, professional fleet highlights, and beautiful destinations.",
-        ar: "شاهد مقاطع فيديو سريعة، استعراض أسطولنا الفخم، وأجمل المعالم السياحية.",
-        fr: "Regardez des vlogs de voyage rapides, des aperçus de flotte de luxe et de magnifiques destinations."
-      },
       url: "https://tiktok.com/@ghadertourism",
       color: "hover:border-teal-400/30 hover:shadow-teal-950/10 hover:text-teal-400",
       iconBg: "bg-teal-400/10 text-teal-400 border-teal-400/20"
@@ -73,27 +58,24 @@ export default function SocialSection({ currentLang }: SocialSectionProps) {
 
   const sectionTitle = {
     en: "Connect with Us on Social Media",
-    ar: "تواصل معنا عبر وسائل التواصل الاجتماعي",
-    fr: "Rejoignez-nous sur les réseaux sociaux"
+    ar: "تواصل معنا عبر وسائل التواصل الاجتماعي"
   };
 
   const sectionSub = {
     en: "Explore stunning sightseeing highlights, look inside our premium private fleet, and watch our recent tours across Lebanon.",
-    ar: "استكشف أبرز المعالم السياحية المذهلة، وتعرّف على أسطولنا الفاخر، وشاهد جولاتنا الأخيرة في جميع أنحاء لبنان.",
-    fr: "Découvrez nos superbes moments forts touristiques, l'intérieur de notre flotte haut de gamme et nos récentes visites à travers le Liban."
+    ar: "استكشف أبرز المعالم السياحية المذهلة، وتعرّف على أسطولنا الفاخر، وشاهد جولاتنا الأخيرة في جميع أنحاء لبنان."
   };
 
   const followBtn = {
     en: "Follow Us",
-    ar: "تابعنا",
-    fr: "Nous suivre"
+    ar: "تابعنا"
   };
 
   return (
     <div className="space-y-8" id="social-media-section">
       <div className={`text-center max-w-2xl mx-auto space-y-3 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
         <span className="text-xs text-brand-accent font-mono font-bold uppercase tracking-widest bg-brand-accent/10 px-3.5 py-1 rounded-full border border-brand-accent/20 inline-block">
-          {currentLang === "ar" ? "تابع رحلاتنا" : currentLang === "fr" ? "Suivez Nos Voyages" : "Follow Our Journeys"}
+          {currentLang === "ar" ? "تابع رحلاتنا" : "Follow Our Journeys"}
         </span>
         <h2 className="text-2xl md:text-3xl font-black text-brand-text font-sans tracking-tight">
           {sectionTitle[currentLang]}
@@ -131,9 +113,6 @@ export default function SocialSection({ currentLang }: SocialSectionProps) {
                   </h3>
                   <p className="text-xs text-brand-accent font-mono font-semibold">
                     {social.handle}
-                  </p>
-                  <p className="text-xs text-brand-muted leading-relaxed pt-1 font-medium">
-                    {social.description[currentLang]}
                   </p>
                 </div>
               </div>

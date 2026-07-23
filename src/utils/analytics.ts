@@ -16,6 +16,7 @@ export const GA_MEASUREMENT_ID = (import.meta as any).env?.VITE_GA_MEASUREMENT_I
  */
 export function initGA() {
   if (typeof window === "undefined") return;
+  if (!GA_MEASUREMENT_ID) return;
 
   // Prevent multiple initializations
   if (window.gtag) return;
@@ -40,7 +41,6 @@ export function initGA() {
       cookie_flags: "SameSite=None;Secure" // Secure cookies in iframed dev spaces
     });
 
-    console.log(`[Analytics] Google Analytics 4 successfully initialized with ID: ${GA_MEASUREMENT_ID}`);
   } catch (error) {
     console.error("[Analytics] Failed to initialize Google Analytics:", error);
   }

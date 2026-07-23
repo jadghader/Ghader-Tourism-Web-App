@@ -1,124 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { Language } from "../types";
-import { getWhatsAppLink } from "../utils/whatsapp";
+import { trackEvent } from "../utils/analytics";
 
 interface WhatsAppFABProps {
   currentLang: Language;
   activeView: string;
 }
 
-const WHATSAPP_CONFIG = {
-  phone: "9613460865", // +961 3 460 865
-  labels: {
-    en: "Chat with Us 24/7",
-    ar: "تواصل معنا ٢٤/٧",
-    fr: "Contactez-nous 24/7"
-  },
-  subtext: {
-    en: "Instant Booking",
-    ar: "حجز فوري",
-    fr: "Réservation Instantanée"
-  }
-};
+const WHATSAPP_URL = "https://wa.me/9613460865";
 
 export default function WhatsAppFAB({ currentLang, activeView }: WhatsAppFABProps) {
-  const [isExpanded, setIsExpanded] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
   const isRtl = currentLang === "ar";
-
-  // Auto-collapse after 6 seconds to keep UI clean and unobtrusive
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsExpanded(false);
-    }, 6000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const label = WHATSAPP_CONFIG.labels[currentLang] || WHATSAPP_CONFIG.labels.en;
-  const subtext = WHATSAPP_CONFIG.subtext[currentLang] || WHATSAPP_CONFIG.subtext.en;
-  
-  const whatsappUrl = getWhatsAppLink({
-    lang: currentLang,
-    activeView,
-    contextType: "general"
-  });
-
-  // Determine if label ribbon should be open
-  const showRibbon = isExpanded || isHovered;
+  const label = currentLang === "ar" ? "افتح واتساب" : "Open WhatsApp";
 
   return (
-    <div 
-      className={`fixed bottom-6 z-50 flex items-center gap-2 pointer-events-auto ${
-        isRtl ? "left-6 flex-row-reverse" : "right-6 flex-row"
+    <motion.a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => trackEvent("click_whatsapp", "Conversions", `${activeView}_floating_button`)}
+      whileHover={{ scale: 1.08 }}
+      whileTap={{ scale: 0.94 }}
+      className={`fixed bottom-6 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-2xl flex items-center justify-center transition-colors border border-white/20 cursor-pointer focus:outline-none ${
+        isRtl ? "left-6" : "right-6"
       }`}
-      style={{ direction: isRtl ? "rtl" : "ltr" }}
+      title={label}
+      aria-label={label}
       id="whatsapp-floating-action"
     >
-      {/* Animated Localized Label Ribbon */}
-      <AnimatePresence>
-        {showRibbon && (
-          <motion.a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, width: 0, x: isRtl ? -20 : 20 }}
-            animate={{ opacity: 1, width: "auto", x: 0 }}
-            exit={{ opacity: 0, width: 0, x: isRtl ? -20 : 20 }}
-            transition={{ type: "spring", stiffness: 220, damping: 24 }}
-            className={`flex flex-col justify-center px-4 py-2 bg-brand-card/95 hover:bg-brand-card border border-brand-accent/30 hover:border-brand-accent/50 rounded-2xl shadow-xl whitespace-nowrap min-w-[120px] transition-colors cursor-pointer select-none backdrop-blur-md`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <span className="text-[10px] uppercase font-mono tracking-wider font-extrabold text-brand-accent">
-              {subtext}
-            </span>
-            <span className="text-[12px] font-sans font-bold text-brand-text leading-tight">
-              {label}
-            </span>
-          </motion.a>
-        )}
-      </AnimatePresence>
-
-      {/* Main WhatsApp Pulsing Trigger Button */}
-      <div className="relative">
-        {/* Double animated ambient halo glow */}
-        <span className="absolute inset-0 rounded-full bg-brand-accent/20 animate-ping duration-1000 pointer-events-none scale-125" />
-        <span className="absolute inset-0 rounded-full bg-brand-accent/10 animate-pulse duration-1500 pointer-events-none scale-150" />
-
-        {/* 'Usually replies in minutes' Badge */}
-        <div className={`absolute -top-8 ${isRtl ? "left-0" : "right-0"} bg-emerald-500 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-full shadow-lg whitespace-nowrap flex items-center gap-1 border border-emerald-400/20 backdrop-blur-sm z-10 animate-bounce`}>
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          <span>
-            {currentLang === "ar"
-              ? "يرد عادةً خلال دقائق"
-              : currentLang === "fr"
-              ? "Répond en quelques minutes"
-              : "Usually replies in minutes"}
-          </span>
-        </div>
-
-        <motion.a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          whileHover={{ scale: 1.12 }}
-          whileTap={{ scale: 0.92 }}
-          className="relative w-14 h-14 bg-brand-accent hover:bg-brand-accent-hover text-brand-bg rounded-full shadow-2xl flex items-center justify-center transition-all border border-brand-accent/30 cursor-pointer focus:outline-none"
-          title={label}
-        >
-          {/* Authentic WhatsApp Logo */}
-          <svg 
-            className="w-7 h-7 fill-brand-bg drop-shadow-md" 
-            viewBox="0 0 24 24" 
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12.031 2c-5.523 0-10 4.477-10 10 0 1.777.465 3.492 1.348 5.008L2 22l5.12-1.343c1.472.805 3.125 1.233 4.904 1.233 5.523 0 10-4.477 10-10s-4.477-10-10-10zm5.836 14.12c-.244.688-1.21 1.26-1.68 1.332-.423.064-.972.108-1.564-.08-1.04-.33-2.313-.888-3.414-1.854-1.085-.953-1.802-1.92-2.128-2.454-.326-.534-.344-.73-.024-1.055.244-.247.48-.564.72-.848.24-.284.32-.484.48-.808.16-.324.08-.604-.04-.848-.12-.244-1.04-2.508-1.428-3.444-.376-.912-.76-.788-1.04-.804-.268-.012-.576-.016-.884-.016-.308 0-.808.116-1.232.58-.424.464-1.62 1.584-1.62 3.864s1.66 4.48 1.892 4.792c.232.312 3.268 4.992 7.92 7 1.108.476 1.972.76 2.644.972 1.112.352 2.128.3 2.932.18.896-.132 2.76-.128 3.148-1.096.388-.968.388-1.8.272-1.972-.116-.172-.424-.276-.904-.516z" />
-          </svg>
-        </motion.a>
-      </div>
-    </div>
+      <svg
+        className="w-8 h-8 fill-current"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.06-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.009-.371-.011-.57-.011-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.45 4.438-9.887 9.891-9.887a9.82 9.82 0 0 1 6.988 2.895 9.825 9.825 0 0 1 2.9 6.989c-.002 5.452-4.439 9.888-9.896 9.896m8.413-18.297A11.815 11.815 0 0 0 12.055 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.9 11.9 0 0 0 5.689 1.448h.005c6.557 0 11.893-5.335 11.896-11.893a11.82 11.82 0 0 0-3.488-8.413" />
+      </svg>
+    </motion.a>
   );
 }

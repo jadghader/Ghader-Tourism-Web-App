@@ -1,4 +1,4 @@
-export type Language = "en" | "ar" | "fr";
+export type Language = "en" | "ar";
 
 export type ServiceType = "airport_transfer" | "tour" | "chauffeur";
 

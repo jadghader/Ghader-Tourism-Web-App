@@ -1,13 +1,13 @@
 import React from "react";
-import { 
-  ShieldCheck, 
-  Clock, 
-  Plane, 
-  MapPin, 
-  Users, 
-  Car, 
-  ArrowRight, 
-  ChevronDown, 
+import {
+  ShieldCheck,
+  Clock,
+  Plane,
+  MapPin,
+  Users,
+  Car,
+  ArrowRight,
+  ChevronDown,
   HelpCircle,
   PhoneCall,
   UserCheck,
@@ -36,38 +36,38 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
 
   const POPULAR_ROUTES = [
     {
-      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي", fr: "Aéroport de Beyrouth" },
-      to: { en: "Faraya", ar: "فاريا", fr: "Faraya" },
+      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي" },
+      to: { en: "Faraya", ar: "فاريا" },
       time: "1h 15m"
     },
     {
-      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي", fr: "Aéroport de Beyrouth" },
-      to: { en: "Beirut Downtown", ar: "وسط بيروت", fr: "Beyrouth Centre" },
+      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي" },
+      to: { en: "Beirut Downtown", ar: "وسط بيروت" },
       time: "20m"
     },
     {
-      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي", fr: "Aéroport de Beyrouth" },
-      to: { en: "Byblos", ar: "جبيل", fr: "Byblos" },
+      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي" },
+      to: { en: "Byblos", ar: "جبيل" },
       time: "45m"
     },
     {
-      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي", fr: "Aéroport de Beyrouth" },
-      to: { en: "Tripoli", ar: "طرابلس", fr: "Tripoli" },
+      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي" },
+      to: { en: "Tripoli", ar: "طرابلس" },
       time: "1h 15m"
     },
     {
-      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي", fr: "Aéroport de Beyrouth" },
-      to: { en: "Sidon", ar: "صيدا", fr: "Sidon" },
+      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي" },
+      to: { en: "Sidon", ar: "صيدا" },
       time: "45m"
     },
     {
-      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي", fr: "Aéroport de Beyrouth" },
-      to: { en: "Tyre", ar: "صور", fr: "Tyr" },
+      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي" },
+      to: { en: "Tyre", ar: "صور" },
       time: "1h 20m"
     },
     {
-      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي", fr: "Aéroport de Beyrouth" },
-      to: { en: "Baalbek", ar: "بعلبك", fr: "Baalbek" },
+      from: { en: "Beirut Airport", ar: "مطار بيروت الدولي" },
+      to: { en: "Baalbek", ar: "بعلبك" },
       time: "1h 40m"
     }
   ];
@@ -76,100 +76,118 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
     {
       q: {
         en: "What is included in the premium Airport Meet & Greet service?",
-        ar: "ماذا تشمل خدمة الاستقبال والترحيب المميزة في المطار؟",
-        fr: "Qu'est-ce qui est inclus dans le service d'accueil Premium à l'aéroport ?"
+        ar: "ماذا تشمل خدمة الاستقبال والترحيب المميزة في المطار؟"
       },
       a: {
-        en: "Our professional chauffeur will wait for you inside the passenger arrival terminal with a personalized name placard. They will assist with your luggage and guide you to your private executive vehicle parked in the VIP zone.",
-        ar: "سينتظرك سائقنا المحترف داخل صالة وصول المسافرين حاملاً لافتة باسمك الشخصي. سيساعدك في حمل الأمتعة ويوجهك إلى مركبتك الخاصة الفاخرة المركونة في المنطقة المخصصة لكبار الشخصيات.",
-        fr: "Notre chauffeur professionnel vous attendra à l'intérieur du terminal des arrivées avec une pancarte personnalisée. Il vous aidera avec vos bagages et vous guidera vers votre véhicule privé haut de gamme stationné dans la zone VIP."
+        en: "Your professional driver coordinates a clear meeting point with you at Beirut Airport, helps with your luggage, and takes you to your private vehicle.",
+        ar: "ينسّق السائق المحترف معك نقطة لقاء واضحة في مطار بيروت، ويساعدك في حمل الأمتعة، ثم يرافقك إلى سيارتك الخاصة."
       }
     },
     {
       q: {
         en: "Are the rates fixed, or are there extra fees for flight delays?",
-        ar: "هل الأسعار ثابتة، أم هناك رسوم إضافية في حال تأخر الرحلة؟",
-        fr: "Les tarifs sont-ils fixes ou y a-t-il des frais supplémentaires en cas de retard de vol ?"
+        ar: "هل الأسعار ثابتة، أم هناك رسوم إضافية في حال تأخر الرحلة؟"
       },
       a: {
-        en: "All rates are fully fixed and agreed upon in advance. We monitor flight landing times in real-time. If your flight is delayed, your pickup schedule is adjusted automatically with absolutely no extra charges.",
-        ar: "جميع أسعارنا ثابتة ومحددة مسبقاً. نحن نتابع مواعيد هبوط الرحلات في الوقت الفعلي. إذا تأخرت رحلتك، يتم تعديل موعد الاستقبال تلقائياً دون أي رسوم إضافية على الإطلاق.",
-        fr: "Tous nos tarifs sont strictement fixes et convenus à l'avance. Nous suivons l'état des vols en temps réel. Si votre vol est retardé, l'heure de prise en charge est ajustée automatiquement sans aucun frais supplémentaire."
+        en: "Rates are fixed and agreed in advance, including fuel, tolls, and parking. We monitor flight timing and adjust delayed-flight pickups flexibly without adding a delay charge.",
+        ar: "نتفق معك مسبقاً على سعر ثابت يشمل الوقود ورسوم الطرق والمواقف. نتابع موعد الرحلة ونعدّل وقت الاستقبال بمرونة عند التأخير من دون إضافة رسوم بسبب تأخر الرحلة."
       }
     },
     {
       q: {
         en: "Is this a shared taxi or a fully private ride?",
-        ar: "هل هذه خدمة تاكسي مشترك أم توصيلة خاصة بالكامل؟",
-        fr: "S'agit-il d'un taxi partagé ou d'un trajet entièrement privé ?"
+        ar: "هل هذه خدمة تاكسي مشترك أم توصيلة خاصة بالكامل؟"
       },
       a: {
-        en: "Ghader Tourism does not operate public or shared transport. All of our services are 100% private. You will have a dedicated luxury sedan, SUV, or premium executive van entirely to yourself and your travel companions.",
-        ar: "لا تقدم شركة غادِر للسياحة خدمات نقل مشترك أو عامة. جميع رحلاتنا خاصة بنسبة ١٠٠٪. ستحصل على سيارة سيدان فاخرة، أو سيارة دفع رباعي، أو فان عائلي مخصص بالكامل لك ولمرافقيك فقط.",
-        fr: "Ghader Tourism ne propose pas de transport collectif ou partagé. Tous nos services sont 100% privés. Vous disposerez d'une berline, d'un SUV ou d'un van premium entièrement dédié à vous et vos compagnons de voyage."
+        en: "Ghader Tourism does not offer shared transport. Your sedan, SUV, minivan, or group vehicle is reserved only for you and your travel companions.",
+        ar: "لا تقدم غادر للسياحة خدمة نقل مشترك. تُحجز سيارة السيدان أو الدفع الرباعي أو الميني فان أو سيارة المجموعة لك ولمرافقيك فقط."
       }
     }
   ];
 
   return (
-    <div className="space-y-16 animate-fade-in" id="transfers-section-view">
-      
+    <div className="space-y-14 sm:space-y-16 animate-fade-in" id="transfers-section-view">
+
       {/* Header */}
-      <div className={`text-center max-w-3xl mx-auto space-y-4 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
-        <span className="text-xs text-brand-accent font-mono font-bold uppercase tracking-widest bg-brand-accent/10 px-3.5 py-1 rounded-full border border-brand-accent/20 inline-block animate-pulse">
-          {currentLang === "ar" ? "تاكسي المطار والتوصيلات الخاصة كبار الشخصيات" : currentLang === "fr" ? "Taxis Aéroport VIP & Privés" : "Private VIP & Airport Taxi"}
+      <div className="relative overflow-hidden rounded-[32px] border border-brand-border bg-brand-card px-6 py-10 sm:px-10 sm:py-14">
+        <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-brand-accent/10 blur-3xl pointer-events-none" />
+        <div className={`relative text-center max-w-3xl mx-auto space-y-4 ${isRtl ? "text-right md:text-center" : "text-left md:text-center"}`}>
+        <span className="text-[10px] sm:text-xs text-brand-accent font-mono font-bold uppercase tracking-widest bg-brand-accent/10 px-3.5 py-1.5 rounded-full border border-brand-accent/20 inline-block">
+          {currentLang === "ar" ? "توصيلات مطار بيروت الخاصة • متاحة ٢٤/٧" : "Private Beirut Airport Transfers • 24/7"}
         </span>
         <h1 className="text-3xl md:text-5xl font-black text-brand-text tracking-tight leading-tight">
-          {currentLang === "ar" ? "تاكسي المطار وسائقون خصوصيون لكبار الشخصيات" : currentLang === "fr" ? "Taxis Aéroport VIP & Chauffeurs de Prestige" : "Premium Airport Taxi & VIP Drivers"}
+          {currentLang === "ar" ? "تاكسي مطار بيروت وسائقون خصوصيون" : "Beirut Airport Taxi & Private Drivers"}
         </h1>
-        <p className="text-brand-muted text-sm sm:text-base leading-relaxed">
-          {currentLang === "ar" 
-            ? "تجنب عشوائية وسائل النقل العامة وسيارات الأجرة التقليدية في المطار. تقدم غادِر للسياحة خدمات تاكسي مطار وسائقين خصوصيين محترفين متاحين على مدار الساعة لخدمتك في جميع أنحاء لبنان."
-            : "Avoid the hassle of shared transport or fluctuating street cabs. Ghader Tourism provides elite private taxi services, terminal meet & greet, and highly professional drivers for worry-free travel across Lebanon."}
+        <p className="text-brand-muted text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          {currentLang === "ar"
+            ? "احجز توصيلة خاصة من أو إلى مطار بيروت مع تنسيق نقطة اللقاء، ومتابعة الرحلة، والمساعدة في حمل الأمتعة، وسعر واضح قبل موعد السفر."
+            : "Pre-book a private arrival or departure with flight monitoring, a personal welcome, luggage assistance, and a clear quote before you travel."}
         </p>
+        <div className={`flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-3 ${isRtl ? "sm:flex-row-reverse" : ""}`}>
+          <a
+            href={getWhatsAppLink({
+              lang: currentLang,
+              activeView: "transfers",
+              contextType: "airport_transfer"
+            })}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-accent px-6 py-3 text-xs font-extrabold text-brand-btn-text shadow-lg transition-colors hover:bg-brand-accent-hover"
+          >
+            <span>{currentLang === "ar" ? "احصل على سعر عبر واتساب" : "Get a WhatsApp Quote"}</span>
+            <ArrowRight className="h-4 w-4" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />
+          </a>
+          <button
+            type="button"
+            onClick={() => setActiveView("fleet")}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-brand-border bg-brand-bg px-6 py-3 text-xs font-bold text-brand-text transition-colors hover:border-brand-accent/40"
+          >
+            <Car className="h-4 w-4 text-brand-accent" />
+            <span>{currentLang === "ar" ? "استعرض السيارات" : "View Our Vehicles"}</span>
+          </button>
+        </div>
+        <p className="pt-1 text-[10px] font-semibold text-brand-muted">
+          {currentLang === "ar" ? "يرد عليك أحد أفراد فريقنا المحلي — وليس نظاماً آلياً." : "A local team member replies—not a bot."}
+        </p>
+        </div>
       </div>
 
       {/* Strict Quality & Private VIP Clarification Banner */}
-      <div className="bg-brand-card/60 backdrop-blur-md border border-brand-accent/30 rounded-[28px] p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden shadow-xl">
+      <div className="bg-brand-card border border-brand-accent/30 rounded-[28px] p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 relative overflow-hidden shadow-sm">
         <div className="w-12 h-12 rounded-2xl bg-brand-accent/15 flex items-center justify-center text-brand-accent border border-brand-accent/30 shrink-0">
           <ShieldCheck className="w-6 h-6" />
         </div>
         <div className={`space-y-1.5 ${isRtl ? "text-right" : "text-left"}`}>
-          <h4 className="font-extrabold text-sm md:text-base text-brand-text uppercase tracking-wider flex items-center gap-2" style={{ flexDirection: isRtl ? "row-reverse" : "row" }}>
-            <span className="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
-            <span>{currentLang === "ar" ? "تنبيه هام: التزامنا بخدمات التاكسي الخاص والفاخر الـ VIP فقط" : currentLang === "fr" ? "Service Exclusivement Privé & VIP" : "Important Notice: Exclusively Private & VIP Taxi & Drivers"}</span>
+          <h4 className="font-extrabold text-sm md:text-base text-brand-text flex items-center gap-2" style={{ flexDirection: isRtl ? "row-reverse" : "row" }}>
+            <span className="w-2 h-2 rounded-full bg-brand-accent"></span>
+            <span>{currentLang === "ar" ? "خدمة خاصة بالكامل لراحتك وخصوصيتك" : "A fully private service, reserved for you"}</span>
           </h4>
           <p className="text-[11px] md:text-xs text-brand-muted leading-relaxed font-medium">
             {currentLang === "ar"
-              ? "نود التوضيح بأن غادِر للسياحة لا تعمل كخدمة تاكسي عمومي أو نقل مشترك في الشوارع. نحن شركة نقل سياحي خاصة معتمدة بخبرة ٢٥+ عاماً. جميع سياراتنا فخمة وحديثة وسائقونا يرتدون زياً رسمياً لضمان أعلى مستويات الأمان والخصوصية والراحة لرحلتك."
-              : "Please note that Ghader Tourism does not operate public street cabs or shared transit. We are a registered luxury tourism transportation company with over 25 years of heritage. Every booking is completely private and secure, utilizing top-tier executive vehicles and certified professional drivers."}
+              ? "تقدم غادر للسياحة خدمات نقل خاصة بخبرة تزيد عن ٢٥ عاماً. لا نقدم نقلاً مشتركاً؛ كل حجز مخصص لك ولمرافقيك ويشمل سيارة نظيفة وسائقاً محترفاً."
+              : "Ghader Tourism provides private transport with 25+ years of experience. We do not offer shared rides—each booking includes a clean private vehicle and professional driver for you and your group."}
           </p>
         </div>
       </div>
 
       {/* Service Modes Split (Airport Pickups vs Daily Drivers) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-2">
-        
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 pt-2">
+
         {/* Mode 1: Private Airport Taxi */}
-        <div className="bg-brand-card border border-brand-border p-8 rounded-[32px] space-y-5 relative overflow-hidden group hover:border-brand-accent/30 transition-all duration-300">
+        <div className="bg-brand-card border border-brand-border p-6 sm:p-8 rounded-[28px] space-y-5 relative overflow-hidden group hover:-translate-y-1 hover:border-brand-accent/40 hover:shadow-xl transition-all duration-300">
           <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 rounded-full blur-3xl group-hover:bg-brand-accent/10 transition-colors"></div>
-          <div className={`flex justify-between items-start ${isRtl ? "flex-row-reverse" : ""}`}>
-            <span className="px-3 py-1 bg-brand-accent/10 text-brand-accent text-[10px] font-bold rounded-lg border border-brand-accent/20 uppercase tracking-widest font-mono">
-              {currentLang === "ar" ? "تاكسي المطار الممتاز" : currentLang === "fr" ? "Taxis Aéroport de Prestige" : "Premium Airport Taxi & Pickups"}
-            </span>
-          </div>
           <h3 className="text-xl font-bold text-brand-text font-sans tracking-tight">
-            {currentLang === "ar" ? "خدمة استقبال وتوصيل تاكسي المطار الـ VIP" : currentLang === "fr" ? "Accueil & Service Taxi VIP Aéroport" : "VIP Airport Meet & Greet Taxi"}
+            {currentLang === "ar" ? "استقبال منسّق في مطار بيروت" : "Coordinated Beirut Airport Pickup"}
           </h3>
           <p className="text-xs text-brand-muted leading-relaxed font-medium">
             {currentLang === "ar"
-              ? "استقبال خاص بالاسم داخل صالة الوصول، المساعدة الكاملة في حمل الحقائب والأمتعة، وتتبع هبوط الطائرة في الوقت الفعلي لتعديل موعد الاستقبال تلقائياً ومجاناً في حال حدوث أي تأخير لرحلتك."
-              : "Includes professional greeting inside the arrival terminal with a custom placard, direct luggage assistance, and real-time flight tracking with zero delay surcharges. Seamless rides to any hotel or city."}
+              ? "ينسّق السائق معك نقطة اللقاء في المطار، ويساعدك في حمل الأمتعة، ويتابع موعد هبوط الطائرة لتعديل وقت الاستقبال بمرونة عند التأخير."
+              : "Your driver coordinates the airport meeting point, helps with luggage, and follows your flight timing so the pickup can adjust flexibly if you are delayed."}
           </p>
           <ul className="space-y-2.5 text-[11px] text-brand-text/90 font-medium pt-2">
             <li className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}>
               <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />
-              <span>{currentLang === "ar" ? "سائق بانتظارك داخل صالة الوصول" : "Driver waiting inside arrival terminal with placard"}</span>
+              <span>{currentLang === "ar" ? "تنسيق واضح لنقطة اللقاء في المطار" : "Clearly coordinated airport meeting point"}</span>
             </li>
             <li className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}>
               <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />
@@ -183,25 +201,20 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
         </div>
 
         {/* Mode 2: Executive Drivers & VIP Private Taxi */}
-        <div className="bg-brand-card border border-brand-border p-8 rounded-[32px] space-y-5 relative overflow-hidden group hover:border-brand-accent/30 transition-all duration-300">
+        <div className="bg-brand-card border border-brand-border p-6 sm:p-8 rounded-[28px] space-y-5 relative overflow-hidden group hover:-translate-y-1 hover:border-brand-accent/40 hover:shadow-xl transition-all duration-300">
           <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 rounded-full blur-3xl group-hover:bg-brand-accent/10 transition-colors"></div>
-          <div className={`flex justify-between items-start ${isRtl ? "flex-row-reverse" : ""}`}>
-            <span className="px-3 py-1 bg-brand-accent/10 text-brand-accent text-[10px] font-bold rounded-lg border border-brand-accent/20 uppercase tracking-widest font-mono">
-              {currentLang === "ar" ? "خدمة السائق الخاص اليومية" : currentLang === "fr" ? "Chauffeur Privé à la Journée" : "Daily Private Drivers & Taxi"}
-            </span>
-          </div>
           <h3 className="text-xl font-bold text-brand-text font-sans tracking-tight">
-            {currentLang === "ar" ? "تأجير سيارة خاصة مع سائق محترف" : currentLang === "fr" ? "Chauffeur Privé et Véhicule de Prestige" : "Premium Drivers & Executive Taxi Service"}
+            {currentLang === "ar" ? "سيارة خاصة مع سائق محترف" : "Private Car with a Professional Driver"}
           </h3>
           <p className="text-xs text-brand-muted leading-relaxed font-medium">
             {currentLang === "ar"
-              ? "استأجر سيارة فاخرة مع سائق محترف يتحدث عدة لغات ليكون في خدمتك طوال اليوم. مثالية لرحلات العمل، الجولات الدبلوماسية، التسوق، أو استكشاف الجبال والبلدات اللبنانية بمرونة تامة."
-              : "Hire a premium luxury vehicle with a professional, multilingual local driver at your disposal for business meetings, diplomatic transfers, private shopping, or exploring the mountain and coastal routes of Lebanon."}
+              ? "احجز سيارة خاصة مع سائق محترف يتحدث العربية والإنجليزية ليكون في خدمتك طوال اليوم. الخدمة مناسبة لاجتماعات العمل والتسوق والمناسبات والتنقل المرن بين المناطق اللبنانية."
+              : "Keep a professional local driver at your disposal for meetings, shopping, private visits, or flexible travel along Lebanon’s coast and mountain roads."}
           </p>
           <ul className="space-y-2.5 text-[11px] text-brand-text/90 font-medium pt-2">
             <li className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}>
               <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />
-              <span>{currentLang === "ar" ? "سائقون محليون يتحدثون الإنجليزية والفرنسية" : "Multilingual, local expert professional drivers"}</span>
+              <span>{currentLang === "ar" ? "سائقون محترفون يتحدثون العربية والإنجليزية" : "Professional Arabic- and English-speaking drivers"}</span>
             </li>
             <li className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}>
               <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />
@@ -217,14 +230,23 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
       </div>
 
       {/* VIP Premium Benefits */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div className="bg-brand-card border border-brand-border p-8 rounded-[32px] text-center space-y-4 hover:border-brand-border-hover transition-all duration-300 shadow-sm">
+      <section className="space-y-7">
+        <div className={`max-w-2xl ${isRtl ? "text-right" : "text-left"}`}>
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-accent">
+            {currentLang === "ar" ? "مشمول مع خدمة الاستقبال" : "Included with your airport pickup"}
+          </span>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-brand-text md:text-3xl">
+            {currentLang === "ar" ? "تفاصيل صغيرة تجعل الوصول أسهل" : "The details that make arrival easier"}
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div className="bg-brand-card border border-brand-border p-7 rounded-[24px] text-center space-y-4 hover:border-brand-accent/30 transition-all duration-300 shadow-sm">
           <div className="w-12 h-12 rounded-2xl bg-brand-bg flex items-center justify-center text-brand-accent border border-brand-border mx-auto">
             <Clock className="w-5 h-5" />
           </div>
           <h3 className="font-bold text-lg text-brand-text font-sans tracking-tight">
-            {currentLang === "ar" ? "انتظار مجاني ٦٠ دقيقة" : currentLang === "fr" ? "60 Min d'Attente Gratuite" : "60 Mins Free Wait Time"}
+            {currentLang === "ar" ? "انتظار مجاني ٦٠ دقيقة" : "60 Minutes Free Waiting"}
           </h3>
           <p className="text-xs text-brand-muted leading-relaxed">
             {currentLang === "ar"
@@ -233,12 +255,12 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
           </p>
         </div>
 
-        <div className="bg-brand-card border border-brand-border p-8 rounded-[32px] text-center space-y-4 hover:border-brand-border-hover transition-all duration-300 shadow-sm">
+        <div className="bg-brand-card border border-brand-border p-7 rounded-[24px] text-center space-y-4 hover:border-brand-accent/30 transition-all duration-300 shadow-sm">
           <div className="w-12 h-12 rounded-2xl bg-brand-bg flex items-center justify-center text-brand-accent border border-brand-border mx-auto">
             <Plane className="w-5 h-5" />
           </div>
           <h3 className="font-bold text-lg text-brand-text font-sans tracking-tight">
-            {currentLang === "ar" ? "تتبع مباشر للرحلات" : currentLang === "fr" ? "Suivi de Vol en Direct" : "Live Flight Tracking"}
+            {currentLang === "ar" ? "تتبع مباشر للرحلات" : "Live Flight Tracking"}
           </h3>
           <p className="text-xs text-brand-muted leading-relaxed">
             {currentLang === "ar"
@@ -247,35 +269,36 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
           </p>
         </div>
 
-        <div className="bg-brand-card border border-brand-border p-8 rounded-[32px] text-center space-y-4 hover:border-brand-border-hover transition-all duration-300 shadow-sm">
+        <div className="bg-brand-card border border-brand-border p-7 rounded-[24px] text-center space-y-4 hover:border-brand-accent/30 transition-all duration-300 shadow-sm">
           <div className="w-12 h-12 rounded-2xl bg-brand-bg flex items-center justify-center text-brand-accent border border-brand-border mx-auto">
             <UserCheck className="w-5 h-5" />
           </div>
           <h3 className="font-bold text-lg text-brand-text font-sans tracking-tight">
-            {currentLang === "ar" ? "سائقون محترفون وذوو خبرة" : currentLang === "fr" ? "Chauffeurs Qualifiés" : "Experienced Drivers"}
+            {currentLang === "ar" ? "سائقون محترفون وذوو خبرة" : "Experienced Drivers"}
           </h3>
           <p className="text-xs text-brand-muted leading-relaxed">
             {currentLang === "ar"
-              ? "سائقونا ذوو خبرة واسعة ولديهم تصاريح دخول صالة المطار وتسهيل حركتك بمرونة تامة وأمان."
-              : "Our dedicated drivers hold official airport access clearances and offer smooth pickup directly from security gates."}
+              ? "سائقونا محترفون ويحملون المستندات القانونية اللازمة لنقل الركاب، وينسّقون معك نقطة الاستقبال المناسبة في المطار."
+              : "Our professional drivers carry the legal documents required for passenger transport and coordinate a suitable airport meeting point with you."}
           </p>
         </div>
 
-      </div>
+        </div>
+      </section>
 
       {/* Premium Travel Add-ons: Hotel Bookings & Beirut Airport VIP Salon */}
-      <div className="bg-gradient-to-r from-brand-accent/5 via-brand-accent/10 to-brand-accent/5 border border-brand-accent/30 rounded-[32px] p-8 md:p-10 space-y-8">
+      <div className="bg-gradient-to-br from-brand-accent/5 via-brand-card to-brand-accent/10 border border-brand-accent/25 rounded-[32px] p-6 sm:p-8 md:p-10 space-y-8">
         <div className={`text-center max-w-2xl mx-auto space-y-2 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
           <span className="text-xs text-brand-accent font-mono font-bold uppercase tracking-widest bg-brand-accent/20 px-3.5 py-1 rounded-full border border-brand-accent/30 inline-block">
-            {currentLang === "ar" ? "خدماتنا الإضافية المميزة" : currentLang === "fr" ? "Services Additionnels Premium" : "Premium Travel Add-ons"}
+            {currentLang === "ar" ? "خدماتنا الإضافية المميزة" : "Premium Travel Add-ons"}
           </span>
           <h2 className="text-2xl md:text-3xl font-black text-brand-text tracking-tight">
-            {currentLang === "ar" ? "ارتقِ بتجربة سفرك في لبنان" : currentLang === "fr" ? "Sublimez Votre Séjour au Liban" : "Elevate Your Lebanese Travel Experience"}
+            {currentLang === "ar" ? "مساعدة إضافية عند الحاجة" : "Extra help when you need it"}
           </h2>
           <p className="text-xs md:text-sm text-brand-muted leading-relaxed">
             {currentLang === "ar"
-              ? "نقدم خدمات مخصصة إضافية لتوفير الراحة القصوى والرفاهية التامة خلال رحلتك."
-              : "We offer customized high-end additions to ensure your absolute comfort and luxury throughout your visit."}
+              ? "نساعدك عند الطلب في ترتيبات الفندق وخدمة صالون المطار بحسب التوفر."
+              : "When requested, we can help arrange hotel reservations and airport salon access, subject to availability."}
           </p>
         </div>
 
@@ -287,30 +310,26 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
                 <Hotel className="w-5 h-5" />
               </div>
               <h3 className="font-extrabold text-lg text-brand-text font-sans">
-                {currentLang === "ar" ? "حجوزات الفنادق الميسرة" : currentLang === "fr" ? "Réservation d'Hôtels sur Mesure" : "Seamless Hotel Bookings"}
+                {currentLang === "ar" ? "حجوزات الفنادق الميسرة" : "Seamless Hotel Bookings"}
               </h3>
               <p className="text-xs text-brand-muted leading-relaxed">
                 {currentLang === "ar"
-                  ? "دعنا نتولى حجز الفندق المثالي لإقامتك في لبنان بأسعار تفضيلية وعروض حصرية. تواصل معنا مباشرة عبر واتساب لتحديد متطلباتك وسنقوم بالباقي!"
-                  : currentLang === "fr"
-                  ? "Laissez-nous réserver l'hôtel idéal pour votre séjour au Liban à des tarifs préférentiels. Contactez-nous simplement sur WhatsApp pour nous faire part de vos besoins !"
-                  : "Let us handle reserving the perfect hotel for your stay in Lebanon with corporate rates and exclusive offers. Simply chat with us on WhatsApp to tell us your requirements and we will arrange everything!"}
+                  ? "يمكننا مساعدتك في حجز فندق مناسب لإقامتك والاستفادة من الأسعار والعروض المتاحة لدينا. أرسل متطلباتك عبر واتساب لنتحقق من الخيارات المتوفرة."
+                  : "We can help reserve a suitable hotel and check the rates and offers available to us. Send your requirements on WhatsApp so we can confirm the available options."}
               </p>
             </div>
             <div className="pt-4">
               <a
                 href={`https://wa.me/9613460865?text=${encodeURIComponent(
                   currentLang === "ar"
-                    ? "مرحباً غادِر للسياحة، أود المساعدة في حجز فندق لإقامتي في لبنان."
-                    : currentLang === "fr"
-                    ? "Bonjour Ghader Tourism, je souhaite obtenir de l'aide pour réserver un hôtel pour mon séjour au Liban."
+                    ? "مرحباً غادر للسياحة، أود المساعدة في حجز فندق لإقامتي في لبنان."
                     : "Hello Ghader Tourism, I would like assistance with booking a hotel for my stay in Lebanon."
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-bg px-5 py-2.5 rounded-xl font-sans text-xs font-bold transition-all inline-flex items-center gap-2 border border-brand-accent/20 w-fit"
               >
-                <span>{currentLang === "ar" ? "احجز فندقك عبر واتساب" : currentLang === "fr" ? "Réserver mon hôtel sur WhatsApp" : "Book Hotel via WhatsApp"}</span>
+                <span>{currentLang === "ar" ? "احجز فندقك عبر واتساب" : "Book Hotel via WhatsApp"}</span>
                 <ArrowRight className="w-3.5 h-3.5" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />
               </a>
             </div>
@@ -323,30 +342,26 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
                 <Crown className="w-5 h-5" />
               </div>
               <h3 className="font-extrabold text-lg text-brand-text font-sans">
-                {currentLang === "ar" ? "صالون الشرف بمطار بيروت (VIP Salon)" : currentLang === "fr" ? "Accès Salon VIP Aéroport de Beyrouth" : "Beirut Airport VIP Salon Access"}
+                {currentLang === "ar" ? "صالون الشرف بمطار بيروت (VIP Salon)" : "Beirut Airport VIP Salon Access"}
               </h3>
               <p className="text-xs text-brand-muted leading-relaxed">
                 {currentLang === "ar"
-                  ? "استمتع بالرفاهية المطلقة والراحة التامة عند مغادرتك أو وصولك. نتيح لك الدخول إلى قاعة صالون الشرف (VIP Salon / CIP Lounge) في مطار بيروت الدولي لتسترخي قبل رحلتك مع خدمة الضيافة الراقية وتسهيل المعاملات."
-                  : currentLang === "fr"
-                  ? "Profitez d'un confort absolu à votre arrivée ou départ. Nous organisons votre accès exclusif au Salon VIP / CIP de l'Aéroport de Beyrouth pour vous détendre avec une hospitalité haut de gamme."
-                  : "Experience absolute luxury and hassle-free transit upon arrival or departure. We can arrange exclusive entry or booking of the Beirut Rafic Hariri International Airport VIP Salon so you can relax with top-tier hospitality."}
+                  ? "يمكننا عادةً المساعدة في ترتيب الدخول إلى صالون الشرف في مطار بيروت عند الوصول أو المغادرة، بحسب التوفر وتأكيد الحجز."
+                  : "We can usually help arrange Beirut Airport VIP Salon access for arrival or departure, subject to availability and booking confirmation."}
               </p>
             </div>
             <div className="pt-4">
               <a
                 href={`https://wa.me/9613460865?text=${encodeURIComponent(
                   currentLang === "ar"
-                    ? "مرحباً غادِر للسياحة، أنا مهتم بحجز صالون الشرف الـ VIP في مطار بيروت."
-                    : currentLang === "fr"
-                    ? "Bonjour Ghader Tourism, je suis intéressé par la réservation de l'accès au Salon VIP de l'aéroport de Beyrouth."
+                    ? "مرحباً غادر للسياحة، أنا مهتم بحجز صالون الشرف الـ VIP في مطار بيروت."
                     : "Hello Ghader Tourism, I'm interested in booking Beirut Airport VIP Salon access."
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-bg px-5 py-2.5 rounded-xl font-sans text-xs font-bold transition-all inline-flex items-center gap-2 border border-brand-accent/20 w-fit"
               >
-                <span>{currentLang === "ar" ? "احجز صالون المطار الـ VIP" : currentLang === "fr" ? "Réserver l'accès au Salon VIP" : "Book VIP Salon Access"}</span>
+                <span>{currentLang === "ar" ? "احجز صالون المطار الـ VIP" : "Book VIP Salon Access"}</span>
                 <ArrowRight className="w-3.5 h-3.5" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />
               </a>
             </div>
@@ -355,59 +370,112 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
       </div>
 
       {/* Popular Intercity Routes and Quotes Table */}
-      <div className="bg-brand-card border border-brand-border rounded-[32px] p-8 md:p-10 space-y-6">
-        <div className={`space-y-1.5 ${isRtl ? "text-right" : "text-left"}`}>
-          <h2 className="text-xl md:text-2xl font-bold text-brand-text tracking-tight">
-            {currentLang === "ar" ? "الوجهات الشهيرة من مطار بيروت" : currentLang === "fr" ? "Destinations Populaires depuis l'Aéroport" : "Popular Destinations from Beirut Airport"}
-          </h2>
-          <p className="text-xs text-brand-muted">
-            {currentLang === "ar"
-              ? "الأوقات التقريبية من مطار بيروت الدولي. اضغط على طلب تسعيرة للحصول على عرض فوري لسيارتك الخاصة."
-              : "Estimated travel times from Beirut Rafic Hariri Airport. Click below to request an instant private transfer quote."}
-          </p>
+      <section className="overflow-hidden bg-brand-card border border-brand-border rounded-[32px] shadow-sm">
+        <div className={`flex flex-col gap-4 border-b border-brand-border bg-gradient-to-r from-brand-accent/10 via-brand-card to-brand-card p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8 ${isRtl ? "sm:flex-row-reverse" : ""}`}>
+          <div className={`space-y-2 ${isRtl ? "text-right" : "text-left"}`}>
+            <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-accent">
+              <Plane className="h-4 w-4" />
+              {currentLang === "ar" ? "من مطار بيروت الدولي" : "From Beirut International Airport"}
+            </span>
+            <h2 className="text-xl md:text-2xl font-black text-brand-text tracking-tight">
+              {currentLang === "ar" ? "الوجهات الأكثر طلباً" : "Popular airport destinations"}
+            </h2>
+            <p className="max-w-2xl text-xs leading-6 text-brand-muted">
+              {currentLang === "ar"
+                ? "أوقات سفر تقريبية وقد تختلف بحسب حركة السير. اضغط على وجهتك للحصول على سعر واضح لسيارة خاصة."
+                : "Estimated travel times may vary with traffic. Select a destination to request a clear private-transfer quote."}
+            </p>
+          </div>
+          <div className={`flex shrink-0 items-center gap-2 rounded-xl border border-brand-accent/20 bg-brand-accent/10 px-3 py-2 text-[10px] font-bold text-brand-accent ${isRtl ? "self-end sm:self-auto" : "self-start sm:self-auto"}`}>
+            <ShieldCheck className="h-4 w-4" />
+            {currentLang === "ar" ? "سعر مؤكد قبل الرحلة" : "Quote confirmed before travel"}
+          </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left text-brand-text">
-            <thead className="text-[10px] bg-brand-bg text-brand-muted uppercase tracking-wider font-mono border-b border-brand-border">
+        {/* Mobile destination cards */}
+        <div className="grid gap-3 p-4 sm:p-6 md:hidden">
+          {POPULAR_ROUTES.map((route) => (
+            <a
+              key={route.to.en}
+              href={getWhatsAppLink({
+                lang: currentLang,
+                activeView: "transfers",
+                contextType: "route",
+                routeFromTo: {
+                  from: currentLang === "ar" ? "مطار بيروت الدولي" : "Beirut Airport",
+                  to: route.to[currentLang]
+                }
+              })}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex min-h-20 items-center justify-between gap-4 rounded-2xl border border-brand-border bg-brand-bg/40 p-4 transition-colors hover:border-brand-accent/40 hover:bg-brand-accent/5"
+            >
+              <span className="flex min-w-0 items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent">
+                  <MapPin className="h-5 w-5" />
+                </span>
+                <span className={isRtl ? "text-right" : "text-left"}>
+                  <span className="block text-sm font-extrabold text-brand-text">{route.to[currentLang]}</span>
+                  <span className="mt-1 flex items-center gap-1.5 text-[10px] font-semibold text-brand-muted">
+                    <Clock className="h-3.5 w-3.5 text-brand-accent" />
+                    {route.time}
+                  </span>
+                </span>
+              </span>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand-accent/20 text-brand-accent transition-colors group-hover:bg-brand-accent group-hover:text-brand-btn-text">
+                <ArrowRight className="h-4 w-4" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />
+              </span>
+            </a>
+          ))}
+        </div>
+
+        {/* Desktop routes table */}
+        <div className="hidden overflow-x-auto p-6 md:block lg:p-8">
+          <table className="w-full border-separate border-spacing-0 text-xs text-brand-text" dir={isRtl ? "rtl" : "ltr"}>
+            <thead className="text-[10px] uppercase tracking-wider text-brand-muted">
               <tr>
-                <th className="px-4 py-3">{currentLang === "ar" ? "نقطة الانطلاق" : "From"}</th>
-                <th className="px-4 py-3">{currentLang === "ar" ? "الوجهة" : "Destination"}</th>
-                <th className="px-4 py-3">{currentLang === "ar" ? "المدة التقريبية" : "Est. Time"}</th>
-                <th className="px-4 py-3 text-right">{currentLang === "ar" ? "طلب تسعيرة" : "Quote Request"}</th>
+                <th className={`border-b border-brand-border px-5 py-3 font-bold ${isRtl ? "text-right" : "text-left"}`}>{currentLang === "ar" ? "المسار" : "Route"}</th>
+                <th className={`border-b border-brand-border px-5 py-3 font-bold ${isRtl ? "text-right" : "text-left"}`}>{currentLang === "ar" ? "وقت السفر التقريبي" : "Estimated travel time"}</th>
+                <th className={`border-b border-brand-border px-5 py-3 font-bold ${isRtl ? "text-left" : "text-right"}`}>{currentLang === "ar" ? "الحجز" : "Booking"}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-brand-border/40 font-medium">
-              {POPULAR_ROUTES.map((route, idx) => (
-                <tr key={idx} className="hover:bg-brand-bg/40 transition-colors">
-                  <td className="px-4 py-3.5 text-brand-text font-bold">
-                    {route.from[currentLang]}
+            <tbody className="font-medium">
+              {POPULAR_ROUTES.map((route) => (
+                <tr key={route.to.en} className="group transition-colors hover:bg-brand-accent/5">
+                  <td className="border-b border-brand-border/50 px-5 py-4">
+                    <span className="flex items-center gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent">
+                        <MapPin className="h-4 w-4" />
+                      </span>
+                      <span>
+                        <span className="block font-extrabold text-brand-text">{route.to[currentLang]}</span>
+                        <span className="mt-0.5 block text-[10px] text-brand-muted">{route.from[currentLang]}</span>
+                      </span>
+                    </span>
                   </td>
-                  <td className="px-4 py-3.5 text-brand-accent font-bold">
-                    {route.to[currentLang]}
+                  <td className="border-b border-brand-border/50 px-5 py-4">
+                    <span className="inline-flex items-center gap-2 rounded-lg bg-brand-bg px-3 py-2 font-mono font-bold text-brand-muted">
+                      <Clock className="h-3.5 w-3.5 text-brand-accent" />
+                      {route.time}
+                    </span>
                   </td>
-                  <td className="px-4 py-3.5 text-brand-muted font-mono">
-                    {route.time}
-                  </td>
-                  <td className="px-4 py-3.5 text-right">
+                  <td className={`border-b border-brand-border/50 px-5 py-4 ${isRtl ? "text-left" : "text-right"}`}>
                     <a
                       href={getWhatsAppLink({
                         lang: currentLang,
                         activeView: "transfers",
                         contextType: "route",
                         routeFromTo: {
-                          from: currentLang === "ar" ? "مطار بيروت الدولي" : currentLang === "fr" ? "Aéroport de Beyrouth" : "Beirut Airport",
+                          from: currentLang === "ar" ? "مطار بيروت الدولي" : "Beirut Airport",
                           to: route.to[currentLang]
                         }
                       })}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-bg px-4 py-1.5 rounded-xl font-sans text-xs font-bold transition-all cursor-pointer inline-flex items-center gap-1 border border-brand-accent/20"
+                      className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-brand-accent/20 bg-brand-accent/10 px-4 py-2 font-sans text-xs font-bold text-brand-accent transition-colors hover:bg-brand-accent hover:text-brand-btn-text"
                     >
-                      <span>
-                        {currentLang === "ar" ? "طلب تسعيرة" : currentLang === "fr" ? "Obtenir un devis" : "Get Quote"}
-                      </span>
-                      <span>→</span>
+                      <span>{currentLang === "ar" ? "طلب تسعيرة" : "Get quote"}</span>
+                      <ArrowRight className="h-3.5 w-3.5" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />
                     </a>
                   </td>
                 </tr>
@@ -415,7 +483,7 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
             </tbody>
           </table>
         </div>
-      </div>
+      </section>
 
       {/* Inline FAQs section */}
       <div className="space-y-6">
@@ -469,14 +537,15 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
       </div>
 
       {/* Book Taxi / Contact block */}
-      <div className="bg-brand-card border border-brand-border rounded-[32px] p-8 md:p-12 relative overflow-hidden text-center space-y-6">
+      <div className="bg-brand-card border border-brand-accent/30 rounded-[32px] p-8 md:p-12 relative overflow-hidden text-center space-y-6">
+        <div className="absolute -top-24 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-brand-accent/10 blur-3xl pointer-events-none" />
         <h2 className="text-2xl md:text-3xl font-black text-brand-text font-sans">
-          {currentLang === "ar" ? "جاهز لحجز توصيلتك الخاصة والـ VIP الآن؟" : "Ready to Book Your VIP Transfer?"}
+          {currentLang === "ar" ? "جاهز لحجز توصيلتك الخاصة؟" : "Ready to book your private transfer?"}
         </h2>
         <p className="text-brand-muted text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
           {currentLang === "ar"
-            ? "املأ نموذج الحجز التفاعلي البسيط والآمن وسيتصل بك فريقنا في غضون دقائق لتأكيد الموعد وإرسال بيانات السائق."
-            : "Complete our seamless online reservation form, select your premium vehicle class, and enjoy a professional stress-free transportation service in Lebanon."}
+            ? "أرسل رقم الرحلة والتاريخ والوجهة وعدد الركاب عبر واتساب، وسيتواصل معك فريقنا لتأكيد السيارة والسعر."
+            : "Send your flight number, date, destination, and group size on WhatsApp. Our team will confirm the vehicle and quote with you."}
         </p>
 
         <div className="flex justify-center pt-2">

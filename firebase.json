@@ -1,4 +1,7 @@
 {
+  "firestore": {
+    "rules": "firestore.rules"
+  },
   "hosting": {
     "public": "dist",
     "ignore": [
@@ -14,11 +17,20 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(html|css|js|svg|png|jpg|jpeg|webp|avif|json|xml)",
+        "source": "**/*.@(css|js|png|jpg|jpeg|webp|avif|woff|woff2)",
         "headers": [
           {
             "key": "Cache-Control",
             "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(svg|json|xml|webmanifest)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600, must-revalidate"
           }
         ]
       },

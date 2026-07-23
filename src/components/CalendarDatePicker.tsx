@@ -13,18 +13,12 @@ const MONTH_NAMES_EN = [
   "July", "August", "September", "October", "November", "December"
 ];
 
-const MONTH_NAMES_FR = [
-  "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-  "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
-];
-
 const MONTH_NAMES_AR = [
   "كانون الثاني (يناير)", "شباط (فبراير)", "آذار (مارس)", "نيسان (أبريل)", "أيار (مايو)", "حزيران (يونيو)",
   "تموز (يوليو)", "آب (أغسطس)", "أيلول (سبتمبر)", "تشرين الأول (أكتوبر)", "تشرين الثاني (نوفمبر)", "كانون الأول (ديسمبر)"
 ];
 
 const WEEKDAYS_EN = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-const WEEKDAYS_FR = ["Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa"];
 const WEEKDAYS_AR = ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"];
 
 export default function CalendarDatePicker({ selectedDate, onChange, currentLang }: CalendarDatePickerProps) {
@@ -80,13 +74,11 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
 
   const monthName = React.useMemo(() => {
     if (currentLang === "ar") return MONTH_NAMES_AR[currentMonth];
-    if (currentLang === "fr") return MONTH_NAMES_FR[currentMonth];
     return MONTH_NAMES_EN[currentMonth];
   }, [currentMonth, currentLang]);
 
   const weekdays = React.useMemo(() => {
     if (currentLang === "ar") return WEEKDAYS_AR;
-    if (currentLang === "fr") return WEEKDAYS_FR;
     return WEEKDAYS_EN;
   }, [currentLang]);
 
@@ -116,6 +108,8 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
         key={`day-${d}`}
         type="button"
         disabled={isPast}
+        aria-pressed={isSelected}
+        aria-label={`${monthName} ${d}, ${currentYear}`}
         onClick={() => handleSelectDay(d)}
         className={`h-9 w-full rounded-lg text-xs font-semibold flex items-center justify-center transition-all ${
           isSelected
@@ -137,6 +131,7 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
         <button
           type="button"
           onClick={isRtl ? handleNextMonth : handlePrevMonth}
+          aria-label={currentLang === "ar" ? "الشهر السابق" : "Previous month"}
           className="p-1.5 rounded-lg border border-brand-border/80 text-brand-text hover:bg-brand-accent/10 hover:text-brand-accent cursor-pointer transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
@@ -150,6 +145,7 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
         <button
           type="button"
           onClick={isRtl ? handlePrevMonth : handleNextMonth}
+          aria-label={currentLang === "ar" ? "الشهر التالي" : "Next month"}
           className="p-1.5 rounded-lg border border-brand-border/80 text-brand-text hover:bg-brand-accent/10 hover:text-brand-accent cursor-pointer transition-colors"
         >
           <ChevronRight className="w-4 h-4" />
@@ -174,8 +170,6 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
         <span>
           {currentLang === "ar" 
             ? `التاريخ المحدد: ${selectedDate || "لم يتم التحديد بعد"}`
-            : currentLang === "fr"
-            ? `Date sélectionnée: ${selectedDate || "Aucune"}`
             : `Selected Date: ${selectedDate || "None"}`}
         </span>
       </div>
