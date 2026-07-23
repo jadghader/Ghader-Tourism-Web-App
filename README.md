@@ -24,10 +24,10 @@ The production build creates route-specific HTML metadata entry points for `/tra
 
 Before deployment, verify the phone number, email, business address, service claims, social profile URLs, review figures, and all displayed prices against current business records. Then configure the production environment, submit `https://ghadertourism.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools, and verify the Google Business Profile website/WhatsApp links.
 
-Pushes to `main` run `.github/workflows/firebase-hosting.yml`. The workflow type-checks and builds the site, validates the Firebase configuration, and deploys both Hosting and Firestore rules to the `ghader-tourism` project. Configure these GitHub repository secrets before running it:
+Pushes to `main` run `.github/workflows/firebase-hosting.yml`. The workflow builds the site and deploys Firebase Hosting to the `ghader-tourism` project. Configure these GitHub repository secrets before running it:
 
-- `FIREBASE_SERVICE_ACCOUNT_BASE64`: base64-encoded Firebase service-account JSON with permission to deploy Hosting and Firestore rules.
+- `FIREBASE_SERVICE_ACCOUNT_BASE64`: base64-encoded Firebase service-account JSON with permission to deploy Firebase Hosting.
 - `VITE_FIREBASE_CONFIG_BASE64`: base64-encoded Firebase web-app configuration JSON used by the client.
 - `VITE_GA_MEASUREMENT_ID`: optional GA4 measurement ID.
 
-Firestore review access is disabled by the security rules. Reviews can be connected to a moderated backend later if public submissions are reintroduced.
+The current application does not use Firestore. Reviews can be connected to a moderated backend later if public submissions are reintroduced.

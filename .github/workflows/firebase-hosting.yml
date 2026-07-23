@@ -46,7 +46,4 @@ jobs:
         run: firebase projects:list
 
       - name: Deploy to Firebase Hosting
-        run: |
-          firebase deploy \
-            --project ghader-tourism \
-            --only hosting,firestore:rules \
+        run: firebase deploy --project ghader-tourism --only hosting --non-interactive
