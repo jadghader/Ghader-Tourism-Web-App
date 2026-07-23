@@ -5,12 +5,10 @@ import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import FleetGrid, { FLEET_VEHICLES } from "./components/FleetGrid";
-import TourCard, { FEATURED_TOURS } from "./components/TourCard";
 import SEO from "./components/SEO";
 import WhatsAppFAB from "./components/WhatsAppFAB";
 import UseCasesSection from "./components/UseCasesSection";
-import logoImage from "./assets/images/logo-optimized.jpg";
+import logoImage from "./assets/images/logo-optimized.webp";
 
 import { Language } from "./types";
 import { translations } from "./translations";
@@ -20,9 +18,53 @@ import { trackPageView, trackEvent } from "./utils/analytics";
 const ReviewsSection = React.lazy(() => import("./components/ReviewsSection"));
 const ContactForm = React.lazy(() => import("./components/ContactForm"));
 const BlogCarousel = React.lazy(() => import("./components/BlogCarousel"));
+const FleetGrid = React.lazy(() => import("./components/FleetGrid"));
+const TourCard = React.lazy(() => import("./components/TourCard"));
 const TransfersSection = React.lazy(() => import("./components/TransfersSection"));
 const SocialSection = React.lazy(() => import("./components/SocialSection"));
 const VehicleGallery = React.lazy(() => import("./components/VehicleGallery"));
+
+function DeferredRender({
+  children,
+  minHeight = 560,
+}: {
+  children: React.ReactNode;
+  minHeight?: number;
+}) {
+  const [shouldRender, setShouldRender] = React.useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (shouldRender || !containerRef.current) return;
+    if (!("IntersectionObserver" in window)) {
+      setShouldRender(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldRender(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [shouldRender]);
+
+  return (
+    <div ref={containerRef} style={shouldRender ? undefined : { minHeight }}>
+      {shouldRender ? (
+        <React.Suspense fallback={<div aria-hidden="true" style={{ minHeight }} />}>
+          {children}
+        </React.Suspense>
+      ) : null}
+    </div>
+  );
+}
 
 const PILLARS_DATA = [
   {
@@ -40,11 +82,11 @@ const PILLARS_DATA = [
     icon: UserCheck,
     title: {
       en: "Local, experienced drivers",
-      ar: "سائقون خبراء ومحترفون",
+      ar: "سائق خبير ومحترف",
     },
     description: {
       en: "Courteous drivers who know Lebanon well, communicate clearly, and put your comfort first.",
-      ar: "نخبة من السائقين المحترفين يتميزون باللباقة والخبرة الكاملة بجميع الطرق والمناطق اللبنانية.",
+      ar: "سائق محترف يتميز باللباقة والخبرة الكاملة بجميع الطرق والمناطق اللبنانية.",
     }
   },
   {
@@ -263,8 +305,15 @@ export default function App() {
 
   // Handle vehicle quote request
   const handleSelectVehicle = (vehicleId: string) => {
-    const vehicle = FLEET_VEHICLES.find(v => v.id === vehicleId);
-    const vehicleName = vehicle ? vehicle.name : "Luxury Car";
+    const vehicleNames: Record<string, string> = {
+      v1: "Sedan",
+      v2: "SUV",
+      v3: "Luxury SUV",
+      v4: "Minivan",
+      v5: "Van",
+      v6: "Bus",
+    };
+    const vehicleName = vehicleNames[vehicleId] || "Private Vehicle";
     
     // Track conversion event for vehicle selection
     trackEvent("select_vehicle", "Conversions", vehicleName);
@@ -280,8 +329,7 @@ export default function App() {
 
   // Handle standard tour booking
   const handleBookTour = (tourId: string, translatedName?: string) => {
-    const tour = FEATURED_TOURS.find(t => t.id === tourId);
-    const tourName = translatedName || (tour ? tour.name : "Private Day Trip");
+    const tourName = translatedName || "Private Day Trip";
 
     // Track conversion event for tour booking
     trackEvent("book_tour", "Conversions", tourName);
@@ -431,22 +479,30 @@ export default function App() {
 
             {/* BLOG CAROUSEL SIGHTSEEING GALLERY */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 deferred-section">
-              <BlogCarousel currentLang={currentLang} onNavigate={setActiveView} />
+              <DeferredRender minHeight={420}>
+                <BlogCarousel currentLang={currentLang} onNavigate={setActiveView} />
+              </DeferredRender>
             </section>
 
             {/* IMAGES CAROUSEL GALLERY */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-2 deferred-section">
-              <VehicleGallery currentLang={currentLang} />
+              <DeferredRender minHeight={540}>
+                <VehicleGallery currentLang={currentLang} />
+              </DeferredRender>
             </section>
 
             {/* FLEET GRID */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 deferred-section">
-              <FleetGrid currentLang={currentLang} onSelectVehicle={handleSelectVehicle} />
+              <DeferredRender minHeight={900}>
+                <FleetGrid currentLang={currentLang} onSelectVehicle={handleSelectVehicle} />
+              </DeferredRender>
             </section>
 
             {/* FEATURED TOURS */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 deferred-section">
-              <TourCard currentLang={currentLang} onBookTour={handleBookTour} />
+              <DeferredRender minHeight={900}>
+                <TourCard currentLang={currentLang} onBookTour={handleBookTour} />
+              </DeferredRender>
             </section>
 
             {/* REVIEWS */}

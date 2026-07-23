@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { Language } from "../types";
 import { translations } from "../translations";
 import { getWhatsAppLink } from "../utils/whatsapp";
-import logoImage from "../assets/images/logo-optimized.jpg";
+import logoImage from "../assets/images/logo-optimized.webp";
 
 interface HeaderProps {
   currentLang: Language;

@@ -1,5 +1,15 @@
 import React from "react";
-import { Plane, Car, Compass, Snowflake, ShieldCheck, Hotel, ArrowRight, Phone, MessageSquare } from "lucide-react";
+import {
+  Plane,
+  Car,
+  Compass,
+  Snowflake,
+  ShieldCheck,
+  Hotel,
+  ArrowRight,
+  Phone,
+  MessageSquare,
+} from "lucide-react";
 import { Language } from "../types";
 
 interface UseCasesSectionProps {
@@ -23,79 +33,117 @@ const USE_CASES: UseCaseItem[] = [
   {
     id: "airport",
     icon: Plane,
-    tag: { en: "Arrivals & departures, 24/7", ar: "وصول ومغادرة على مدار الساعة" },
-    title: { en: "Private Beirut Airport pickup", ar: "تاكسي مطار بيروت الدولي والـ VIP" },
+    tag: {
+      en: "Arrivals & departures, 24/7",
+      ar: "وصول ومغادرة على مدار الساعة",
+    },
+    title: { en: "Beirut Airport pickup", ar: "تاكسي مطار بيروت الدولي" },
     desc: {
       en: "A calm, pre-arranged welcome at Beirut Airport (BEY), with private transport to hotels, homes, and destinations across Lebanon.",
       ar: "توصيلة خاصة ومنسّقة من مطار بيروت إلى الفنادق والمنازل والوجهات في جميع أنحاء لبنان.",
     },
     bullets: {
-      en: ["Clearly coordinated airport meeting point", "60 minutes free waiting time", "Real-time flight monitoring"],
-      ar: ["تنسيق واضح لنقطة اللقاء في المطار", "ساعة انتظار مجانية", "متابعة مباشرة لموعد وصول الرحلة"]
+      en: [
+        "Clearly coordinated airport meeting point",
+        "60 minutes free waiting time",
+        "Real-time flight monitoring",
+      ],
+      ar: [
+        "تنسيق واضح لنقطة اللقاء في المطار",
+        "ساعة انتظار مجانية",
+        "متابعة مباشرة لموعد وصول الرحلة",
+      ],
     },
     waMessage: {
       en: "Hello Ghader Tourism, I would like to book a premium Beirut Airport VIP transfer.",
-      ar: "مرحباً غادر للسياحة، أود حجز تاكسي مخصص وممتاز من وإلى مطار بيروت الدولي."
+      ar: "مرحباً غادر للسياحة، أود حجز تاكسي مخصص وممتاز من وإلى مطار بيروت الدولي.",
     },
-    targetView: "transfers"
+    targetView: "transfers",
   },
   {
     id: "chauffeur",
     icon: Car,
     tag: { en: "By the hour or by the day", ar: "تأجير يومي مخصص" },
-    title: { en: "Private driver & chauffeur", ar: "سائق خاص كبار الشخصيات VIP" },
+    title: {
+      en: "Private driver & chauffeur",
+      ar: "خدمة سائق خاص VIP",
+    },
     desc: {
       en: "Keep a trusted local driver with you for meetings, shopping, events, appointments, or a flexible day around Lebanon.",
       ar: "احجز سيارة خاصة مع سائق محترف لخدمتك طوال اليوم في اجتماعات العمل والتسوق والمناسبات والتنقل بين المناطق.",
     },
     bullets: {
-      en: ["Professional Arabic- and English-speaking drivers", "Clean, air-conditioned vehicles based on availability", "Flexible routes, stops, and booking periods"],
-      ar: ["سائقون محترفون يتحدثون العربية والإنجليزية", "سيارات نظيفة ومكيّفة بحسب التوفر", "مرونة في تحديد المسارات والمحطات ومدة الحجز"]
+      en: [
+        "Professional Arabic- and English-speaking drivers",
+        "Clean, air-conditioned vehicles based on availability",
+        "Flexible routes, stops, and booking periods",
+      ],
+      ar: [
+        "سائق محترف يتحدث العربية والإنجليزية",
+        "سيارات نظيفة ومكيّفة بحسب التوفر",
+        "مرونة في تحديد المسارات والمحطات ومدة الحجز",
+      ],
     },
     waMessage: {
       en: "Hello Ghader Tourism, I am interested in hiring a private VIP chauffeur and luxury vehicle.",
-      ar: "مرحباً غادر للسياحة، أنا مهتم باستئجار سيارة فاخرة مع سائق خاص لكبار الشخصيات."
+      ar: "مرحباً غادر للسياحة، أنا مهتم باستئجار سيارة فاخرة مع سائق خاص لكبار الشخصيات.",
     },
-    targetView: "fleet"
+    targetView: "fleet",
   },
   {
     id: "tours",
     icon: Compass,
     tag: { en: "Made around your interests", ar: "جولات سياحية مخصصة" },
-    title: { en: "Private Lebanon day tours", ar: "رحلات سياحية مع سائق محلي" },
+    title: { en: "Private Lebanon tours", ar: "رحلات سياحية مع سائق محلي" },
     desc: {
       en: "See Lebanon at your pace—from ancient cities and mountain villages to the coast—with a local driver and a comfortable private vehicle.",
-      ar: "اكتشف تاريخ لبنان وحضارته، من الآثار الرومانية العريقة إلى الشواطئ والمطاعم، برفقة سائقين محليين.",
+      ar: "اكتشف تاريخ لبنان وحضارته، من الآثار الرومانية العريقة إلى الشواطئ والمطاعم، برفقة سائق محلي.",
     },
     bullets: {
-      en: ["Custom trips to Baalbek, Byblos, Jeita & Cedars", "Local drivers help you travel between stops", "Suitable for couples, families & groups"],
-      ar: ["رحلات مخصصة إلى بعلبك وجبيل وجعيتا والأرز", "سائقون محليون يساعدونك في التنقل بين المحطات", "مناسبة للعائلات والمجموعات والأزواج"]
+      en: [
+        "Custom trips to Baalbek, Byblos, Jeita & Cedars",
+        "Local drivers help you travel between stops",
+        "Suitable for couples, families & groups",
+      ],
+      ar: [
+        "رحلات مخصصة إلى بعلبك وجبيل وجعيتا والأرز",
+        "سائق محلي يساعدك في التنقل بين المحطات",
+        "مناسبة للعائلات والمجموعات والأزواج",
+      ],
     },
     waMessage: {
       en: "Hello Ghader Tourism, I would like to arrange a custom private day trip across Lebanon with a car and driver.",
-      ar: "مرحباً غادر للسياحة، أود ترتيب رحلة خاصة ومخصصة في لبنان مع سيارة وسائق."
+      ar: "مرحباً غادر للسياحة، أود ترتيب رحلة خاصة ومخصصة في لبنان مع سيارة وسائق.",
     },
-    targetView: "tours"
-  }
+    targetView: "tours",
+  },
 ];
 
-export default function UseCasesSection({ currentLang, onNavigate }: UseCasesSectionProps) {
+export default function UseCasesSection({
+  currentLang,
+  onNavigate,
+}: UseCasesSectionProps) {
   const isRtl = currentLang === "ar";
 
   const t = {
     headerTag: { en: "How we can help", ar: "كيف يمكننا مساعدتك" },
-    headerTitle: { en: "One local team for your whole Lebanon journey", ar: "فريق محلي واحد لكل رحلتك في لبنان" },
+    headerTitle: {
+      en: "One local team for your whole Lebanon journey",
+      ar: "فريق محلي واحد لكل رحلتك في لبنان",
+    },
     headerSub: {
       en: "Arriving at Beirut Airport, planning a family day out, or travelling for business? Tell us what you need and we’ll arrange the driver, vehicle, and timing.",
       ar: "سواء كنت سائحاً ترغب باستكشاف التاريخ، أو رجل أعمال قادماً إلى بيروت، أو عائلة تستكشف لبنان، نحن نوفر لك الخدمة المثالية.",
     },
-    inquireBtn: { en: "Inquire via WhatsApp", ar: "استفسار وحجز عبر واتساب" }
+    inquireBtn: { en: "Inquire via WhatsApp", ar: "استفسار وحجز عبر واتساب" },
   };
 
   return (
     <div className="space-y-12" id="use-cases-section">
       {/* Section Header */}
-      <div className={`text-center max-w-3xl mx-auto space-y-4 ${isRtl ? "text-right" : "text-left md:text-center"}`}>
+      <div
+        className={`text-center max-w-3xl mx-auto space-y-4 ${isRtl ? "text-right" : "text-left md:text-center"}`}
+      >
         <span className="text-sm text-brand-accent font-bold inline-block">
           {t.headerTag[currentLang]}
         </span>
@@ -119,14 +167,18 @@ export default function UseCasesSection({ currentLang, onNavigate }: UseCasesSec
             >
               <div className="space-y-4">
                 {/* Card icon */}
-                <div className={`flex ${isRtl ? "justify-end" : "justify-start"}`}>
+                <div
+                  className={`flex ${isRtl ? "justify-end" : "justify-start"}`}
+                >
                   <div className="w-11 h-11 rounded-xl bg-brand-bg border border-brand-border/80 text-brand-accent flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
                     <IconComponent className="w-5.5 h-5.5" />
                   </div>
                 </div>
 
                 {/* Title & Description */}
-                <div className={`space-y-2 ${isRtl ? "text-right" : "text-left"}`}>
+                <div
+                  className={`space-y-2 ${isRtl ? "text-right" : "text-left"}`}
+                >
                   <h3 className="font-extrabold text-base sm:text-lg text-brand-text font-sans tracking-tight">
                     {uc.title[currentLang]}
                   </h3>

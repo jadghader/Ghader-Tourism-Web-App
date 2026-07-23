@@ -14,7 +14,7 @@ interface MetaContent {
 }
 
 const SITE_URL = "https://ghadertourism.com";
-const OG_IMAGE_URL = `${SITE_URL}/og-image.png`;
+const OG_IMAGE_URL = `${SITE_URL}/og-image.jpg`;
 
 const SEO_DATA: Record<Language, Record<string, MetaContent>> = {
   en: {
@@ -87,7 +87,7 @@ const SEO_DATA: Record<Language, Record<string, MetaContent>> = {
     },
     reviews: {
       title: "تقييمات العملاء وخدمة موثوقة في لبنان | غادر للسياحة",
-      description: "اطلع على تقييمات العملاء حول خدماتنا الموثوقة في النقل الخاص وتأجير السائقين في لبنان.",
+      description: "اطلع على تقييمات العملاء حول خدماتنا الموثوقة في النقل الخاص وخدمة السائق في لبنان.",
       keywords: "تقييمات غادر للسياحة, تاكسي مطار بيروت تقييمات"
     }
   },

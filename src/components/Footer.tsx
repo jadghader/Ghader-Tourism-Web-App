@@ -2,7 +2,7 @@ import React from "react";
 import { Phone, Mail, MapPin, Award, Shield, Heart } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
-import logoImage from "../assets/images/logo-optimized.jpg";
+import logoImage from "../assets/images/logo-optimized.webp";
 
 interface FooterProps {
   currentLang: Language;

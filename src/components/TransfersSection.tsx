@@ -116,7 +116,7 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
           {currentLang === "ar" ? "توصيلات مطار بيروت الخاصة • متاحة ٢٤/٧" : "Private Beirut Airport Transfers • 24/7"}
         </span>
         <h1 className="text-3xl md:text-5xl font-black text-brand-text tracking-tight leading-tight">
-          {currentLang === "ar" ? "تاكسي مطار بيروت وسائقون خصوصيون" : "Beirut Airport Taxi & Private Drivers"}
+            {currentLang === "ar" ? "تاكسي مطار بيروت وسائق خاص" : "Beirut Airport Taxi & Private Drivers"}
         </h1>
         <p className="text-brand-muted text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
           {currentLang === "ar"
@@ -214,7 +214,7 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
           <ul className="space-y-2.5 text-[11px] text-brand-text/90 font-medium pt-2">
             <li className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}>
               <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />
-              <span>{currentLang === "ar" ? "سائقون محترفون يتحدثون العربية والإنجليزية" : "Professional Arabic- and English-speaking drivers"}</span>
+              <span>{currentLang === "ar" ? "سائق محترف يتحدث العربية والإنجليزية" : "Professional Arabic- and English-speaking drivers"}</span>
             </li>
             <li className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}>
               <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />
@@ -274,11 +274,11 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
             <UserCheck className="w-5 h-5" />
           </div>
           <h3 className="font-bold text-lg text-brand-text font-sans tracking-tight">
-            {currentLang === "ar" ? "سائقون محترفون وذوو خبرة" : "Experienced Drivers"}
+            {currentLang === "ar" ? "سائق محترف وذو خبرة" : "Experienced Drivers"}
           </h3>
           <p className="text-xs text-brand-muted leading-relaxed">
             {currentLang === "ar"
-              ? "سائقونا محترفون ويحملون المستندات القانونية اللازمة لنقل الركاب، وينسّقون معك نقطة الاستقبال المناسبة في المطار."
+              ? "سائقنا محترف ويحمل المستندات القانونية اللازمة لنقل الركاب، وينسّق معك نقطة الاستقبال المناسبة في المطار."
               : "Our professional drivers carry the legal documents required for passenger transport and coordinate a suitable airport meeting point with you."}
           </p>
         </div>

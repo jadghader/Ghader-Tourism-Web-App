@@ -1,7 +1,7 @@
 import React from "react";
 import { Language } from "../types";
-import landscapeImage1 from "../assets/images/landing_en-optimized.jpg";
-import landscapeImage2 from "../assets/images/landing_ar-optimized.jpg";
+import landscapeImage1 from "../assets/images/landing_en-optimized.webp";
+import landscapeImage2 from "../assets/images/landing_ar-optimized.webp";
 
 interface BlogCarouselProps {
   currentLang: Language;
@@ -11,6 +11,13 @@ interface BlogCarouselProps {
 export default function BlogCarousel({ currentLang }: BlogCarouselProps) {
   const isRtl = currentLang === "ar";
   const activeImage = currentLang === "ar" ? landscapeImage2 : landscapeImage1;
+
+  React.useEffect(() => {
+    const alternateImage = currentLang === "ar" ? landscapeImage1 : landscapeImage2;
+    const preload = new Image();
+    preload.decoding = "async";
+    preload.src = alternateImage;
+  }, [currentLang]);
 
   return (
     <div className="space-y-6" id="blog-carousel-section">

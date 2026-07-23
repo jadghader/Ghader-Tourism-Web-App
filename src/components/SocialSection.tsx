@@ -44,7 +44,8 @@ export default function SocialSection({ currentLang }: SocialSectionProps) {
       icon: Facebook,
       url: "https://facebook.com/ghadertourism",
       color: "hover:border-blue-500/30 hover:shadow-blue-950/10 hover:text-blue-400",
-      iconBg: "bg-blue-500/10 text-blue-400 border-blue-500/20"
+      iconBg: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+      cta: { en: "Like our page", ar: "أعجب بصفحتنا" },
     },
     {
       name: "TikTok",
@@ -118,7 +119,7 @@ export default function SocialSection({ currentLang }: SocialSectionProps) {
               </div>
 
               <div className={`flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase ${isRtl ? "justify-start flex-row-reverse" : "justify-start"}`}>
-                <span>{followBtn[currentLang]}</span>
+                <span>{social.cta?.[currentLang] || followBtn[currentLang]}</span>
                 <span className="text-brand-accent font-black">→</span>
               </div>
             </a>

@@ -10,12 +10,12 @@ import {
 } from "lucide-react";
 import { Language, Tour } from "../types";
 import { translations } from "../translations";
-import northImage from "../assets/images/tour-jeita-harissa.jpg";
-import coastalImage from "../assets/images/tour-byblos-batroun.jpg";
-import choufImage from "../assets/images/tour-chouf-beiteddine.jpg";
-import beirutImage from "../assets/images/tour-beirut.jpg";
-import saidaImage from "../assets/images/tour-saida-jezzine.jpg";
-import baalbekImage from "../assets/images/tour-baalbek-zahle.jpg";
+import northImage from "../assets/images/tour-jeita-harissa.webp";
+import coastalImage from "../assets/images/tour-byblos-batroun.webp";
+import choufImage from "../assets/images/tour-chouf-beiteddine.webp";
+import beirutImage from "../assets/images/tour-beirut.webp";
+import saidaImage from "../assets/images/tour-saida-jezzine.webp";
+import baalbekImage from "../assets/images/tour-baalbek-zahle.webp";
 
 interface ToursListProps {
   currentLang: Language;
