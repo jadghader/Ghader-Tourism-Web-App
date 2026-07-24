@@ -6,12 +6,14 @@ import galleryImage3En from "../assets/images/3_en.webp";
 import galleryImage4En from "../assets/images/4_en.webp";
 import galleryImage6En from "../assets/images/6_en.webp";
 import galleryImage7En from "../assets/images/7_en.webp";
+import galleryImage8En from "../assets/images/8_en.webp";
 import galleryImage1Ar from "../assets/images/1_ar.webp";
 import galleryImage2Ar from "../assets/images/2_ar.webp";
 import galleryImage3Ar from "../assets/images/3_ar.webp";
 import galleryImage4Ar from "../assets/images/4_ar.webp";
 import galleryImage5Ar from "../assets/images/5_ar.webp";
 import galleryImage7Ar from "../assets/images/7_ar.webp";
+import galleryImage8Ar from "../assets/images/8_ar.webp";
 
 interface GalleryItem {
   id: string;
@@ -27,6 +29,7 @@ const GALLERY_ITEMS: Record<Language, GalleryItem[]> = {
     { id: "g4-en", image: galleryImage4En },
     { id: "g6-en", image: galleryImage6En },
     { id: "g7-en", image: galleryImage7En },
+    { id: "g8-en", image: galleryImage8En },
   ],
   ar: [
     { id: "g1-ar", image: galleryImage1Ar },
@@ -35,6 +38,7 @@ const GALLERY_ITEMS: Record<Language, GalleryItem[]> = {
     { id: "g4-ar", image: galleryImage4Ar },
     { id: "g5-ar", image: galleryImage5Ar },
     { id: "g7-ar", image: galleryImage7Ar },
+    { id: "g8-ar", image: galleryImage8Ar },
   ],
 };
 

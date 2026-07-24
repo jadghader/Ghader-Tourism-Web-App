@@ -21,7 +21,7 @@ export default function WhatsAppFAB({ currentLang, activeView }: WhatsAppFABProp
       onClick={() => trackEvent("click_whatsapp", "Conversions", `${activeView}_floating_button`)}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.94 }}
-      className={`group fixed bottom-6 z-50 flex h-13 w-13 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-brand-accent text-brand-btn-text shadow-[0_12px_35px_-10px_var(--accent-color)] transition-colors hover:bg-brand-accent-hover focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-accent/30 ${
+      className={`group fixed bottom-6 z-50 flex h-13 w-13 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-[#25D366] text-white shadow-[0_12px_35px_-10px_#25D366] transition-colors hover:bg-[#20BD5A] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/30 ${
         isRtl ? "left-6" : "right-6"
       }`}
       title={label}
@@ -30,7 +30,7 @@ export default function WhatsAppFAB({ currentLang, activeView }: WhatsAppFABProp
     >
       <span
         aria-hidden="true"
-        className="absolute inset-0 -z-10 rounded-full bg-brand-accent/35 motion-safe:animate-ping"
+        className="absolute inset-0 -z-10 rounded-full bg-[#25D366]/35 motion-safe:animate-ping"
       />
       <span
         aria-hidden="true"
