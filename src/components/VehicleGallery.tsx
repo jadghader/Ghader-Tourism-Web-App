@@ -96,7 +96,7 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
                 }}
                 className={`absolute w-[300px] sm:w-[400px] md:w-[480px] lg:w-[560px] aspect-square rounded-[24px] sm:rounded-[30px] overflow-hidden cursor-pointer select-none transition-[transform,opacity] duration-500 ease-out ${
                   isMiddle
-                    ? "shadow-brand bg-brand-card border-2 border-brand-accent"
+                    ? "shadow-brand bg-brand-accent border-2 border-brand-accent"
                     : "shadow-lg bg-brand-card/40 border border-brand-border/40"
                 }`}
                 style={{
@@ -106,13 +106,13 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
                 }}
               >
                 {/* Portrait Image Only - Pure, clean, no text overlays */}
-                <div className="relative w-full h-full bg-neutral-950">
+                <div className="absolute inset-0 overflow-hidden">
                   <img
                     src={item.image}
                     alt={currentLang === "ar"
                       ? `خدمات غادر للسياحة في لبنان، صورة ${idx + 1}`
                       : `Ghader Tourism services in Lebanon, image ${idx + 1}`}
-                    className="w-full h-full object-contain object-center select-none pointer-events-none bg-black/95"
+                    className="block h-full w-full scale-[1.01] object-cover object-center select-none pointer-events-none"
                     loading="lazy"
                     decoding="async"
                     fetchPriority="low"
@@ -121,6 +121,12 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
                     referrerPolicy="no-referrer"
                   />
                 </div>
+                {isMiddle && (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 z-30 rounded-[22px] border-2 border-brand-accent sm:rounded-[28px]"
+                  />
+                )}
               </div>
             );
           })}

@@ -140,9 +140,119 @@ img {
   contain-intrinsic-size: auto 700px;
 }
 
+.deferred-shell {
+  position: relative;
+  width: 100%;
+}
+
+.deferred-content {
+  animation: deferredContentReveal 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.deferred-placeholder {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  padding-block: 1rem;
+  opacity: 0.72;
+  animation: deferredPlaceholderBreath 1.8s ease-in-out infinite;
+}
+
+.deferred-placeholder-heading,
+.deferred-placeholder-subheading,
+.deferred-placeholder-card,
+.deferred-placeholder-image,
+.deferred-placeholder-line {
+  background:
+    linear-gradient(
+      105deg,
+      color-mix(in srgb, var(--card-bg) 88%, var(--accent-color) 12%),
+      color-mix(in srgb, var(--card-bg) 96%, white 4%),
+      color-mix(in srgb, var(--card-bg) 88%, var(--accent-color) 12%)
+    );
+}
+
+.deferred-placeholder-heading {
+  width: min(15rem, 55%);
+  height: 1.25rem;
+  border-radius: 999px;
+}
+
+.deferred-placeholder-subheading {
+  width: min(24rem, 78%);
+  height: 0.7rem;
+  border-radius: 999px;
+  opacity: 0.7;
+}
+
+.deferred-placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.deferred-placeholder-card {
+  min-height: 11rem;
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  padding: 0.75rem;
+}
+
+.deferred-placeholder-image {
+  width: 100%;
+  height: 6.5rem;
+  border-radius: 1rem;
+  opacity: 0.72;
+}
+
+.deferred-placeholder-line {
+  width: 62%;
+  height: 0.55rem;
+  margin-top: 0.65rem;
+  border-radius: 999px;
+  opacity: 0.62;
+}
+
+.deferred-placeholder-line-wide {
+  width: 82%;
+}
+
+@keyframes deferredContentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes deferredPlaceholderBreath {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
 @media (max-width: 767px) {
   .deferred-section {
     contain-intrinsic-size: auto 560px;
+  }
+
+  .deferred-placeholder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deferred-placeholder-card:nth-child(n + 2) {
+    display: none;
   }
 }
 
@@ -157,6 +267,10 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .deferred-placeholder {
+    opacity: 0.7;
   }
 }
 

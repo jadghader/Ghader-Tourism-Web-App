@@ -24,6 +24,28 @@ const TransfersSection = React.lazy(() => import("./components/TransfersSection"
 const SocialSection = React.lazy(() => import("./components/SocialSection"));
 const VehicleGallery = React.lazy(() => import("./components/VehicleGallery"));
 
+function DeferredPlaceholder({ minHeight }: { minHeight: number }) {
+  return (
+    <div
+      className="deferred-placeholder"
+      style={{ minHeight }}
+      aria-hidden="true"
+    >
+      <div className="deferred-placeholder-heading" />
+      <div className="deferred-placeholder-subheading" />
+      <div className="deferred-placeholder-grid">
+        {[0, 1, 2].map((item) => (
+          <div className="deferred-placeholder-card" key={item}>
+            <div className="deferred-placeholder-image" />
+            <div className="deferred-placeholder-line deferred-placeholder-line-wide" />
+            <div className="deferred-placeholder-line" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function DeferredRender({
   children,
   minHeight = 560,
@@ -44,11 +66,11 @@ function DeferredRender({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldRender(true);
+          React.startTransition(() => setShouldRender(true));
           observer.disconnect();
         }
       },
-      { rootMargin: "200px 0px" },
+      { rootMargin: "700px 0px" },
     );
 
     observer.observe(containerRef.current);
@@ -56,12 +78,19 @@ function DeferredRender({
   }, [shouldRender]);
 
   return (
-    <div ref={containerRef} style={shouldRender ? undefined : { minHeight }}>
+    <div
+      ref={containerRef}
+      className="deferred-shell"
+      style={shouldRender ? undefined : { minHeight }}
+      aria-busy={!shouldRender}
+    >
       {shouldRender ? (
-        <React.Suspense fallback={<div aria-hidden="true" style={{ minHeight }} />}>
-          {children}
+        <React.Suspense fallback={<DeferredPlaceholder minHeight={minHeight} />}>
+          <div className="deferred-content">{children}</div>
         </React.Suspense>
-      ) : null}
+      ) : (
+        <DeferredPlaceholder minHeight={minHeight} />
+      )}
     </div>
   );
 }
