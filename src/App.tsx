@@ -48,7 +48,7 @@ function DeferredRender({
           observer.disconnect();
         }
       },
-      { rootMargin: "600px 0px" },
+      { rootMargin: "200px 0px" },
     );
 
     observer.observe(containerRef.current);
@@ -621,7 +621,7 @@ export default function App() {
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             onClick={scrollToTop}
-            className={`fixed bottom-6 z-50 p-3 bg-brand-accent text-brand-bg hover:bg-brand-accent-hover rounded-full shadow-2xl transition-transform hover:scale-110 active:scale-95 cursor-pointer focus:outline-none border border-brand-accent/20 flex items-center justify-center group ${
+            className={`fixed bottom-6 z-50 p-3 bg-brand-accent text-brand-btn-text hover:bg-brand-accent-hover rounded-full shadow-2xl transition-transform hover:scale-110 active:scale-95 cursor-pointer focus:outline-none border border-brand-accent/20 flex items-center justify-center group ${
               isRtl ? "right-6" : "left-6"
             }`}
             title={currentLang === "ar" ? "الرجوع للأعلى" : "Scroll to Top"}

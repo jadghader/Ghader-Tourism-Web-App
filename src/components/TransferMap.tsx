@@ -346,11 +346,11 @@ export default function TransferMap({
     setMapReady(true);
 
     // Initial load markers
-    // BEY Airport Marker (Pulsing emerald/gold ring)
+    // BEY Airport Marker (pulsing brand-red ring)
     const airportHtml = `
       <div class="relative flex items-center justify-center w-8 h-8">
-        <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-500/30 animate-ping opacity-75"></span>
-        <div class="relative w-6 h-6 bg-brand-accent border border-brand-accent rounded-full flex items-center justify-center shadow-lg text-brand-bg font-extrabold text-[11px]">
+        <span class="absolute inline-flex h-full w-full rounded-full bg-brand-accent/30 animate-ping opacity-75"></span>
+        <div class="relative w-6 h-6 bg-brand-accent border border-brand-accent rounded-full flex items-center justify-center shadow-lg text-brand-btn-text font-extrabold text-[11px]">
           ✈️
         </div>
       </div>
@@ -409,7 +409,7 @@ export default function TransferMap({
 
     // Create custom polyline with glow effect
     const routePolyline = L.polyline(pathPoints, {
-      color: "#10b981", // Brand Accent (Cedar Emerald Green)
+      color: "#a71c07", // Brand primary
       weight: 4,
       opacity: 0.85,
       lineCap: "round",
@@ -441,7 +441,7 @@ export default function TransferMap({
       .addTo(map)
       .bindPopup(`
         <div style="font-family: sans-serif; font-size: 12px; color: #1c1917;">
-          <h4 style="margin: 0 0 4px; font-weight: 800; color: #10b981;">${destName}</h4>
+          <h4 style="margin: 0 0 4px; font-weight: 800; color: #a71c07;">${destName}</h4>
           <p style="margin: 0 0 2px;"><b>Distance:</b> ${route.distance}</p>
           <p style="margin: 0;"><b>Est. Time:</b> ${route.duration}</p>
         </div>

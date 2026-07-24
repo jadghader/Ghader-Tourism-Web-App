@@ -92,7 +92,7 @@ export default function ReviewsSection({ currentLang, pageHeading = false }: Rev
       {/* Verifiable service indicators */}
       <div className="max-w-4xl mx-auto bg-brand-card border border-brand-border/60 p-6 md:p-8 rounded-[32px] relative overflow-hidden shadow-xl">
         <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-[9px] font-mono font-bold text-brand-accent">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
           <span>{currentStats.live}</span>
         </div>
 

@@ -207,7 +207,7 @@ export default function UseCasesSection({
                   href={`https://wa.me/9613460865?text=${encodeURIComponent(uc.waMessage[currentLang])}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-brand-accent hover:bg-brand-accent-hover text-brand-bg font-extrabold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md border border-brand-accent/15"
+                  className="w-full bg-brand-accent hover:bg-brand-accent-hover text-brand-btn-text font-extrabold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md border border-brand-accent/15"
                 >
                   <MessageSquare className="w-4 h-4 text-brand-bg" />
                   <span>{t.inquireBtn[currentLang]}</span>

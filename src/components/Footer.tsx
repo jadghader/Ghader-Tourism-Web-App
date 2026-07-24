@@ -1,5 +1,5 @@
 import React from "react";
-import { Phone, Mail, MapPin, Award, Shield, Heart } from "lucide-react";
+import { Phone, MapPin, Award, Shield, Heart } from "lucide-react";
 import { Language } from "../types";
 import { translations } from "../translations";
 import logoImage from "../assets/images/logo-optimized.webp";
@@ -26,7 +26,7 @@ export default function Footer({ currentLang, setActiveView, activeView }: Foote
           {/* Column 1: Brand details */}
           <div className="space-y-3">
             <div className="flex items-center gap-2.5" dir={isRtl ? "rtl" : "ltr"}>
-              <span className="h-14 w-14 rounded-xl overflow-hidden bg-white border border-brand-border shadow-sm flex items-center justify-center shrink-0 p-0.5">
+              <span className="h-10 w-10 rounded-xl overflow-hidden bg-white border border-brand-border shadow-sm flex items-center justify-center shrink-0 p-0.5">
                 <img
                   src={logoImage}
                   alt={isRtl ? "شعار غادر للسياحة" : "Ghader Tourism logo"}
@@ -34,8 +34,8 @@ export default function Footer({ currentLang, setActiveView, activeView }: Foote
                   loading="lazy"
                   decoding="async"
                   fetchPriority="low"
-                  width="56"
-                  height="56"
+                  width="40"
+                  height="40"
                 />
               </span>
               <span className="text-brand-text font-extrabold text-base font-sans tracking-tight">
@@ -97,10 +97,6 @@ export default function Footer({ currentLang, setActiveView, activeView }: Foote
               <li className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}>
                 <Phone className="w-3.5 h-3.5 text-brand-accent shrink-0" />
                 <span dir="ltr" className="font-bold">+961 3 460 865</span>
-              </li>
-              <li className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}>
-                <Mail className="w-3.5 h-3.5 text-brand-accent shrink-0" />
-                <span className="font-mono">ghadertourism@gmail.com</span>
               </li>
             </ul>
           </div>

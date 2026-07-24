@@ -238,7 +238,7 @@ export default function TourCard({ currentLang, onBookTour, pageHeading = false 
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-5 text-left text-white">
                   <span className="inline-flex items-center gap-2 rounded-full bg-black/45 px-3 py-1.5 text-[10px] font-bold backdrop-blur-sm">
-                    <MapPin className="h-3.5 w-3.5 text-emerald-400" />
+                    <MapPin className="h-3.5 w-3.5 text-brand-accent" />
                     {currentLang === "ar" ? "لبنان" : "Lebanon"}
                   </span>
                 </div>

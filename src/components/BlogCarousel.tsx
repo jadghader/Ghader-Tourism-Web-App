@@ -12,13 +12,6 @@ export default function BlogCarousel({ currentLang }: BlogCarouselProps) {
   const isRtl = currentLang === "ar";
   const activeImage = currentLang === "ar" ? landscapeImage2 : landscapeImage1;
 
-  React.useEffect(() => {
-    const alternateImage = currentLang === "ar" ? landscapeImage1 : landscapeImage2;
-    const preload = new Image();
-    preload.decoding = "async";
-    preload.src = alternateImage;
-  }, [currentLang]);
-
   return (
     <div className="space-y-6" id="blog-carousel-section">
       <div className={`flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 ${isRtl ? "text-right flex-row-reverse" : "text-left"}`}>

@@ -250,7 +250,7 @@ export default function FleetGrid({ currentLang, onSelectVehicle, pageHeading = 
                     >
                       <span>{t.requestQuote}</span>
                       <span className="flex h-2 w-2 relative">
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
                       </span>
                     </button>
                   </div>

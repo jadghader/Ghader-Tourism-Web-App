@@ -327,7 +327,7 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-bg px-5 py-2.5 rounded-xl font-sans text-xs font-bold transition-all inline-flex items-center gap-2 border border-brand-accent/20 w-fit"
+                className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-btn-text px-5 py-2.5 rounded-xl font-sans text-xs font-bold transition-all inline-flex items-center gap-2 border border-brand-accent/20 w-fit"
               >
                 <span>{currentLang === "ar" ? "احجز فندقك عبر واتساب" : "Book Hotel via WhatsApp"}</span>
                 <ArrowRight className="w-3.5 h-3.5" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />
@@ -359,7 +359,7 @@ export default function TransfersSection({ currentLang, setActiveView }: Transfe
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-bg px-5 py-2.5 rounded-xl font-sans text-xs font-bold transition-all inline-flex items-center gap-2 border border-brand-accent/20 w-fit"
+                className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-btn-text px-5 py-2.5 rounded-xl font-sans text-xs font-bold transition-all inline-flex items-center gap-2 border border-brand-accent/20 w-fit"
               >
                 <span>{currentLang === "ar" ? "احجز صالون المطار الـ VIP" : "Book VIP Salon Access"}</span>
                 <ArrowRight className="w-3.5 h-3.5" style={{ transform: isRtl ? "rotate(180deg)" : "none" }} />

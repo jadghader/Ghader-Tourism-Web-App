@@ -118,7 +118,9 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
       document.documentElement.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollPosition.current}px`;
-      document.body.style.width = '100%';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflowX = 'hidden';
       document.addEventListener('keydown', handleKeyDown);
       document.getElementById('booking-modal-title')?.focus({ preventScroll: true });
     } else if (wasBookingModalOpen.current) {
@@ -132,7 +134,9 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
       document.documentElement.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
-      document.body.style.width = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflowX = '';
       document.removeEventListener('keydown', handleKeyDown);
       if (bookingModalOpen) {
         window.scrollTo({ top: scrollPosition.current, behavior: 'instant' });
@@ -172,7 +176,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className={`inline-flex items-center gap-2.5 bg-[#141414]/90 backdrop-blur-md px-4 py-2 rounded-full border border-neutral-800 text-xs font-semibold text-white shadow-lg`}
               >
-                <span className="inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
                 <span className="font-semibold text-brand-accent">{currentLang === "ar" ? "توقيت بيروت المباشر:" : "Beirut Local Time:"}</span>
                 <span className="font-mono text-gray-200 font-bold" dir="ltr">{localTime || "00:00:00 PM"}</span>
               </motion.div>
@@ -186,7 +190,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
               >
                 {t.heroTitle.split("&").map((part, i) => (
                   <span key={i} className="block">
-                    {i === 1 ? <span className="text-gradient bg-gradient-to-r from-brand-accent to-emerald-400 bg-clip-text text-transparent">& {part}</span> : part}
+                    {i === 1 ? <span className="text-gradient bg-gradient-to-r from-brand-accent to-brand-accent-hover bg-clip-text text-transparent">& {part}</span> : part}
                   </span>
                 ))}
               </motion.h1>
@@ -257,7 +261,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/75 z-[1000] flex items-center justify-center p-4 overscroll-contain"
+            className="fixed inset-0 z-[1000] flex max-w-[100dvw] items-center justify-center overflow-x-hidden bg-black/75 p-3 overscroll-contain sm:p-4"
             onClick={() => setBookingModalOpen(false)}
           >
             <motion.div
@@ -265,7 +269,7 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="bg-brand-card border border-brand-border rounded-[28px] p-5 sm:p-6 w-full max-w-lg max-h-[92vh] overflow-y-auto shadow-2xl space-y-5 relative"
+              className="relative box-border w-full max-w-[calc(100dvw-1.5rem)] overflow-x-hidden overflow-y-auto rounded-[24px] border border-brand-border bg-brand-card p-4 shadow-2xl max-h-[calc(100dvh-1.5rem)] space-y-4 sm:max-w-lg sm:rounded-[28px] sm:p-6 sm:space-y-5"
               onClick={(e) => e.stopPropagation()}
               dir={isRtl ? "rtl" : "ltr"}
               role="dialog"
@@ -273,12 +277,12 @@ export default function Hero({ currentLang, onNavigate }: HeroProps) {
               aria-labelledby="booking-modal-title"
             >
               <div className="absolute top-0 right-0 w-48 h-48 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none" />
-              <div className={`flex justify-between items-center ${isRtl ? "flex-row-reverse" : ""}`}>
-                <div className="flex items-center gap-2">
+              <div className={`flex min-w-0 justify-between items-start gap-2 ${isRtl ? "flex-row-reverse" : ""}`}>
+                <div className="flex min-w-0 items-center gap-2">
                   <div className="w-8 h-8 bg-brand-accent/10 border border-brand-accent/20 rounded-lg flex items-center justify-center text-brand-accent">
                     <Calendar className="w-4 h-4" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h3 id="booking-modal-title" tabIndex={-1} className="font-black text-lg text-brand-text outline-none">{t.bookTransferBtn}</h3>
                     <p className="text-[11px] text-brand-muted mt-0.5">
                       {currentLang === "ar" ? "أدخل التفاصيل وسنجهز رسالة واتساب للحجز." : "Add your details and we’ll prepare your WhatsApp booking message."}

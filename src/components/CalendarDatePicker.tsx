@@ -113,7 +113,7 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
         onClick={() => handleSelectDay(d)}
         className={`h-9 w-full rounded-lg text-xs font-semibold flex items-center justify-center transition-all ${
           isSelected
-            ? "bg-brand-accent text-brand-bg scale-105 shadow-md font-extrabold"
+            ? "bg-brand-accent text-brand-btn-text scale-105 shadow-md font-extrabold"
             : isPast
             ? "text-brand-muted/20 cursor-not-allowed line-through"
             : "text-brand-text hover:bg-brand-accent/20 hover:text-brand-accent cursor-pointer"
@@ -125,7 +125,7 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
   }
 
   return (
-    <div className="w-full bg-brand-input border border-brand-border rounded-xl p-3.5 space-y-3" id="custom-calendar-picker">
+    <div className="box-border w-full min-w-0 overflow-hidden bg-brand-input border border-brand-border rounded-xl p-3 space-y-3 sm:p-3.5" id="custom-calendar-picker">
       {/* Month Year Header Selector */}
       <div className={`flex items-center justify-between ${isRtl ? "flex-row-reverse" : "flex-row"}`}>
         <button
@@ -137,9 +137,9 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
           <ChevronLeft className="w-4 h-4" />
         </button>
         
-        <div className="text-xs font-black tracking-tight text-brand-accent uppercase flex items-center gap-1.5 font-sans">
+        <div className="min-w-0 px-1 text-center text-[11px] font-black tracking-tight text-brand-accent uppercase flex items-center justify-center gap-1 font-sans sm:text-xs sm:gap-1.5">
           <Calendar className="w-3.5 h-3.5" />
-          <span>{monthName} {currentYear}</span>
+          <span className="truncate">{monthName} {currentYear}</span>
         </div>
 
         <button
@@ -153,14 +153,14 @@ export default function CalendarDatePicker({ selectedDate, onChange, currentLang
       </div>
 
       {/* Weekday Labels Header */}
-      <div className="grid grid-cols-7 gap-1 text-center font-mono text-[10px] font-bold text-brand-muted uppercase border-b border-brand-border/30 pb-1.5">
+      <div className="grid grid-cols-[repeat(7,minmax(0,1fr))] gap-0.5 text-center font-mono text-[9px] font-bold text-brand-muted uppercase border-b border-brand-border/30 pb-1.5 sm:gap-1 sm:text-[10px]">
         {weekdays.map((wd, index) => (
-          <div key={index}>{wd}</div>
+          <div key={index} className="min-w-0 truncate">{wd}</div>
         ))}
       </div>
 
       {/* Days Grid */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-[repeat(7,minmax(0,1fr))] gap-0.5 sm:gap-1">
         {dayCells}
       </div>
 

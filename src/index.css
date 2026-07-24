@@ -11,16 +11,16 @@
   --card-border-hover: #44403c; /* Stone-700 */
   --input-bg: #0c0a09;
   --input-border: #2e2a24;
-  --accent-color: #10b981; /* Premium Cedar Emerald Green representing the Lebanese flag and elite nature */
-  --accent-hover: #059669;
-  --accent-bg-glow: rgba(16, 185, 129, 0.15);
-  --secondary-color: #dc2626; /* Lebanese flag red, used sparingly */
+  --accent-color: #a71c07;
+  --accent-hover: #c8321b;
+  --accent-bg-glow: rgba(167, 28, 7, 0.24);
+  --secondary-color: #d8a84e;
   --header-bg: rgba(12, 10, 9, 0.98);
   --footer-bg: #0c0a09;
   --footer-border: #1c1917;
-  --button-text-color: #000000;
+  --button-text-color: #ffffff;
   --surface-raised: #24201d;
-  --soft-accent: rgba(16, 185, 129, 0.10);
+  --soft-accent: rgba(167, 28, 7, 0.16);
 }
 
 :root.light {
@@ -33,16 +33,16 @@
   --card-border-hover: #d6d3d1; /* Stone-300 */
   --input-bg: #f5f5f4; /* Stone-100 */
   --input-border: #e7e5e4;
-  --accent-color: #059669; /* Emerald Cedar Green */
-  --accent-hover: #047857;
-  --accent-bg-glow: rgba(5, 150, 105, 0.1);
-  --secondary-color: #b91c1c;
+  --accent-color: #a71c07;
+  --accent-hover: #861606;
+  --accent-bg-glow: rgba(167, 28, 7, 0.16);
+  --secondary-color: #9a6700;
   --header-bg: rgba(252, 252, 251, 0.98);
   --footer-bg: #f5f5f4; /* Stone-100 */
   --footer-border: #e7e5e4;
   --button-text-color: #ffffff;
   --surface-raised: #ffffff;
-  --soft-accent: rgba(5, 150, 105, 0.08);
+  --soft-accent: rgba(167, 28, 7, 0.09);
 }
 
 @theme {
@@ -197,7 +197,7 @@ img {
 
 .bento-card-highlight {
   background-color: var(--accent-color);
-  color: #000000;
+  color: var(--button-text-color);
   border-radius: 32px;
   box-shadow: 0 10px 30px -10px var(--accent-bg-glow);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);

@@ -111,14 +111,12 @@ export default function SEO({ currentLang, activeView }: SEOProps) {
     "image": OG_IMAGE_URL,
     "description": description,
     "telephone": "+9613460865",
-    "email": "ghadertourism@gmail.com",
     "priceRange": "$$",
     "sameAs": ["https://instagram.com/ghadertourism", "https://facebook.com/ghadertourism", "https://tiktok.com/@ghadertourism"],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+9613460865",
       "contactType": "customer service",
-      "email": "ghadertourism@gmail.com",
       "areaServed": "LB",
       "availableLanguage": ["English", "Arabic"]
     },
@@ -173,7 +171,6 @@ export default function SEO({ currentLang, activeView }: SEOProps) {
       <meta name="author" content="Ghader Tourism"/>
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       <meta httpEquiv="content-language" content={currentLang === "ar" ? "ar" : "en"} />
-      <meta name="theme-color" content="#0c0a09" />
       <link rel="canonical" href={canonicalUrl} />
       <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
 

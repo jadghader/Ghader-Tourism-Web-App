@@ -48,15 +48,6 @@ export default function VehicleGallery({ currentLang }: VehicleGalleryProps) {
   const galleryItems = GALLERY_ITEMS[currentLang];
 
   React.useEffect(() => {
-    const alternateLanguage: Language = currentLang === "ar" ? "en" : "ar";
-    GALLERY_ITEMS[alternateLanguage].slice(0, 3).forEach(({ image }) => {
-      const preload = new Image();
-      preload.decoding = "async";
-      preload.src = image;
-    });
-  }, [currentLang]);
-
-  React.useEffect(() => {
     setActiveIdx(0);
   }, [currentLang]);
 

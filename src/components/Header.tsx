@@ -63,7 +63,7 @@ export default function Header({
             }}
             id="brand-logo"
           >
-            <span className="h-12 w-12 rounded-xl overflow-hidden bg-white border border-brand-border shadow-sm flex items-center justify-center shrink-0 p-0.5">
+            <span className="h-10 w-10 rounded-xl overflow-hidden bg-white border border-brand-border shadow-sm flex items-center justify-center shrink-0 p-0.5">
               <img
                 src={logoImage}
                 alt={isRtl ? "شعار غادر للسياحة" : "Ghader Tourism logo"}
@@ -71,8 +71,8 @@ export default function Header({
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
-                width="48"
-                height="48"
+                width="40"
+                height="40"
               />
             </span>
             <span className={`font-extrabold text-base leading-tight tracking-tight font-sans text-brand-text ${isRtl ? "text-right" : "text-left"}`}>
@@ -93,7 +93,7 @@ export default function Header({
                 aria-current={activeView === item.id ? "page" : undefined}
                 className={`px-3.5 py-1.5 text-xs font-bold rounded-full transition-all duration-200 cursor-pointer ${
                   activeView === item.id
-                    ? "bg-brand-accent text-brand-bg font-black shadow-sm"
+                    ? "bg-brand-accent text-brand-btn-text font-black shadow-sm"
                     : "text-brand-muted hover:text-brand-text hover:bg-brand-input"
                 }`}
                 id={`nav-${item.id}`}
@@ -195,7 +195,7 @@ export default function Header({
                 aria-current={activeView === item.id ? "page" : undefined}
                 className={`w-full px-4 py-2.5 rounded-xl text-xs font-bold transition-all block cursor-pointer ${
                   activeView === item.id
-                    ? "bg-brand-accent text-brand-bg font-black"
+                    ? "bg-brand-accent text-brand-btn-text font-black"
                     : "text-brand-muted hover:text-brand-text hover:bg-brand-input"
                 } ${isRtl ? "text-right" : "text-left"}`}
                 id={`mobile-nav-${item.id}`}
